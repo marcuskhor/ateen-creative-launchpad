@@ -52,11 +52,11 @@ const ContactSection = () => {
           {inputFields.map((field, index) => (
             <motion.div
               key={field.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
+              animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ 
-                duration: 0.5, 
-                delay: isFormInView ? index * 0.08 : 0,
+                duration: 0.9, 
+                delay: isFormInView ? index * 0.15 : 0,
                 ease: [0.22, 1, 0.36, 1]
               }}
             >
@@ -73,11 +73,11 @@ const ContactSection = () => {
           ))}
 
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={isFormInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ 
-              duration: 0.5, 
-              delay: isFormInView ? 0.32 : 0,
+              duration: 0.9, 
+              delay: isFormInView ? 0.6 : 0,
               ease: [0.22, 1, 0.36, 1]
             }}
           >
@@ -96,7 +96,7 @@ const ContactSection = () => {
             className="flex justify-end pt-8"
             initial={{ opacity: 0 }}
             animate={isFormInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.4 }}
+            transition={{ duration: 0.9, delay: 0.75 }}
           >
             <motion.button
               type="submit"
