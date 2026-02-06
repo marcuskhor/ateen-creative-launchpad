@@ -1,32 +1,44 @@
-import { motion } from 'framer-motion';
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
 
 const Footer = () => {
+  const containerRef = useRef(null);
+  const isInView = useInView(containerRef, { once: false, amount: 0.5 });
+
   return (
-    <footer className="py-12 bg-background border-t border-border">
-      <div className="container px-6 md:px-12">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="py-16 bg-background border-t border-border/50">
+      <motion.div 
+        ref={containerRef}
+        className="container px-6 md:px-12"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="flex flex-col md:flex-row justify-between items-center gap-8">
           <motion.a 
             href="#"
-            className="text-sm tracking-[0.3em] font-medium text-foreground hover:text-primary transition-colors"
+            className="text-sm tracking-[0.3em] font-medium text-foreground hover:text-primary transition-colors duration-300"
             whileHover={{ scale: 1.02 }}
           >
             ATEEN CREATIVE
           </motion.a>
 
           <div className="flex items-center gap-8">
-            <a 
+            <motion.a 
               href="mailto:hello@ateencreative.com" 
-              className="text-sm text-muted-foreground hover:text-primary transition-colors link-underline"
+              className="text-sm text-muted-foreground hover:text-primary transition-colors duration-300 relative group"
+              whileHover={{ y: -2 }}
             >
               hello@ateencreative.com
-            </a>
+              <span className="absolute -bottom-1 left-0 w-full h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </motion.a>
           </div>
 
           <p className="text-xs text-muted-foreground tracking-wide">
             © {new Date().getFullYear()} ATEEN CREATIVE
           </p>
         </div>
-      </div>
+      </motion.div>
     </footer>
   );
 };
