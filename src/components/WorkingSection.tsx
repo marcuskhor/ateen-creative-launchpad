@@ -1,4 +1,6 @@
-import AnimatedSection from './AnimatedSection';
+import AnimatedSection, { LineReveal, Parallax } from './AnimatedSection';
+import { motion, useScroll, useTransform } from 'framer-motion';
+import { useRef } from 'react';
 import workspaceImage from '@/assets/workspace.jpg';
 
 const expectations = [
@@ -8,61 +10,87 @@ const expectations = [
 ];
 
 const WorkingSection = () => {
+  const sectionRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ['start end', 'end start']
+  });
+
+  const imageY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
+  const imageOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.2, 0.5, 0.5, 0.2]);
+
   return (
-    <section id="work" className="section-padding bg-background relative">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center opacity-40"
-        style={{ backgroundImage: `url(${workspaceImage})` }}
+    <section id="work" ref={sectionRef} className="section-padding bg-background relative min-h-screen">
+      {/* Background Image with Parallax */}
+      <motion.div 
+        className="absolute inset-0 bg-cover bg-center"
+        style={{ 
+          backgroundImage: `url(${workspaceImage})`,
+          y: imageY,
+          opacity: imageOpacity
+        }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/80 to-background" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/85 to-background" />
 
       <div className="container px-6 md:px-12 relative z-10">
         <AnimatedSection>
-          <h2 className="text-heading font-light tracking-wide text-foreground mb-16">
+          <h2 className="text-heading font-light tracking-wide text-foreground mb-20">
             WORKING WITH ATEEN
           </h2>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-16">
+        <div className="grid md:grid-cols-2 gap-20">
           {/* How We Work */}
-          <div>
-            <AnimatedSection>
-              <div className="accent-line mb-6 origin-left" />
-              <h3 className="text-xl font-medium text-foreground tracking-wide mb-4">
-                HOW WE WORK
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                WE BELIEVE STRONG RESULTS COME FROM CLARITY AND ALIGNMENT. BEFORE EXECUTION BEGINS, WE MAKE SURE DIRECTION, PRIORITIES, AND EXPECTATIONS ARE CLEAR — SO THE WORK MOVES FORWARD WITHOUT CONFUSION OR REWORK.
-              </p>
+          <div className="space-y-16">
+            <AnimatedSection direction="left">
+              <div>
+                <LineReveal className="w-24 mb-6" />
+                <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
+                  HOW WE WORK
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  WE BELIEVE STRONG RESULTS COME FROM CLARITY AND ALIGNMENT. BEFORE EXECUTION BEGINS, WE MAKE SURE DIRECTION, PRIORITIES, AND EXPECTATIONS ARE CLEAR — SO THE WORK MOVES FORWARD WITHOUT CONFUSION OR REWORK.
+                </p>
+              </div>
             </AnimatedSection>
 
-            <AnimatedSection delay={0.2} className="mt-12">
-              <div className="accent-line mb-6 origin-left" />
-              <h3 className="text-xl font-medium text-foreground tracking-wide mb-4">
-                WHAT TO EXPECT
-              </h3>
-              <ol className="space-y-3">
-                {expectations.map((item, index) => (
-                  <li key={item} className="flex items-center gap-4 text-muted-foreground">
-                    <span className="text-primary font-medium">{index + 1}.</span>
-                    {item}
-                  </li>
-                ))}
-              </ol>
+            <AnimatedSection delay={0.15} direction="left">
+              <div>
+                <LineReveal className="w-24 mb-6" />
+                <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
+                  WHAT TO EXPECT
+                </h3>
+                <ol className="space-y-4">
+                  {expectations.map((item, index) => (
+                    <motion.li 
+                      key={item} 
+                      className="flex items-center gap-4 text-muted-foreground"
+                      initial={{ opacity: 0, x: -20 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      viewport={{ once: false, amount: 0.5 }}
+                      transition={{ delay: index * 0.1, duration: 0.5 }}
+                    >
+                      <span className="text-primary font-medium text-lg">{index + 1}.</span>
+                      {item}
+                    </motion.li>
+                  ))}
+                </ol>
+              </div>
             </AnimatedSection>
           </div>
 
           {/* Who We Work With */}
           <div>
-            <AnimatedSection delay={0.3}>
-              <div className="accent-line mb-6 origin-left" />
-              <h3 className="text-xl font-medium text-foreground tracking-wide mb-4">
-                WHO WE WORK BEST WITH
-              </h3>
-              <p className="text-muted-foreground leading-relaxed">
-                WE WORK BEST WITH TEAMS WHO VALUE STRUCTURE, LONG-TERM THINKING, AND CONSISTENCY. AND WHO ARE READY TO BUILD PROPERLY, NOT RUSH DISCONNECTED SOLUTIONS.
-              </p>
+            <AnimatedSection delay={0.2} direction="right">
+              <div>
+                <LineReveal className="w-24 mb-6" direction="right" />
+                <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
+                  WHO WE WORK BEST WITH
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  WE WORK BEST WITH TEAMS WHO VALUE STRUCTURE, LONG-TERM THINKING, AND CONSISTENCY. AND WHO ARE READY TO BUILD PROPERLY, NOT RUSH DISCONNECTED SOLUTIONS.
+                </p>
+              </div>
             </AnimatedSection>
           </div>
         </div>
