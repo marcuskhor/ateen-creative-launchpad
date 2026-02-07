@@ -65,7 +65,7 @@ const AnimatedSection = ({
         visible,
       }}
       transition={{ 
-        duration: 0.7, 
+        duration: 1.2, 
         delay: isInView ? delay : 0,
         ease: [0.22, 1, 0.36, 1]
       }}
@@ -105,7 +105,7 @@ export const TextReveal = ({
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{
-            duration: 0.5,
+            duration: 0.8,
             delay: isInView ? index * staggerDelay : 0,
             ease: [0.22, 1, 0.36, 1]
           }}
@@ -157,7 +157,7 @@ export const LineReveal = ({ className = '', direction = 'left' }: LineRevealPro
       initial={{ scaleX: 0 }}
       animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
       style={{ originX: direction === 'left' ? 0 : 1 }}
-      transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+      transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
     />
   );
 };
