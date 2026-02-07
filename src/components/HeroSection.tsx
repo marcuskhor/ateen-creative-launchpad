@@ -16,13 +16,22 @@ const HeroSection = () => {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax */}
+      {/* Background Image with Parallax and Float */}
       <motion.div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{ 
           backgroundImage: `url(${heroMesh})`,
           y: backgroundY,
           scale
+        }}
+        animate={{
+          y: [0, -15, 0],
+          x: [0, 8, 0],
+        }}
+        transition={{
+          duration: 8,
+          repeat: Infinity,
+          ease: "easeInOut"
         }}
       />
       
