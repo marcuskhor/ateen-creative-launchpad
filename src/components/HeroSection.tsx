@@ -16,24 +16,31 @@ const HeroSection = () => {
 
   return (
     <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Parallax and Float */}
+      {/* Background wrapper for parallax scroll */}
       <motion.div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0"
         style={{ 
-          backgroundImage: `url(${heroMesh})`,
           y: backgroundY,
           scale
         }}
-        animate={{
-          y: [0, -15, 0],
-          x: [0, 8, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
+      >
+        {/* Inner div for floating animation */}
+        <motion.div 
+          className="absolute inset-[-20px] bg-cover bg-center bg-no-repeat"
+          style={{ 
+            backgroundImage: `url(${heroMesh})`,
+          }}
+          animate={{
+            y: [0, -15, 0],
+            x: [0, 8, 0],
+          }}
+          transition={{
+            duration: 8,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+      </motion.div>
       
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-background/40" />
