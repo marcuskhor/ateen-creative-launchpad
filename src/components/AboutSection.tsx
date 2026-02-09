@@ -11,26 +11,28 @@ const AboutSection = () => {
       <div className="container px-6 md:px-12">
         <div className="text-center max-w-4xl mx-auto">
           {/* Neon green circle behind title */}
-          <div className="relative inline-block mb-10">
+          <div className="relative inline-flex items-center justify-center mb-10">
+            {/* Neon circle - centered and behind text */}
             <motion.div 
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 md:w-48 md:h-48 rounded-full"
+              className="absolute w-36 h-36 md:w-48 md:h-48 rounded-full z-0"
               style={{
-                background: 'radial-gradient(circle, hsl(75 100% 50% / 0.8) 0%, hsl(75 100% 45% / 0.5) 25%, hsl(75 100% 40% / 0.15) 55%, transparent 75%)',
-                filter: 'blur(8px)',
+                background: 'radial-gradient(circle, hsl(75 100% 50% / 0.9) 0%, hsl(75 100% 50% / 0.5) 20%, hsl(75 100% 45% / 0.2) 50%, transparent 70%)',
+                filter: 'blur(6px)',
               }}
-              animate={{
-                opacity: [0.7, 1, 0.7],
-                scale: [0.95, 1.08, 0.95],
+              initial={{ opacity: 0, scale: 0.3 }}
+              animate={isInView ? {
+                opacity: [0.6, 1, 0.6],
+                scale: [0.9, 1.1, 0.9],
                 boxShadow: [
-                  '0 0 40px hsl(75 100% 50% / 0.3)',
-                  '0 0 80px hsl(75 100% 50% / 0.5)',
-                  '0 0 40px hsl(75 100% 50% / 0.3)',
+                  '0 0 30px hsl(75 100% 50% / 0.2)',
+                  '0 0 70px hsl(75 100% 50% / 0.5)',
+                  '0 0 30px hsl(75 100% 50% / 0.2)',
                 ],
-              }}
+              } : { opacity: 0, scale: 0.3 }}
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             <AnimatedSection>
-              <h2 className="relative text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.15em] text-foreground">
+              <h2 className="relative z-10 text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.15em] text-foreground">
                 ABOUT ATEEN
               </h2>
             </AnimatedSection>
