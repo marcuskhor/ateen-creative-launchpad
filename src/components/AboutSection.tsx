@@ -7,7 +7,7 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: false, amount: 0.3 });
 
   return (
-    <section id="about" className="pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40 bg-background" ref={ref}>
+    <section id="about" className="min-h-screen flex items-center justify-center bg-background" ref={ref}>
       <div className="container px-6 md:px-12">
         <div className="text-center max-w-4xl mx-auto">
           {/* Neon green circle behind title */}
