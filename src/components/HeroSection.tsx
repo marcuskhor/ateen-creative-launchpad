@@ -15,7 +15,7 @@ const HeroSection = () => {
   const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
-    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section ref={sectionRef} className="relative h-screen flex items-center justify-center overflow-hidden">
       {/* Background wrapper for parallax scroll */}
       <motion.div 
         className="absolute inset-0"
@@ -101,20 +101,6 @@ const HeroSection = () => {
           </motion.div>
         </motion.div>
 
-        {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 0.8 }}
-        >
-          <span className="text-xs tracking-widest text-muted-foreground">SCROLL</span>
-          <motion.div
-            animate={{ y: [0, 8, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="w-px h-12 bg-gradient-to-b from-primary to-transparent"
-          />
-        </motion.div>
       </motion.div>
     </section>
   );

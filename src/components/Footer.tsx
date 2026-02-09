@@ -1,5 +1,6 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const containerRef = useRef(null);
@@ -15,13 +16,12 @@ const Footer = () => {
         transition={{ duration: 0.6 }}
       >
         <div className="flex flex-col md:flex-row justify-between items-center gap-8">
-          <motion.a 
-            href="#"
+          <Link 
+            to="/"
             className="text-sm tracking-[0.3em] font-medium text-foreground hover:text-primary transition-colors duration-300"
-            whileHover={{ scale: 1.02 }}
           >
             ATEEN CREATIVE
-          </motion.a>
+          </Link>
 
           <div className="flex items-center gap-8">
             <motion.a 
