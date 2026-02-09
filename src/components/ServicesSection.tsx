@@ -51,20 +51,20 @@ const ServiceItem = ({ service, index }: { service: typeof services[0]; index: n
 
 const ServicesSection = () => {
   return (
-    <section id="services" className="section-padding bg-background">
+    <section id="services" className="py-24 md:py-32 lg:py-40 bg-background">
       <div className="container px-6 md:px-12">
         <AnimatedSection>
-          <div className="mb-16">
-            <h2 className="text-heading font-light tracking-wide text-foreground mb-4">
+          <div className="mb-12">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.1em] text-foreground mb-1">
               SERVICES
             </h2>
-            <p className="text-muted-foreground tracking-wide">
-              OUR CORE WORK IS <span className="text-foreground font-medium">END-TO-END</span> BRAND EXECUTION.
+            <p className="text-sm text-muted-foreground tracking-[0.15em]">
+              OUR CORE WORK IS <span className="text-foreground font-bold">END-TO-END</span> BRAND EXECUTION.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="space-y-2">
+        <div className="space-y-4 pl-2">
           {services.map((service, index) => (
             <ServiceItem key={service.title} service={service} index={index} />
           ))}
