@@ -13,12 +13,21 @@ const AboutSection = () => {
           {/* Neon green circle behind title */}
           <div className="relative inline-block mb-10">
             <motion.div 
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/4 w-32 h-32 md:w-44 md:h-44 rounded-full"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-36 h-36 md:w-48 md:h-48 rounded-full"
               style={{
-                background: 'radial-gradient(circle, hsl(75 100% 50% / 0.7) 0%, hsl(75 100% 45% / 0.4) 30%, hsl(75 100% 40% / 0.1) 60%, transparent 80%)',
+                background: 'radial-gradient(circle, hsl(75 100% 50% / 0.8) 0%, hsl(75 100% 45% / 0.5) 25%, hsl(75 100% 40% / 0.15) 55%, transparent 75%)',
+                filter: 'blur(8px)',
               }}
-              animate={isInView ? { opacity: [0.8, 1, 0.8], scale: [1, 1.05, 1] } : { opacity: 0 }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              animate={{
+                opacity: [0.7, 1, 0.7],
+                scale: [0.95, 1.08, 0.95],
+                boxShadow: [
+                  '0 0 40px hsl(75 100% 50% / 0.3)',
+                  '0 0 80px hsl(75 100% 50% / 0.5)',
+                  '0 0 40px hsl(75 100% 50% / 0.3)',
+                ],
+              }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             <AnimatedSection>
               <h2 className="relative text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.15em] text-foreground">
