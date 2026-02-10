@@ -8,12 +8,23 @@ const Header = () => {
   const location = useLocation();
 
   const navLinks = [
-    { href: '/', label: 'HOME' },
-    { href: '/about', label: 'ABOUT US' },
-    { href: '/about#services', label: 'SERVICES' },
-    { href: '/about#concepts', label: 'CONCEPT SYSTEMS' },
-    { href: '/work', label: 'START A PROJECT' },
+    { href: '/', label: 'HOME', hash: '' },
+    { href: '/about', label: 'ABOUT US', hash: '' },
+    { href: '/about', label: 'SERVICES', hash: '#services' },
+    { href: '/about', label: 'CONCEPT SYSTEMS', hash: '#concepts' },
+    { href: '/work', label: 'START A PROJECT', hash: '' },
   ];
+
+  const handleNavClick = (link: typeof navLinks[0]) => {
+    setIsMenuOpen(false);
+    
+    if (link.hash && location.pathname === link.href) {
+      // Same page, just scroll
+      const el = document.querySelector(link.hash);
+      el?.scrollIntoView({ behavior: 'smooth' });
+    }
+    // For cross-page navigation with hash, we handle in useEffect
+  };
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50">
@@ -55,10 +66,10 @@ const Header = () => {
                   transition={{ delay: 0.15 + index * 0.06, duration: 0.4 }}
                 >
                   <Link
-                    to={link.href}
-                    onClick={() => setIsMenuOpen(false)}
+                    to={link.hash ? `${link.href}${link.hash}` : link.href}
+                    onClick={() => handleNavClick(link)}
                     className={`flex items-center gap-3 text-xl md:text-2xl font-light tracking-[0.15em] transition-colors ${
-                      location.pathname === link.href ? 'text-primary' : 'text-foreground hover:text-primary'
+                      location.pathname === link.href && !link.hash ? 'text-primary' : 'text-foreground hover:text-primary'
                     }`}
                   >
                     <span className="text-foreground/40">|</span>

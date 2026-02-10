@@ -7,20 +7,20 @@ const HeroSection = () => {
     <section className="relative h-screen overflow-hidden">
       {/* Neon green gradient from bottom-left */}
       <div className="absolute inset-0" style={{
-        background: 'radial-gradient(ellipse 80% 70% at 20% 90%, hsl(75 100% 50% / 0.4) 0%, hsl(75 100% 45% / 0.15) 40%, transparent 70%)'
+        background: 'radial-gradient(ellipse 100% 90% at 15% 95%, hsl(75 100% 50% / 0.55) 0%, hsl(75 100% 48% / 0.3) 30%, hsl(75 100% 45% / 0.1) 55%, transparent 80%)'
       }} />
 
-      {/* Left side vertical text */}
-      <div className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-10 hidden md:flex flex-col items-center">
-        <p className="text-[10px] tracking-[0.3em] text-foreground/60 [writing-mode:vertical-lr] rotate-180">
+      {/* Left side vertical text - toward top */}
+      <div className="absolute left-6 md:left-12 top-[30%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center">
+        <p className="text-xs tracking-[0.15em] text-foreground/60 [writing-mode:vertical-lr] rotate-180">
           NOT TREND·DRIVEN. DIRECTION LED.
         </p>
       </div>
 
-      {/* Right side vertical text */}
-      <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-10 hidden md:flex flex-col items-center gap-4">
+      {/* Right side vertical text - toward bottom */}
+      <div className="absolute right-6 md:right-12 top-[70%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center gap-4">
         <div className="w-[2px] h-8 bg-primary" />
-        <p className="text-[10px] tracking-[0.3em] text-foreground/60 [writing-mode:vertical-lr]">
+        <p className="text-xs tracking-[0.15em] text-foreground/60 [writing-mode:vertical-lr]">
           CLARITY CREATES RECOGNITION.
         </p>
       </div>
@@ -58,9 +58,9 @@ const HeroSection = () => {
           </p>
         </motion.div>
 
-        {/* CTA buttons - matching PDF */}
+        {/* CTA buttons - bottom right, aligned with subtitle end */}
         <motion.div 
-          className="flex items-center justify-center gap-16"
+          className="flex items-center justify-end gap-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.8 }}
@@ -71,7 +71,7 @@ const HeroSection = () => {
               START A<br />PROJECT
             </span>
           </Link>
-          <Link to="/about" className="group text-center">
+          <Link to="/about#services" className="group text-center">
             <div className="w-20 h-[2px] bg-primary mb-3 mx-auto" />
             <span className="text-xs tracking-[0.2em] text-foreground/80 group-hover:text-primary transition-colors duration-300">
               VIEW<br />SERVICES
