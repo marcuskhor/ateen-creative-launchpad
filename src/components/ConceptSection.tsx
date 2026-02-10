@@ -12,7 +12,7 @@ const ConceptSection = () => {
   const backgroundY = useTransform(scrollYProgress, [0, 1], ['0%', '20%']);
 
   return (
-    <section ref={sectionRef}>
+    <section id="concepts" ref={sectionRef}>
       {/* Title above green section */}
       <div className="bg-background py-16 md:py-20">
         <div className="container px-6 md:px-12">
