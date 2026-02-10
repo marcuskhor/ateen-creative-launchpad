@@ -1,26 +1,33 @@
 import { motion } from 'framer-motion';
-import heroMesh from '@/assets/hero-mesh.jpg';
 import { TextReveal } from './AnimatedSection';
+import { Link } from 'react-router-dom';
 
 const HeroSection = () => {
   return (
     <section className="relative h-screen overflow-hidden">
-      {/* Background image */}
-      <motion.div 
-        className="absolute inset-[-20px] bg-cover bg-center bg-no-repeat"
-        style={{ backgroundImage: `url(${heroMesh})` }}
-        animate={{ y: [0, -15, 0], x: [0, 8, 0] }}
-        transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Gradient overlay - dark top-right fading to transparent bottom-left to let green show */}
+      {/* Neon green gradient from bottom-left */}
       <div className="absolute inset-0" style={{
-        background: 'linear-gradient(to bottom left, hsl(0 0% 4% / 0.7) 30%, hsl(0 0% 4% / 0.2) 70%, transparent 100%)'
+        background: 'radial-gradient(ellipse 80% 70% at 20% 90%, hsl(75 100% 50% / 0.4) 0%, hsl(75 100% 45% / 0.15) 40%, transparent 70%)'
       }} />
 
+      {/* Left side vertical text */}
+      <div className="absolute left-6 md:left-12 top-1/2 -translate-y-1/2 z-10 hidden md:flex flex-col items-center">
+        <p className="text-[10px] tracking-[0.3em] text-foreground/60 [writing-mode:vertical-lr] rotate-180">
+          NOT TREND·DRIVEN. DIRECTION LED.
+        </p>
+      </div>
+
+      {/* Right side vertical text */}
+      <div className="absolute right-6 md:right-12 top-1/2 -translate-y-1/2 z-10 hidden md:flex flex-col items-center gap-4">
+        <div className="w-[2px] h-8 bg-primary" />
+        <p className="text-[10px] tracking-[0.3em] text-foreground/60 [writing-mode:vertical-lr]">
+          CLARITY CREATES RECOGNITION.
+        </p>
+      </div>
+
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col justify-between px-6 md:px-12 pt-28 pb-16">
-        {/* Title - two lines only */}
+      <div className="relative z-10 h-full flex flex-col justify-between px-12 md:px-24 lg:px-32 pt-28 pb-16">
+        {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 60 }}
           animate={{ opacity: 1, y: 0 }}
@@ -33,7 +40,7 @@ const HeroSection = () => {
           </h1>
         </motion.div>
 
-        {/* Three subtitle lines - right aligned */}
+        {/* Three subtitle lines - center/right aligned */}
         <motion.div 
           className="flex flex-col items-end text-right space-y-2"
           initial={{ opacity: 0, y: 40 }}
@@ -51,15 +58,25 @@ const HeroSection = () => {
           </p>
         </motion.div>
 
-        {/* Two lime accent lines - bottom right */}
+        {/* CTA buttons - matching PDF */}
         <motion.div 
-          className="flex items-center justify-end gap-6"
+          className="flex items-center justify-center gap-16"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.8 }}
         >
-          <div className="w-20 h-[2px] bg-primary" />
-          <div className="w-20 h-[2px] bg-primary" />
+          <Link to="/work" className="group text-center">
+            <div className="w-20 h-[2px] bg-primary mb-3 mx-auto" />
+            <span className="text-xs tracking-[0.2em] text-foreground/80 group-hover:text-primary transition-colors duration-300">
+              START A<br />PROJECT
+            </span>
+          </Link>
+          <Link to="/about" className="group text-center">
+            <div className="w-20 h-[2px] bg-primary mb-3 mx-auto" />
+            <span className="text-xs tracking-[0.2em] text-foreground/80 group-hover:text-primary transition-colors duration-300">
+              VIEW<br />SERVICES
+            </span>
+          </Link>
         </motion.div>
       </div>
     </section>

@@ -39,60 +39,57 @@ const WorkingSection = () => {
           </h2>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-20">
+        <div className="space-y-16">
           {/* How We Work */}
-          <div className="space-y-16">
-            <AnimatedSection direction="left">
-              <div>
-                <LineReveal className="w-24 mb-6" />
-                <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
-                  HOW WE WORK
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  WE BELIEVE STRONG RESULTS COME FROM CLARITY AND ALIGNMENT. BEFORE EXECUTION BEGINS, WE MAKE SURE DIRECTION, PRIORITIES, AND EXPECTATIONS ARE CLEAR — SO THE WORK MOVES FORWARD WITHOUT CONFUSION OR REWORK.
-                </p>
-              </div>
-            </AnimatedSection>
+          <AnimatedSection direction="left">
+            <div>
+              <LineReveal className="w-24 mb-6" />
+              <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
+                HOW WE WORK
+              </h3>
+              <p className="text-muted-foreground leading-relaxed max-w-2xl">
+                WE BELIEVE STRONG RESULTS COME FROM CLARITY AND ALIGNMENT. BEFORE EXECUTION BEGINS, WE MAKE SURE DIRECTION, PRIORITIES, AND EXPECTATIONS ARE CLEAR — SO THE WORK MOVES FORWARD WITHOUT CONFUSION OR REWORK.
+              </p>
+            </div>
+          </AnimatedSection>
 
-            <AnimatedSection delay={0.15} direction="left">
-              <div>
-                <LineReveal className="w-24 mb-6" />
-                <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
-                  WHAT TO EXPECT
-                </h3>
-                <ol className="space-y-4">
-                  {expectations.map((item, index) => (
-                    <motion.li 
-                      key={item} 
-                      className="flex items-center gap-4 text-muted-foreground"
-                      initial={{ opacity: 0, x: -20 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: false, amount: 0.5 }}
-                      transition={{ delay: index * 0.1, duration: 0.5 }}
-                    >
-                      <span className="text-primary font-medium text-lg">{index + 1}.</span>
-                      {item}
-                    </motion.li>
-                  ))}
-                </ol>
-              </div>
-            </AnimatedSection>
-          </div>
+          {/* What To Expect */}
+          <AnimatedSection delay={0.15} direction="left">
+            <div>
+              <LineReveal className="w-24 mb-6" />
+              <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
+                WHAT TO EXPECT
+              </h3>
+              <ol className="space-y-4">
+                {expectations.map((item, index) => (
+                  <motion.li 
+                    key={item} 
+                    className="flex items-center gap-4 text-muted-foreground"
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    viewport={{ once: false, amount: 0.5 }}
+                    transition={{ delay: index * 0.1, duration: 0.5 }}
+                  >
+                    <span className="text-primary font-medium text-lg">{index + 1}.</span>
+                    {item}
+                  </motion.li>
+                ))}
+              </ol>
+            </div>
+          </AnimatedSection>
 
-          {/* Who We Work With */}
-          <div>
-            <AnimatedSection delay={0.2} direction="right">
-              <div>
-                <LineReveal className="w-24 mb-6" direction="right" />
-                <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
-                  WHO WE WORK BEST WITH
-                </h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  WE WORK BEST WITH TEAMS WHO VALUE STRUCTURE, LONG-TERM THINKING, AND CONSISTENCY. AND WHO ARE READY TO BUILD PROPERLY, NOT RUSH DISCONNECTED SOLUTIONS.
-                </p>
-              </div>
-            </AnimatedSection>
-          </div>
+          {/* Who We Work Best With - now below */}
+          <AnimatedSection delay={0.2} direction="left">
+            <div>
+              <LineReveal className="w-24 mb-6" />
+              <h3 className="text-xl font-medium text-foreground tracking-wide mb-6">
+                WHO WE WORK BEST WITH
+              </h3>
+              <p className="text-muted-foreground leading-relaxed max-w-2xl">
+                WE WORK BEST WITH TEAMS WHO VALUE STRUCTURE, LONG-TERM THINKING, AND CONSISTENCY. AND WHO ARE READY TO BUILD PROPERLY, NOT RUSH DISCONNECTED SOLUTIONS.
+              </p>
+            </div>
+          </AnimatedSection>
         </div>
       </div>
     </section>

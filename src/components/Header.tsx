@@ -8,9 +8,11 @@ const Header = () => {
   const location = useLocation();
 
   const navLinks = [
-    { href: '/', label: 'Home' },
-    { href: '/about', label: 'About & Services' },
-    { href: '/work', label: 'Work With Us' },
+    { href: '/', label: 'HOME' },
+    { href: '/about', label: 'ABOUT US' },
+    { href: '/about#services', label: 'SERVICES' },
+    { href: '/about#concepts', label: 'CONCEPT SYSTEMS' },
+    { href: '/work', label: 'START A PROJECT' },
   ];
 
   return (
@@ -39,26 +41,27 @@ const Header = () => {
             className="fixed inset-0 bg-background/98 backdrop-blur-sm z-40"
           >
             <motion.div 
-              className="flex flex-col items-center justify-center h-full gap-8"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
+              className="flex flex-col justify-center h-full px-12 md:px-20 gap-10"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -30 }}
               transition={{ delay: 0.1, duration: 0.4 }}
             >
               {navLinks.map((link, index) => (
                 <motion.div
                   key={link.href}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 + index * 0.05, duration: 0.4 }}
+                  initial={{ opacity: 0, x: -30 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.15 + index * 0.06, duration: 0.4 }}
                 >
                   <Link
                     to={link.href}
                     onClick={() => setIsMenuOpen(false)}
-                    className={`text-3xl md:text-5xl font-light tracking-wide transition-colors ${
+                    className={`flex items-center gap-3 text-xl md:text-2xl font-light tracking-[0.15em] transition-colors ${
                       location.pathname === link.href ? 'text-primary' : 'text-foreground hover:text-primary'
                     }`}
                   >
+                    <span className="text-foreground/40">|</span>
                     {link.label}
                   </Link>
                 </motion.div>
