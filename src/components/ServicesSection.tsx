@@ -55,7 +55,7 @@ const ServicesSection = () => {
       <div className="container px-6 md:px-12">
         <AnimatedSection>
           <div className="mb-12">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.1em] text-foreground mb-1">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-[0.1em] text-foreground mb-1">
               SERVICES
             </h2>
             <p className="text-sm text-muted-foreground tracking-[0.15em]">
