@@ -11,14 +11,14 @@ const HeroSection = () => {
       }} />
 
       {/* Left side vertical text - toward top */}
-      <div className="absolute left-6 md:left-12 top-[25%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center">
+      <div className="absolute left-6 md:left-12 top-[35%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center">
         <p className="text-sm tracking-[0.2em] text-foreground/60 [writing-mode:vertical-lr] rotate-180">
           NOT TREND·DRIVEN. DIRECTION LED.
         </p>
       </div>
 
       {/* Right side vertical text - toward bottom */}
-      <div className="absolute right-6 md:right-12 top-[75%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center gap-4">
+      <div className="absolute right-6 md:right-12 top-[65%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center gap-4">
         <div className="w-[2px] h-10 bg-primary" />
         <p className="text-sm tracking-[0.2em] text-foreground/60 [writing-mode:vertical-lr]">
           CLARITY CREATES RECOGNITION.
