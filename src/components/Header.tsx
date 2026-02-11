@@ -19,11 +19,11 @@ const Header = () => {
     setIsMenuOpen(false);
     
     if (link.hash && location.pathname === link.href) {
-      // Same page, just scroll
       const el = document.querySelector(link.hash);
       el?.scrollIntoView({ behavior: 'smooth' });
+    } else if (!link.hash) {
+      window.scrollTo(0, 0);
     }
-    // For cross-page navigation with hash, we handle in useEffect
   };
 
   return (

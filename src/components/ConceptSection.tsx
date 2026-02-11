@@ -17,7 +17,7 @@ const ConceptSection = () => {
       <div className="bg-background py-16 md:py-20">
         <div className="container px-6 md:px-12">
           <AnimatedSection direction="scale">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-light tracking-[0.15em] text-foreground text-center">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-[0.15em] text-foreground text-center">
               <TextReveal text="CONCEPT SYSTEMS" staggerDelay={0.05} />
             </h2>
           </AnimatedSection>

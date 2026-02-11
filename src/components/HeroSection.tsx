@@ -11,16 +11,16 @@ const HeroSection = () => {
       }} />
 
       {/* Left side vertical text - toward top */}
-      <div className="absolute left-6 md:left-12 top-[30%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center">
-        <p className="text-xs tracking-[0.15em] text-foreground/60 [writing-mode:vertical-lr] rotate-180">
+      <div className="absolute left-6 md:left-12 top-[25%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center">
+        <p className="text-sm tracking-[0.2em] text-foreground/60 [writing-mode:vertical-lr] rotate-180">
           NOT TREND·DRIVEN. DIRECTION LED.
         </p>
       </div>
 
       {/* Right side vertical text - toward bottom */}
-      <div className="absolute right-6 md:right-12 top-[70%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center gap-4">
-        <div className="w-[2px] h-8 bg-primary" />
-        <p className="text-xs tracking-[0.15em] text-foreground/60 [writing-mode:vertical-lr]">
+      <div className="absolute right-6 md:right-12 top-[75%] -translate-y-1/2 z-10 hidden md:flex flex-col items-center gap-4">
+        <div className="w-[2px] h-10 bg-primary" />
+        <p className="text-sm tracking-[0.2em] text-foreground/60 [writing-mode:vertical-lr]">
           CLARITY CREATES RECOGNITION.
         </p>
       </div>
@@ -33,7 +33,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-light text-foreground leading-[1.15] tracking-wide">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-foreground leading-[1.15] tracking-wide">
             <TextReveal text={'\u201CBUILD BRANDS'} staggerDelay={0.04} />
             <br />
             <TextReveal text={'WITH DIRECTION, NOT TRENDS.\u201D'} staggerDelay={0.04} />
@@ -65,7 +65,7 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.8 }}
         >
-          <Link to="/work" className="group text-center">
+          <Link to="/work" className="group text-center" onClick={() => window.scrollTo(0, 0)}>
             <div className="w-20 h-[2px] bg-primary mb-3 mx-auto" />
             <span className="text-xs tracking-[0.2em] text-foreground/80 group-hover:text-primary transition-colors duration-300">
               START A<br />PROJECT

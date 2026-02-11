@@ -32,15 +32,21 @@ const AboutSection = () => {
               transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             />
             <AnimatedSection>
-              <h2 className="relative z-10 text-4xl md:text-5xl lg:text-6xl font-light tracking-[0.15em] text-foreground">
+              <h2 className="relative z-10 text-4xl md:text-5xl lg:text-6xl font-medium tracking-[0.15em] text-foreground">
                 ABOUT ATEEN
               </h2>
             </AnimatedSection>
           </div>
           
           <AnimatedSection delay={0.1}>
-            <p className="text-sm md:text-base font-light text-foreground/80 tracking-[0.3em] mb-10">
+            <p className="text-sm md:text-base font-light text-foreground/80 tracking-[0.3em] mb-4">
               BASED IN MALAYSIA. WORKING WORLWIDE.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.15}>
+            <p className="text-xs md:text-sm font-light text-foreground/50 tracking-[0.25em] mb-10">
+              BUILT FOR LONG-TERM BRANDS
             </p>
           </AnimatedSection>
 
