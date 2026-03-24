@@ -1,0 +1,39 @@
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+import AnimatedSection from '@/components/AnimatedSection';
+
+const ConceptAntiOverwork = () => {
+  return (
+    <div className="min-h-screen bg-background">
+      <Header />
+      <main className="pt-32 pb-24">
+        <div className="container px-6 md:px-12">
+          <AnimatedSection>
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-[0.1em] text-foreground mb-6">
+              ANTI-OVERWORK
+            </h1>
+            <p className="text-sm md:text-base text-primary tracking-[0.15em] mb-4">
+              NO CAFFEINE. NO HUSTLE.
+            </p>
+            <p className="text-sm md:text-base text-foreground/60 tracking-[0.1em] leading-relaxed max-w-2xl">
+              TURNING ATTITUDE INTO IDENTITY AND EXPERIENCE. A BRAND THAT REJECTS BURNOUT CULTURE.
+            </p>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <div className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-4">
+              {['BRAND FOUNDATION', 'VIDEO CONTENT LOGIC', 'LAUNCH CAMPAIGN', 'SPACE VISUAL LOGIC'].map((s) => (
+                <div key={s} className="border border-primary/30 p-4">
+                  <p className="text-xs tracking-[0.1em] text-foreground/70">{s}</p>
+                </div>
+              ))}
+            </div>
+          </AnimatedSection>
+        </div>
+      </main>
+      <Footer />
+    </div>
+  );
+};
+
+export default ConceptAntiOverwork;
