@@ -72,7 +72,7 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
         <div className="relative z-10 px-6 md:px-8 pb-6 md:pb-8 flex flex-col min-h-[480px] md:min-h-[540px]">
           {/* Title & tagline */}
           <div className="mt-auto mb-0">
-            <h3 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.01em] text-foreground whitespace-pre-line leading-[1.0] mb-3">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.01em] text-foreground whitespace-pre-line leading-[1.0] mb-3">
               {concept.name}
             </h3>
             <p className="text-xs md:text-sm text-foreground/60 tracking-[0.12em] mb-10">
