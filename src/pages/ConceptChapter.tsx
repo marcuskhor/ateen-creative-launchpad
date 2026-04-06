@@ -19,7 +19,7 @@ import chapterLaptop from '@/assets/chapter-laptop.jpg';
 
 const ConceptChapter = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-white text-black">
       <Header />
       <main className="pt-24 pb-0">
 
@@ -42,13 +42,13 @@ const ConceptChapter = () => {
         {/* Hero Title */}
         <div className="container px-6 md:px-12">
           <AnimatedSection delay={0.1}>
-            <p className="text-sm md:text-base tracking-[0.12em] text-foreground/70 mb-2">
+            <p className="text-sm md:text-base tracking-[0.12em] text-black/70 mb-2">
               A RATIONAL, MODERN PERFUME BRAND.
             </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.02em] text-foreground mb-2" style={{ fontFamily: 'serif' }}>
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.02em] text-black mb-2" style={{ fontFamily: 'serif' }}>
               ĆHAPTER
             </h1>
-            <p className="text-[10px] md:text-xs tracking-[0.15em] text-foreground/50">
+            <p className="text-[10px] md:text-xs tracking-[0.15em] text-black/50">
               CONCEPT BY ATEEN
             </p>
           </AnimatedSection>
@@ -58,29 +58,26 @@ const ConceptChapter = () => {
         <div className="container px-6 md:px-12 mt-12 md:mt-16">
           <AnimatedSection delay={0.2}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 items-start">
-              {/* Left image - hand in light */}
               <div className="aspect-[3/4] overflow-hidden">
                 <img src={chapterHandLight} alt="Hand reaching into light" className="w-full h-full object-cover" />
               </div>
-              {/* Center image - bottle */}
               <div className="aspect-[3/4] overflow-hidden">
                 <img src={chapterBottle} alt="Chapter Eau perfume bottle" className="w-full h-full object-cover" />
               </div>
-              {/* Right text */}
               <div className="flex flex-col justify-center">
-                <h2 className="text-2xl md:text-3xl font-bold tracking-[0.08em] text-foreground mb-3">
+                <h2 className="text-2xl md:text-3xl font-bold tracking-[0.08em] text-black mb-3">
                   VALUE DEFINED
                 </h2>
-                <p className="text-xs md:text-sm tracking-[0.1em] text-foreground/60 mb-8">
+                <p className="text-xs md:text-sm tracking-[0.1em] text-black/60 mb-8">
                   THE SCENT IS THE CHAPTER YOU'RE IN.
                 </p>
-                <h3 className="text-xl md:text-2xl font-bold tracking-[0.08em] text-foreground mb-4">
+                <h3 className="text-xl md:text-2xl font-bold tracking-[0.08em] text-black mb-4">
                   POSITIONING
                 </h3>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed mb-3">
+                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
                   ATEEN POSITIONED CHAPTER AS A RATIONAL MODERN PERFUME BRAND BUILT AROUND THE IDEA OF LIFE CHAPTERS.
                 </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed">
+                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed">
                   INSTEAD OF DEFINING FRAGRANCE BY GENDER OR FIXED IDENTITY LABELS, THE CONCEPT EXPLORES WHERE SOMEONE IS IN LIFE, AND TRANSLATES THAT MOMENT INTO SCENT.
                 </p>
               </div>
@@ -91,21 +88,15 @@ const ConceptChapter = () => {
         {/* Principles */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
           <AnimatedSection delay={0.1}>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-foreground mb-6">
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-black mb-6">
               PRINCIPLES
             </h2>
             <div className="space-y-1 mb-4">
-              <p className="text-xs md:text-sm tracking-[0.1em] text-foreground/80 font-semibold">
-                CHAPTER OVER IDENTITY
-              </p>
-              <p className="text-xs md:text-sm tracking-[0.1em] text-foreground/80 font-semibold">
-                EMOTION OVER CATEGORY
-              </p>
-              <p className="text-xs md:text-sm tracking-[0.1em] text-foreground/80 font-semibold">
-                MOMENT OVER PERSONALITY
-              </p>
+              <p className="text-xs md:text-sm tracking-[0.1em] text-black/80 font-semibold">CHAPTER OVER IDENTITY</p>
+              <p className="text-xs md:text-sm tracking-[0.1em] text-black/80 font-semibold">EMOTION OVER CATEGORY</p>
+              <p className="text-xs md:text-sm tracking-[0.1em] text-black/80 font-semibold">MOMENT OVER PERSONALITY</p>
             </div>
-            <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/50 leading-relaxed max-w-xl">
+            <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/50 leading-relaxed max-w-xl">
               THESE PRINCIPLES GUIDED THE DEVELOPMENT OF CHAPTER'S BRAND SYSTEM, VISUAL LANGUAGE, AND NARRATIVE STRUCTURE.
             </p>
           </AnimatedSection>
@@ -113,102 +104,96 @@ const ConceptChapter = () => {
 
         {/* Divider */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <div className="border-t border-foreground/10" />
+          <div className="border-t border-black/10" />
         </div>
 
-        {/* Logo System + Website Experience */}
+        {/* Combined Section: Logo System (top-left) + Website Experience (right) + Content System (bottom-left) */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            {/* Logo System - Left */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+
+            {/* TOP LEFT — Logo System */}
             <AnimatedSection delay={0.1}>
-              <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
-                LOGO SYSTEM
-              </span>
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="aspect-square bg-foreground rounded-full overflow-hidden flex items-center justify-center p-4">
-                  <img src={chapterLogo03} alt="Chapter logo dark variant 1" className="w-full h-full object-contain" />
+              <div>
+                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
+                  LOGO SYSTEM
+                </span>
+                <div className="flex gap-4 mb-8">
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0">
+                    <img src={chapterLogo03} alt="Chapter logo dark 1" className="w-full h-full object-cover" />
+                  </div>
+                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0">
+                    <img src={chapterLogo04} alt="Chapter logo dark 2" className="w-full h-full object-cover" />
+                  </div>
                 </div>
-                <div className="aspect-square bg-foreground rounded-full overflow-hidden flex items-center justify-center p-4">
-                  <img src={chapterLogo04} alt="Chapter logo dark variant 2" className="w-full h-full object-contain" />
-                </div>
+                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
+                  ATEEN DEVELOPED A MINIMAL LOGO SYSTEM INSPIRED BY THE SILHOUETTE OF A PERFUME BOTTLE.
+                </p>
+                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed">
+                  THE CIRCULAR STRUCTURE REFLECTS THE QUIET TRANSITION BETWEEN LIFE CHAPTERS, WHILE MAINTAINING A RESTRAINED AND TIMELESS VISUAL LANGUAGE.
+                </p>
               </div>
-              <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed mb-3">
-                ATEEN DEVELOPED A MINIMAL LOGO SYSTEM INSPIRED BY THE SILHOUETTE OF A PERFUME BOTTLE.
-              </p>
-              <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed">
-                THE CIRCULAR STRUCTURE REFLECTS THE QUIET TRANSITION BETWEEN LIFE CHAPTERS, WHILE MAINTAINING A RESTRAINED AND TIMELESS VISUAL LANGUAGE.
-              </p>
             </AnimatedSection>
 
-            {/* Website Experience - Right */}
+            {/* TOP RIGHT — Website Experience */}
             <AnimatedSection delay={0.2}>
-              <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
-                WEBSITE EXPERIENCE
-              </span>
-              <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed mb-3">
-                ATEEN STRUCTURED THE WEBSITE TO GUIDE VISITORS THROUGH THE BRAND'S NARRATIVE RATHER THAN TRADITIONAL PRODUCT BROWSING.
-              </p>
-              <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed mb-8">
-                INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
-              </p>
-              <div className="overflow-hidden rounded-sm">
-                <img src={chapterLaptop} alt="Chapter website on laptop" className="w-full object-cover" />
-              </div>
-            </AnimatedSection>
-          </div>
-        </div>
-
-        {/* Website Screenshots */}
-        <div className="container px-6 md:px-12 mt-8">
-          <AnimatedSection delay={0.1}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="overflow-hidden rounded-sm">
-                <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full object-cover" />
-              </div>
-              <div className="overflow-hidden rounded-sm">
-                <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full object-cover" />
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
-
-        {/* Divider */}
-        <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <div className="border-t border-foreground/10" />
-        </div>
-
-        {/* Content System */}
-        <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <AnimatedSection delay={0.1}>
-            <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
-              CONTENT SYSTEM
-            </span>
-          </AnimatedSection>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12">
-            {/* Phone mockup left */}
-            <AnimatedSection delay={0.15}>
-              <div className="max-w-[320px]">
-                <img src={chapterInstagram} alt="Chapter Instagram content system" className="w-full object-contain" />
-              </div>
-            </AnimatedSection>
-
-            {/* Text right */}
-            <AnimatedSection delay={0.25}>
-              <div className="flex flex-col justify-end h-full">
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed mb-3">
-                  SOCIAL MEDIA HAS BECOME ONE OF THE MOST IMPORTANT SPACES FOR A BRAND TO EXIST.
+              <div>
+                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
+                  WEBSITE EXPERIENCE
+                </span>
+                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
+                  ATEEN STRUCTURED THE WEBSITE TO GUIDE VISITORS THROUGH THE BRAND'S NARRATIVE RATHER THAN TRADITIONAL PRODUCT BROWSING.
                 </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed">
-                  INSTEAD OF RELYING ONLY ON PERFORMANCE DATA, ATEEN DESIGNED A CONTENT SYSTEM THAT REFLECTS THE BRAND'S IDENTITY, VISUAL LANGUAGE, AND NARRATIVE STRUCTURE.
+                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-8">
+                  INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
                 </p>
+
+                {/* Overlapping website screenshots */}
+                <div className="relative h-[300px] md:h-[380px]">
+                  {/* Laptop - back layer */}
+                  <div className="absolute top-0 left-0 w-[70%] z-10 shadow-xl">
+                    <img src={chapterLaptop} alt="Chapter website laptop" className="w-full rounded-sm" />
+                  </div>
+                  {/* Website screenshot 1 - middle layer */}
+                  <div className="absolute top-[15%] right-0 w-[55%] z-20 shadow-xl">
+                    <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full rounded-sm" />
+                  </div>
+                  {/* Website screenshot 2 - front layer */}
+                  <div className="absolute bottom-0 right-[5%] w-[50%] z-30 shadow-xl">
+                    <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full rounded-sm" />
+                  </div>
+                </div>
               </div>
             </AnimatedSection>
+
+            {/* BOTTOM LEFT — Content System */}
+            <AnimatedSection delay={0.3}>
+              <div>
+                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
+                  CONTENT SYSTEM
+                </span>
+                <div className="grid grid-cols-2 gap-6 items-end">
+                  <div className="max-w-[280px]">
+                    <img src={chapterInstagram} alt="Chapter Instagram content system" className="w-full object-contain" />
+                  </div>
+                  <div>
+                    <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
+                      SOCIAL MEDIA HAS BECOME ONE OF THE MOST IMPORTANT SPACES FOR A BRAND TO EXIST.
+                    </p>
+                    <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed">
+                      INSTEAD OF RELYING ONLY ON PERFORMANCE DATA, ATEEN DESIGNED A CONTENT SYSTEM THAT REFLECTS THE BRAND'S IDENTITY, VISUAL LANGUAGE, AND NARRATIVE STRUCTURE.
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </AnimatedSection>
+
+            {/* BOTTOM RIGHT is empty (website screenshots extend into this area via overlap) */}
           </div>
         </div>
 
         {/* Divider */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <div className="border-t border-foreground/10" />
+          <div className="border-t border-black/10" />
         </div>
 
         {/* Content Production */}
@@ -218,10 +203,10 @@ const ConceptChapter = () => {
               <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-6">
                 CONTENT PRODUCTION
               </span>
-              <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed max-w-xl mx-auto mb-2">
+              <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed max-w-xl mx-auto mb-2">
                 ATEEN PRODUCED A SERIES OF PHOTOGRAPHIC ASSETS THAT REFLECT THE CALM AND INTROSPECTIVE TONE OF CHAPTER.
               </p>
-              <p className="text-[10px] md:text-xs tracking-[0.08em] text-foreground/60 leading-relaxed max-w-xl mx-auto">
+              <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed max-w-xl mx-auto">
                 THE IMAGERY FOCUSES ON QUIET MOMENTS, SUBTLE GESTURES, AND MINIMAL COMPOSITIONS, REINFORCING THE BRAND NARRATIVE AROUND LIFE CHAPTERS.
               </p>
             </div>
@@ -230,13 +215,13 @@ const ConceptChapter = () => {
           <AnimatedSection delay={0.2}>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
               <div className="aspect-[3/4] overflow-hidden">
-                <img src={chapterHands} alt="Chapter content - hands passing bottle" className="w-full h-full object-cover" />
+                <img src={chapterHands} alt="Hands passing bottle" className="w-full h-full object-cover" />
               </div>
               <div className="aspect-[3/4] overflow-hidden">
-                <img src={chapterFabric} alt="Chapter content - bottle in fabric" className="w-full h-full object-cover" />
+                <img src={chapterFabric} alt="Bottle in fabric" className="w-full h-full object-cover" />
               </div>
               <div className="aspect-[3/4] overflow-hidden">
-                <img src={chapterMirror} alt="Chapter content - bottle with mirror" className="w-full h-full object-cover" />
+                <img src={chapterMirror} alt="Bottle with mirror" className="w-full h-full object-cover" />
               </div>
             </div>
           </AnimatedSection>
