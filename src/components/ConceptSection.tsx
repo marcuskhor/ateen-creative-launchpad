@@ -49,62 +49,58 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
       <Link
         to={concept.link}
         onClick={() => window.scrollTo(0, 0)}
-        className="block relative overflow-hidden border border-primary/30 hover:border-primary/60 transition-all duration-300 group h-full"
+        className="block relative overflow-hidden border border-foreground/20 hover:border-foreground/40 transition-all duration-300 group h-full"
         style={{
-          background: 'linear-gradient(180deg, hsl(0 0% 7%) 0%, hsl(75 30% 10%) 60%, hsl(75 40% 14%) 100%)',
+          background: 'linear-gradient(180deg, hsl(0 0% 5%) 0%, hsl(0 0% 4%) 30%, hsl(75 40% 10%) 65%, hsl(75 50% 18%) 85%, hsl(75 60% 25%) 100%)',
         }}
       >
-        {/* Gradient overlay for depth */}
+        {/* Green glow at bottom */}
         <div className="absolute inset-0 pointer-events-none" style={{
-          background: 'radial-gradient(ellipse 120% 80% at 20% 90%, hsl(75 60% 20% / 0.4), transparent 60%)',
+          background: 'radial-gradient(ellipse 140% 60% at 50% 100%, hsl(75 70% 30% / 0.6), transparent 70%)',
         }} />
 
-        {/* Top area with logo placeholder */}
-        <div className="relative z-10 flex items-start justify-between p-6 md:p-8 pb-0">
-          <div />
-          <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-foreground/10 border border-foreground/20 flex items-center justify-center">
-            <span className="text-[8px] md:text-[9px] text-foreground/50 tracking-wider uppercase">
+        {/* Logo circle - top right */}
+        <div className="relative z-10 flex justify-end p-6 md:p-8">
+          <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-foreground/15 border border-foreground/20 flex items-center justify-center backdrop-blur-sm">
+            <span className="text-[7px] md:text-[8px] text-foreground/60 tracking-wider uppercase font-medium">
               {concept.logo}
             </span>
           </div>
         </div>
 
-        {/* Main content - two column layout */}
-        <div className="relative z-10 p-6 md:p-8 pt-4 md:pt-6 flex flex-col min-h-[400px] md:min-h-[460px]">
-          {/* Title & tagline - left side */}
-          <div className="mb-auto">
-            <h3 className="text-4xl md:text-5xl font-bold tracking-[0.02em] text-foreground whitespace-pre-line leading-[1.05] mb-2">
+        {/* Main content */}
+        <div className="relative z-10 px-6 md:px-8 pb-6 md:pb-8 flex flex-col min-h-[480px] md:min-h-[540px]">
+          {/* Title & tagline */}
+          <div className="mt-auto mb-0">
+            <h3 className="text-5xl md:text-6xl lg:text-7xl font-bold tracking-[0.01em] text-foreground whitespace-pre-line leading-[1.0] mb-3">
               {concept.name}
             </h3>
-            <p className="text-[10px] md:text-xs text-foreground/50 tracking-[0.15em]">
+            <p className="text-xs md:text-sm text-foreground/60 tracking-[0.12em] mb-10">
               {concept.tagline}
             </p>
-          </div>
 
-          {/* Bottom area - turning left, services right */}
-          <div className="flex items-end justify-between gap-4 mt-auto">
-            {/* Turning statement - left */}
-            <div>
-              <p className="text-[10px] md:text-xs text-primary/70 tracking-[0.12em] leading-relaxed">
+            {/* Turning statement */}
+            <div className="mb-12">
+              <p className="text-xs md:text-sm text-foreground/60 tracking-[0.12em] leading-relaxed">
                 {concept.turningLabel}
               </p>
-              <p className="text-sm md:text-base text-primary font-bold tracking-[0.06em] leading-tight">
+              <p className="text-base md:text-lg text-foreground font-bold tracking-[0.04em] leading-tight">
                 {concept.turningHighlight}
               </p>
-              <p className="text-[10px] md:text-xs text-primary/70 tracking-[0.12em] leading-relaxed mt-0.5">
+              <p className="text-xs md:text-sm text-foreground/60 tracking-[0.12em] leading-relaxed mt-2">
                 {concept.turningInto}
               </p>
-              <p className="text-[10px] md:text-xs text-primary/70 tracking-[0.12em] leading-relaxed">
+              <p className="text-base md:text-lg text-foreground font-bold tracking-[0.04em] leading-tight">
                 {concept.turningResult}
               </p>
             </div>
 
-            {/* Service list - right */}
-            <ul className="space-y-1 text-right">
+            {/* Service list - bottom right */}
+            <ul className="space-y-1 flex flex-col items-end">
               {concept.services.map((s) => (
-                <li key={s} className="text-[8px] md:text-[9px] text-foreground/35 tracking-[0.1em] flex items-center justify-end gap-1.5">
+                <li key={s} className="text-[9px] md:text-[10px] text-foreground/50 tracking-[0.1em] flex items-center gap-2">
+                  <span className="w-1 h-1 bg-foreground/40 rounded-full flex-shrink-0" />
                   {s}
-                  <span className="w-1 h-1 bg-primary/40 flex-shrink-0 rounded-full" />
                 </li>
               ))}
             </ul>
@@ -113,7 +109,7 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
 
         {/* Hover glow */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at 30% 80%, hsl(75 100% 50% / 0.08), transparent 60%)' }}
+          style={{ background: 'radial-gradient(ellipse at 50% 100%, hsl(75 100% 50% / 0.1), transparent 60%)' }}
         />
       </Link>
     </motion.div>
