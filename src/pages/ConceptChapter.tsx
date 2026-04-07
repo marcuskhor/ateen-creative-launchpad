@@ -30,7 +30,7 @@ const ConceptChapter = () => {
               {['VALUE DEFINED', 'BRAND POSITIONING', 'BRAND PRINCIPLES'].map((pill) => (
                 <span
                   key={pill}
-                  className="px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary"
+                  className="px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-black"
                 >
                   {pill}
                 </span>
@@ -204,7 +204,7 @@ const ConceptChapter = () => {
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
           <AnimatedSection delay={0.1}>
             <div className="text-center mb-8">
-              <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-6">
+              <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-black mb-6">
                 CONTENT PRODUCTION
               </span>
               <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed max-w-xl mx-auto mb-2">
