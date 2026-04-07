@@ -109,85 +109,89 @@ const ConceptChapter = () => {
 
         {/* Combined Section: Logo System (top-left) + Website Experience (right) + Content System (bottom-left) */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12">
 
-            {/* TOP LEFT — Logo System */}
-            <AnimatedSection delay={0.1}>
-              <div>
-                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
-                  LOGO SYSTEM
-                </span>
-                <div className="flex gap-4 mb-8">
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0">
-                    <img src={chapterLogo03} alt="Chapter logo dark 1" className="w-full h-full object-cover" />
+            {/* LEFT COLUMN — Logo System + Content System stacked tightly */}
+            <div className="flex flex-col gap-10">
+              {/* Logo System */}
+              <AnimatedSection delay={0.1}>
+                <div>
+                  <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-black mb-8">
+                    LOGO SYSTEM
+                  </span>
+                  <div className="flex gap-4 mb-8">
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0">
+                      <img src={chapterLogo03} alt="Chapter logo dark 1" className="w-full h-full object-cover" />
+                    </div>
+                    <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0">
+                      <img src={chapterLogo04} alt="Chapter logo dark 2" className="w-full h-full object-cover" />
+                    </div>
                   </div>
-                  <div className="w-20 h-20 md:w-24 md:h-24 rounded-full overflow-hidden flex-shrink-0">
-                    <img src={chapterLogo04} alt="Chapter logo dark 2" className="w-full h-full object-cover" />
+                  <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
+                    ATEEN DEVELOPED A MINIMAL LOGO SYSTEM INSPIRED BY THE SILHOUETTE OF A PERFUME BOTTLE.
+                  </p>
+                  <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed">
+                    THE CIRCULAR STRUCTURE REFLECTS THE QUIET TRANSITION BETWEEN LIFE CHAPTERS, WHILE MAINTAINING A RESTRAINED AND TIMELESS VISUAL LANGUAGE.
+                  </p>
+                </div>
+              </AnimatedSection>
+
+              {/* Content System — directly below logo system */}
+              <AnimatedSection delay={0.3}>
+                <div>
+                  <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-black mb-8">
+                    CONTENT SYSTEM
+                  </span>
+                  <div className="grid grid-cols-2 gap-6 items-end">
+                    <div className="max-w-[280px]">
+                      <img src={chapterInstagram} alt="Chapter Instagram content system" className="w-full object-contain" />
+                    </div>
+                    <div>
+                      <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
+                        SOCIAL MEDIA HAS BECOME ONE OF THE MOST IMPORTANT SPACES FOR A BRAND TO EXIST.
+                      </p>
+                      <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed">
+                        INSTEAD OF RELYING ONLY ON PERFORMANCE DATA, ATEEN DESIGNED A CONTENT SYSTEM THAT REFLECTS THE BRAND'S IDENTITY, VISUAL LANGUAGE, AND NARRATIVE STRUCTURE.
+                      </p>
+                    </div>
                   </div>
                 </div>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
-                  ATEEN DEVELOPED A MINIMAL LOGO SYSTEM INSPIRED BY THE SILHOUETTE OF A PERFUME BOTTLE.
-                </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed">
-                  THE CIRCULAR STRUCTURE REFLECTS THE QUIET TRANSITION BETWEEN LIFE CHAPTERS, WHILE MAINTAINING A RESTRAINED AND TIMELESS VISUAL LANGUAGE.
-                </p>
-              </div>
-            </AnimatedSection>
+              </AnimatedSection>
+            </div>
 
-            {/* TOP RIGHT — Website Experience */}
-            <AnimatedSection delay={0.2}>
-              <div>
-                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
-                  WEBSITE EXPERIENCE
-                </span>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
-                  ATEEN STRUCTURED THE WEBSITE TO GUIDE VISITORS THROUGH THE BRAND'S NARRATIVE RATHER THAN TRADITIONAL PRODUCT BROWSING.
-                </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-8">
-                  INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
-                </p>
+            {/* RIGHT COLUMN — Website Experience, pushed down to sit lower than Logo System */}
+            <div className="md:pt-24">
+              <AnimatedSection delay={0.2}>
+                <div>
+                  <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-black mb-8">
+                    WEBSITE EXPERIENCE
+                  </span>
+                  <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
+                    ATEEN STRUCTURED THE WEBSITE TO GUIDE VISITORS THROUGH THE BRAND'S NARRATIVE RATHER THAN TRADITIONAL PRODUCT BROWSING.
+                  </p>
+                  <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-8">
+                    INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
+                  </p>
 
-                {/* Overlapping website screenshots */}
-                <div className="relative h-[300px] md:h-[380px]">
-                  {/* Laptop - back layer */}
-                  <div className="absolute top-0 left-0 w-[70%] z-10 shadow-xl">
-                    <img src={chapterLaptop} alt="Chapter website laptop" className="w-full rounded-sm" />
-                  </div>
-                  {/* Website screenshot 1 - middle layer */}
-                  <div className="absolute top-[15%] right-0 w-[55%] z-20 shadow-xl">
-                    <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full rounded-sm" />
-                  </div>
-                  {/* Website screenshot 2 - front layer */}
-                  <div className="absolute bottom-0 right-[5%] w-[50%] z-30 shadow-xl">
-                    <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full rounded-sm" />
+                  {/* Overlapping website screenshots — laptop bottom-left, screenshots stacked top-right */}
+                  <div className="relative h-[350px] md:h-[450px]">
+                    {/* Laptop - bottom center */}
+                    <div className="absolute bottom-0 left-0 w-[75%] z-10">
+                      <img src={chapterLaptop} alt="Chapter website laptop" className="w-full rounded-sm" />
+                    </div>
+                    {/* Website screenshot 1 - top right */}
+                    <div className="absolute top-0 right-0 w-[50%] z-20 shadow-lg">
+                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full rounded-sm" />
+                    </div>
+                    {/* Website screenshot 2 - middle right, overlapping */}
+                    <div className="absolute top-[30%] right-[5%] w-[48%] z-30 shadow-lg">
+                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full rounded-sm" />
+                    </div>
                   </div>
                 </div>
-              </div>
-            </AnimatedSection>
+              </AnimatedSection>
+            </div>
 
-            {/* BOTTOM LEFT — Content System */}
-            <AnimatedSection delay={0.3}>
-              <div>
-                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-primary mb-8">
-                  CONTENT SYSTEM
-                </span>
-                <div className="grid grid-cols-2 gap-6 items-end">
-                  <div className="max-w-[280px]">
-                    <img src={chapterInstagram} alt="Chapter Instagram content system" className="w-full object-contain" />
-                  </div>
-                  <div>
-                    <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
-                      SOCIAL MEDIA HAS BECOME ONE OF THE MOST IMPORTANT SPACES FOR A BRAND TO EXIST.
-                    </p>
-                    <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed">
-                      INSTEAD OF RELYING ONLY ON PERFORMANCE DATA, ATEEN DESIGNED A CONTENT SYSTEM THAT REFLECTS THE BRAND'S IDENTITY, VISUAL LANGUAGE, AND NARRATIVE STRUCTURE.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </AnimatedSection>
-
-            {/* BOTTOM RIGHT is empty (website screenshots extend into this area via overlap) */}
           </div>
         </div>
 
