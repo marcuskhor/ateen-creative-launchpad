@@ -238,7 +238,7 @@ const ConceptChapter = () => {
               <Link
                 to="/about#concepts"
                 onClick={() => window.scrollTo(0, 0)}
-                className="inline-block px-6 py-2 border border-primary rounded-full text-xs tracking-[0.15em] text-primary hover:bg-primary/10 transition-colors"
+                className="inline-block px-6 py-2 border border-primary rounded-full text-xs tracking-[0.15em] text-black hover:bg-primary/10 transition-colors"
               >
                 MORE CONCEPT WORK
               </Link>
