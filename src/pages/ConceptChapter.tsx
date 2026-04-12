@@ -15,7 +15,8 @@ import chapterFabric from '@/assets/chapter-fabric.jpg';
 import chapterMirror from '@/assets/chapter-mirror.jpg';
 import chapterWebsite1 from '@/assets/chapter-website-1.jpg';
 import chapterWebsite2 from '@/assets/chapter-website-2.jpg';
-import chapterLaptop from '@/assets/chapter-laptop.jpg';
+import chapterLaptop from '@/assets/chapter-laptop.png';
+import chapterWebsiteComposite from '@/assets/chapter-website-composite.png';
 
 const ConceptChapter = () => {
   return (
@@ -173,19 +174,19 @@ const ConceptChapter = () => {
                     INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
                   </p>
 
-                  {/* Overlapping website screenshots — laptop bottom-left, screenshots stacked top-right */}
-                  <div className="relative h-[350px] md:h-[450px]">
-                    {/* Laptop - bottom center */}
-                    <div className="absolute bottom-0 left-0 w-[75%] z-10">
-                      <img src={chapterLaptop} alt="Chapter website laptop" className="w-full rounded-sm" />
+                  {/* Overlapping website screenshots — matching PDF layout */}
+                  <div className="relative h-[400px] md:h-[500px]">
+                    {/* Laptop - bottom left, largest element */}
+                    <div className="absolute bottom-0 left-0 w-[65%] z-20">
+                      <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-xl" />
                     </div>
-                    {/* Website screenshot 1 - top right */}
-                    <div className="absolute top-0 right-0 w-[50%] z-20 shadow-lg">
-                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full rounded-sm" />
+                    {/* Website screenshot 1 - top right, floating page */}
+                    <div className="absolute top-0 right-0 w-[45%] z-10">
+                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-lg" />
                     </div>
-                    {/* Website screenshot 2 - middle right, overlapping */}
-                    <div className="absolute top-[30%] right-[5%] w-[48%] z-30 shadow-lg">
-                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full rounded-sm" />
+                    {/* Website screenshot 2 - bottom right, overlapping */}
+                    <div className="absolute bottom-[5%] right-[2%] w-[42%] z-30">
+                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-lg" />
                     </div>
                   </div>
                 </div>
