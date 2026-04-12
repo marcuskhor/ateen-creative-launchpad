@@ -6,7 +6,6 @@ import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 import lunoraWordmark from '@/assets/lunora-wordmark.png';
-import lunoraProductsHero from '@/assets/lunora-products-hero.jpg';
 import lunoraProductsLight from '@/assets/lunora-products-light.jpg';
 import lunoraInfiniteCycle from '@/assets/lunora-infinite-cycle.png';
 import lunoraInstagram from '@/assets/lunora-instagram.jpg';
@@ -33,7 +32,7 @@ const ConceptLunora = () => {
   const nextPackaging = () => setPackagingIndex((i) => (i === packagingImages.length - 1 ? 0 : i + 1));
 
   return (
-    <div className="min-h-screen bg-[#3a4a3a] text-[#e8e4df]">
+    <div className="min-h-screen bg-[#d3ddc0] text-[#39481f]">
       <Header />
       <main className="pt-24 pb-0">
 
@@ -44,7 +43,7 @@ const ConceptLunora = () => {
               {['BRAND CORE', 'BRAND DIRECTION'].map((pill) => (
                 <span
                   key={pill}
-                  className="px-5 py-1.5 border border-[#e8e4df]/40 rounded-full text-[10px] md:text-xs tracking-[0.15em] text-[#e8e4df]"
+                  className="px-5 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black"
                 >
                   {pill}
                 </span>
@@ -57,8 +56,8 @@ const ConceptLunora = () => {
         <div className="container px-6 md:px-12">
           <AnimatedSection delay={0.1}>
             <div className="text-center">
-              <img src={lunoraWordmark} alt="lunora" className="h-28 md:h-40 lg:h-52 mx-auto mb-4 object-contain" />
-              <p className="text-xs md:text-sm tracking-[0.2em] text-[#e8e4df]/70">
+              <img src={lunoraWordmark} alt="lunora" className="h-40 md:h-56 lg:h-72 mx-auto mb-4 object-contain" />
+              <p className="text-sm md:text-base tracking-[0.2em] text-[#39481f]/70">
                 A RECOVERY RITUAL WELLNESS BRAND
               </p>
             </div>
@@ -71,22 +70,22 @@ const ConceptLunora = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
               {/* Brand Direction */}
               <div>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-[0.06em] text-[#e8e4df] mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-[#39481f] mb-6">
                   BRAND DIRECTION
                 </h2>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed mb-4">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
                   WE POSITIONED LUNORA AS A RITUAL-BASED WELLNESS BRAND FOCUSED ON RESTORING BALANCE FOR THE OVERSTIMULATED MODERN MIND.
                 </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed">
                   WHILE MANY WELLNESS BRANDS FOCUS PRIMARILY ON EXTERNAL RESULTS — APPEARANCE, FITNESS, OR PERFORMANCE. LUNORA CENTERS ON INNER RECOVERY. THE BRAND ENCOURAGES A SLOWER RHYTHM OF LIVING THROUGH SMALL DAILY RITUALS DESIGNED TO CALM THE MIND, RELEASE THE TENSION, AND GUIDE THE BODY BACK TO ITS NATURAL STATE OF BALANCE.
                 </p>
               </div>
               {/* Brand Core */}
               <div>
-                <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold tracking-[0.06em] text-[#e8e4df] mb-6">
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-[#39481f] mb-6">
                   BRAND CORE
                 </h2>
-                <p className="text-sm md:text-base tracking-[0.08em] text-[#e8e4df]/80 leading-relaxed">
+                <p className="text-base md:text-lg tracking-[0.08em] text-[#39481f]/80 leading-relaxed">
                   RECOVERY BEGINS WHEN THE MIND RETURNS TO BALANCE.
                 </p>
               </div>
@@ -100,13 +99,13 @@ const ConceptLunora = () => {
             {/* Left - Ritual System */}
             <AnimatedSection delay={0.1}>
               <div>
-                <span className="inline-block px-4 py-1.5 border border-[#e8e4df]/40 rounded-full text-[10px] md:text-xs tracking-[0.15em] text-[#e8e4df] mb-8">
+                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-8">
                   RITUAL SYSTEM
                 </span>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed mb-4">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
                   TO TRANSLATE THE IDEA OF RECOVERY INTO A TANGIBLE EXPERIENCE, ATEEN DEVELOPED A STEP-BASED RITUAL SYSTEM.
                 </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed mb-8">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-8">
                   EACH PRODUCT IS PART OF A STRUCTURED SEQUENCE DESIGNED TO GUIDE THE USER THROUGH A COMPLETE RECOVERY CYCLE. FROM CALMING THE MIND TO RESTORING BALANCE.
                 </p>
 
@@ -119,21 +118,21 @@ const ConceptLunora = () => {
                     { step: 'Step 4', label: 'Return to Balance' },
                   ].map((item) => (
                     <div key={item.step} className="flex items-center gap-4">
-                      <span className="text-xs italic text-[#e8e4df]/50 w-12">{item.step}</span>
-                      <span className="text-sm tracking-[0.05em] text-[#e8e4df]">{item.label}</span>
+                      <span className="text-sm italic text-[#39481f]/50 w-14">{item.step}</span>
+                      <span className="text-base tracking-[0.05em] text-[#39481f]">{item.label}</span>
                     </div>
                   ))}
                 </div>
 
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed">
                   THIS SYSTEM ALLOWS LUNORA TO MOVE BEYOND INDIVIDUAL PRODUCTS AND FUNCTION AS A COHESIVE RITUAL EXPERIENCE.
                 </p>
               </div>
             </AnimatedSection>
 
-            {/* Right - Two images stacked (products + infinite cycle) */}
+            {/* Right - Two images stacked, aligned to end with Ritual System */}
             <AnimatedSection delay={0.2}>
-              <div className="space-y-6">
+              <div className="flex flex-col justify-end h-full space-y-4">
                 <div className="overflow-hidden">
                   <img src={lunoraProductsLight} alt="Lunora products" className="w-full object-cover" />
                 </div>
@@ -147,7 +146,7 @@ const ConceptLunora = () => {
 
         {/* Divider */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <div className="border-t border-[#e8e4df]/10" />
+          <div className="border-t border-[#39481f]/10" />
         </div>
 
         {/* Packaging Language */}
@@ -156,34 +155,34 @@ const ConceptLunora = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
               {/* Left - text */}
               <div>
-                <span className="inline-block px-4 py-1.5 border border-[#e8e4df]/40 rounded-full text-[10px] md:text-xs tracking-[0.15em] text-[#e8e4df] mb-8">
+                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-8">
                   PACKAGING LANGUAGE
                 </span>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed mb-4">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
                   WE DEVELOPED A STRUCTURED PACKAGING SYSTEM FOR LUNORA TO ENSURE CONSISTENCY ACROSS DIFFERENT PRODUCT SERIES WHILE ALLOWING FOR FUTURE SCALABILITY.
                 </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed mb-4">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
                   THE SYSTEM IS BUILT ON A CLEAR SET OF RULES:
                 </p>
-                <ul className="space-y-1 mb-6">
-                  <li className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed flex items-start gap-2">
-                    <span className="mt-1.5 w-1 h-1 bg-[#e8e4df]/40 rounded-full flex-shrink-0" />
+                <ul className="space-y-1.5 mb-6">
+                  <li className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed flex items-start gap-2">
+                    <span className="mt-1.5 w-1.5 h-1.5 bg-[#39481f]/40 rounded-full flex-shrink-0" />
                     STEP-BASED HIERARCHY (STEP 01–04) TO GUIDE THE RECOVERY SEQUENCE
                   </li>
-                  <li className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed flex items-start gap-2">
-                    <span className="mt-1.5 w-1 h-1 bg-[#e8e4df]/40 rounded-full flex-shrink-0" />
+                  <li className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed flex items-start gap-2">
+                    <span className="mt-1.5 w-1.5 h-1.5 bg-[#39481f]/40 rounded-full flex-shrink-0" />
                     FUNCTIONAL NAMING SYSTEM TO MAINTAIN CLARITY ACROSS PRODUCTS
                   </li>
-                  <li className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed flex items-start gap-2">
-                    <span className="mt-1.5 w-1 h-1 bg-[#e8e4df]/40 rounded-full flex-shrink-0" />
+                  <li className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed flex items-start gap-2">
+                    <span className="mt-1.5 w-1.5 h-1.5 bg-[#39481f]/40 rounded-full flex-shrink-0" />
                     MINIMAL TYPOGRAPHIC LAYOUT A CALM AND CONTROLLED VISUAL LANGUAGE
                   </li>
-                  <li className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed flex items-start gap-2">
-                    <span className="mt-1.5 w-1 h-1 bg-[#e8e4df]/40 rounded-full flex-shrink-0" />
+                  <li className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed flex items-start gap-2">
+                    <span className="mt-1.5 w-1.5 h-1.5 bg-[#39481f]/40 rounded-full flex-shrink-0" />
                     MATERIAL CONTRAST BETWEEN OUTER PACKAGING AND INNER PRODUCT TO CREATE A LAYERED EXPERIENCE
                   </li>
                 </ul>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed">
                   BY DEFINING THESE PRINCIPLES, WE ENSURED THAT EVERY PRODUCT REMAINS VISUALLY CONSISTENT WHILE ALLOWING THE BRAND TO EXPAND INTO NEW CATEGORIES WITHOUT LOSING ITS IDENTITY.
                 </p>
               </div>
@@ -200,15 +199,15 @@ const ConceptLunora = () => {
                 <div className="flex items-center gap-6 mt-6">
                   <button
                     onClick={prevPackaging}
-                    className="w-10 h-10 border border-[#e8e4df]/20 rounded-full flex items-center justify-center hover:bg-[#e8e4df]/5 transition-colors"
+                    className="w-10 h-10 border border-[#39481f]/20 rounded-full flex items-center justify-center hover:bg-[#39481f]/5 transition-colors"
                   >
-                    <ChevronLeft className="w-4 h-4 text-[#e8e4df]" />
+                    <ChevronLeft className="w-4 h-4 text-[#39481f]" />
                   </button>
                   <button
                     onClick={nextPackaging}
-                    className="w-10 h-10 border border-[#e8e4df]/20 rounded-full flex items-center justify-center hover:bg-[#e8e4df]/5 transition-colors"
+                    className="w-10 h-10 border border-[#39481f]/20 rounded-full flex items-center justify-center hover:bg-[#39481f]/5 transition-colors"
                   >
-                    <ChevronRight className="w-4 h-4 text-[#e8e4df]" />
+                    <ChevronRight className="w-4 h-4 text-[#39481f]" />
                   </button>
                 </div>
               </div>
@@ -227,16 +226,16 @@ const ConceptLunora = () => {
 
               {/* Right - text */}
               <div>
-                <span className="inline-block px-4 py-1.5 border border-[#e8e4df]/40 rounded-full text-[10px] md:text-xs tracking-[0.15em] text-[#e8e4df] mb-8">
+                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-8">
                   CONTENT STRUCTURE
                 </span>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed mb-4">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
                   INSTEAD OF RELYING ON A FIXED SEQUENCE, WE STRUCTURED THE GRID THROUGH THREE DISTINCT CONTENT LAYERS. PROBLEM, SYSTEM, AND EXPERIENCE.
                 </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed mb-4">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
                   EACH VISUAL IS DESIGNED TO COMMUNICATE A SPECIFIC LAYER, ALLOWING THE GRID TO FUNCTION AS A FLEXIBLE SYSTEM RATHER THAN A LINEAR NARRATIVE.
                 </p>
-                <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed">
                   THIS ENSURES THAT REGARDLESS OF ENTRY POINT, THE VIEWER CAN IMMEDIATELY GRASP THE BRAND'S PERSPECTIVE WHILE GRADUALLY DISCOVERING ITS LOGIC AND APPLICATION.
                 </p>
               </div>
@@ -246,13 +245,13 @@ const ConceptLunora = () => {
 
         {/* Divider */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <div className="border-t border-[#e8e4df]/10" />
+          <div className="border-t border-[#39481f]/10" />
         </div>
 
         {/* Product Experience */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
           <AnimatedSection delay={0.1}>
-            <span className="inline-block px-4 py-1.5 border border-[#e8e4df]/40 rounded-full text-[10px] md:text-xs tracking-[0.15em] text-[#e8e4df] mb-10">
+            <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-10">
               PRODUCT EXPERIENCE
             </span>
           </AnimatedSection>
@@ -267,8 +266,8 @@ const ConceptLunora = () => {
               ].map((item) => (
                 <div key={item.step}>
                   <div className="flex items-center gap-2 mb-2">
-                    <span className="text-xs italic text-[#e8e4df]/50">{item.step}</span>
-                    <span className="text-[10px] md:text-xs tracking-[0.06em] text-[#e8e4df]">{item.label}</span>
+                    <span className="text-sm italic text-[#39481f]/50">{item.step}</span>
+                    <span className="text-xs md:text-sm tracking-[0.06em] text-[#39481f]">{item.label}</span>
                   </div>
                   <div className="aspect-[3/4] overflow-hidden">
                     <img src={item.img} alt={item.label} className="w-full h-full object-cover" />
@@ -279,7 +278,7 @@ const ConceptLunora = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.3}>
-            <p className="text-[10px] md:text-xs tracking-[0.08em] text-[#e8e4df]/60 leading-relaxed text-center mt-8 max-w-2xl mx-auto">
+            <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed text-center mt-8 max-w-2xl mx-auto">
               DESIGNED AS A CONTINUOUS RITUAL, EACH STEP GUIDES THE USER FROM OVERSTIMULATION TO REST, ENCOURAGING A SLOWER AND MORE INTENTIONAL RHYTHM OF LIVING.
             </p>
           </AnimatedSection>
@@ -289,8 +288,8 @@ const ConceptLunora = () => {
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
           <AnimatedSection delay={0.1}>
             <div className="text-center py-12">
-              <p className="text-sm italic tracking-[0.08em] text-[#e8e4df]/60 mb-2">Series of Inner Reset</p>
-              <p className="text-lg italic tracking-[0.06em] text-[#e8e4df]/80">Recovery is infinite.</p>
+              <p className="text-base italic tracking-[0.08em] text-[#39481f]/60 mb-2">Series of Inner Reset</p>
+              <p className="text-xl italic tracking-[0.06em] text-[#39481f]/80">Recovery is infinite.</p>
             </div>
           </AnimatedSection>
         </div>
@@ -302,7 +301,7 @@ const ConceptLunora = () => {
               <Link
                 to="/about#concepts"
                 onClick={() => window.scrollTo(0, 0)}
-                className="inline-block px-6 py-2 border border-[#e8e4df]/40 rounded-full text-xs tracking-[0.15em] text-[#e8e4df] hover:bg-[#e8e4df]/10 transition-colors"
+                className="inline-block px-6 py-2 border border-primary rounded-full text-sm tracking-[0.15em] text-black hover:bg-[#39481f]/5 transition-colors"
               >
                 MORE CONCEPT WORK
               </Link>
