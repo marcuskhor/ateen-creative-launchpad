@@ -8,6 +8,7 @@ import antiError404 from '@/assets/anti-error404.png';
 import antiPackaging from '@/assets/anti-packaging.png';
 import antiShelf from '@/assets/anti-shelf.jpg';
 import antiStickers from '@/assets/anti-stickers.png';
+import antiMenuSign from '@/assets/anti-menu-sign.png';
 
 const ORANGE = '#ff5a1f';
 
@@ -208,6 +209,37 @@ const ConceptAntiOverwork = () => {
               </div>
             </AnimatedSection>
           </div>
+        </div>
+
+        {/* Divider */}
+        <div className="container px-6 md:px-12 mt-16 md:mt-24">
+          <div className="border-t border-black/10" />
+        </div>
+
+        {/* Space / Retail Signage */}
+        <div className="container px-6 md:px-12 mt-16 md:mt-24">
+          <AnimatedSection delay={0.1}>
+            <div className="text-center mb-10">
+              <span
+                className="inline-block px-4 py-1.5 border-2 rounded-full text-[10px] md:text-xs tracking-[0.15em] text-black mb-6"
+                style={{ borderColor: ORANGE }}
+              >
+                SPACE VISUAL LOGIC
+              </span>
+              <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed max-w-xl mx-auto mb-2">
+                THE PHYSICAL CAFÉ SIGNAGE EXTENDS THE BRAND'S "NO MENU, NO DECISIONS" PHILOSOPHY INTO SPACE.
+              </p>
+              <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed max-w-xl mx-auto">
+                A SIMPLIFIED MENU REMOVES MENTAL LOAD, INVITING GUESTS TO REST INSTEAD OF DECIDE.
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.2}>
+            <div className="bg-white">
+              <img src={antiMenuSign} alt="Anti-Overwork café menu signage" className="w-full h-auto" />
+            </div>
+          </AnimatedSection>
         </div>
 
         {/* More Concept Work */}
