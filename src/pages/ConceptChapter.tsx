@@ -174,18 +174,18 @@ const ConceptChapter = () => {
                     INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
                   </p>
 
-                  {/* Website screenshots — overlapping arrangement matching screenshot */}
-                  <div className="relative h-[440px] md:h-[540px]">
-                    {/* Screenshot 1 (BOUND/FREE bottle page) - top right, floating behind */}
-                    <div className="absolute top-0 right-0 w-[58%] z-10">
-                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-xl" />
-                    </div>
-                    {/* Laptop - center-left, overlapping screenshot 1 */}
-                    <div className="absolute top-[22%] left-0 w-[68%] z-20">
+                  {/* Website screenshots — laptop on top-left, two screenshots below */}
+                  <div className="relative h-[460px] md:h-[560px]">
+                    {/* Laptop - top left, anchoring composition */}
+                    <div className="absolute top-0 left-0 w-[62%] z-30">
                       <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-2xl" />
                     </div>
-                    {/* Screenshot 2 (The Nose) - bottom right, overlapping laptop */}
-                    <div className="absolute bottom-0 right-0 w-[52%] z-30">
+                    {/* Screenshot 1 - bottom center, tucked under laptop */}
+                    <div className="absolute bottom-0 left-[28%] w-[34%] z-10">
+                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-xl" />
+                    </div>
+                    {/* Screenshot 2 - bottom right, tucked under laptop */}
+                    <div className="absolute bottom-0 right-0 w-[34%] z-20">
                       <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-xl" />
                     </div>
                   </div>
