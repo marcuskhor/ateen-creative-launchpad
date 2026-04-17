@@ -9,7 +9,7 @@ import chapterLogo03 from '@/assets/chapter-logo-03.png';
 import chapterLogo04 from '@/assets/chapter-logo-04.png';
 import chapterBottle from '@/assets/chapter-bottle.jpg';
 import chapterHandLight from '@/assets/chapter-hand-light.png';
-import chapterInstagram from '@/assets/chapter-instagram.png';
+import chapterInstagram from '@/assets/chapter-instagram-cropped.png';
 import chapterHands from '@/assets/chapter-hands.jpg';
 import chapterFabric from '@/assets/chapter-fabric.jpg';
 import chapterMirror from '@/assets/chapter-mirror.jpg';
@@ -174,19 +174,19 @@ const ConceptChapter = () => {
                     INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
                   </p>
 
-                  {/* Website screenshots — laptop on left, two stacked screenshots on right */}
-                  <div className="relative h-[420px] md:h-[520px]">
-                    {/* Laptop - left side, vertically centered */}
-                    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[62%] z-10">
-                      <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-xl" />
+                  {/* Website screenshots — overlapping arrangement matching screenshot */}
+                  <div className="relative h-[440px] md:h-[540px]">
+                    {/* Screenshot 1 (BOUND/FREE bottle page) - top right, floating behind */}
+                    <div className="absolute top-0 right-0 w-[58%] z-10">
+                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-xl" />
                     </div>
-                    {/* Website screenshot 1 - top right */}
-                    <div className="absolute top-0 right-0 w-[34%] z-20">
-                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-lg" />
+                    {/* Laptop - center-left, overlapping screenshot 1 */}
+                    <div className="absolute top-[22%] left-0 w-[68%] z-20">
+                      <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-2xl" />
                     </div>
-                    {/* Website screenshot 2 - bottom right, directly below screenshot 1 */}
-                    <div className="absolute bottom-0 right-0 w-[34%] z-20">
-                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-lg" />
+                    {/* Screenshot 2 (The Nose) - bottom right, overlapping laptop */}
+                    <div className="absolute bottom-0 right-0 w-[52%] z-30">
+                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-xl" />
                     </div>
                   </div>
                 </div>
