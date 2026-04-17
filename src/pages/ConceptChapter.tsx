@@ -9,7 +9,7 @@ import chapterLogo03 from '@/assets/chapter-logo-03.png';
 import chapterLogo04 from '@/assets/chapter-logo-04.png';
 import chapterBottle from '@/assets/chapter-bottle.jpg';
 import chapterHandLight from '@/assets/chapter-hand-light.png';
-import chapterInstagram from '@/assets/chapter-instagram-cropped.png';
+import chapterInstagram from '@/assets/chapter-instagram-new.png';
 import chapterHands from '@/assets/chapter-hands.jpg';
 import chapterFabric from '@/assets/chapter-fabric.jpg';
 import chapterMirror from '@/assets/chapter-mirror.jpg';
