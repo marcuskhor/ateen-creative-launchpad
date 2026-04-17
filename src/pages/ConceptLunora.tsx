@@ -220,7 +220,7 @@ const ConceptLunora = () => {
           <AnimatedSection delay={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
               {/* Left - phone mockup */}
-              <div className="max-w-[300px]">
+              <div className="max-w-[200px]">
                 <img src={lunoraInstagram} alt="Lunora Instagram" className="w-full object-contain rounded-2xl" />
               </div>
 
