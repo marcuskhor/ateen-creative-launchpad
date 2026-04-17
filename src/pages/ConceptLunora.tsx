@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import lunoraWordmark from '@/assets/lunora-wordmark.png';
 import lunoraProductsLight from '@/assets/lunora-products-light.jpg';
 import lunoraInfiniteCycle from '@/assets/lunora-infinite-cycle.png';
-import lunoraInstagram from '@/assets/lunora-instagram-cropped.jpg';
+import lunoraInstagram from '@/assets/lunora-instagram-new.png';
 import lunoraPackagingBathsalt from '@/assets/lunora-packaging-bathsalt.png';
 import lunoraPackagingBodyoil from '@/assets/lunora-packaging-bodyoil.png';
 import lunoraPackagingPillowmist from '@/assets/lunora-packaging-pillowmist.png';
