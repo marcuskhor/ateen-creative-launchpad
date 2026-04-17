@@ -31,7 +31,7 @@ const Header = () => {
       <nav className="flex items-center justify-between px-6 md:px-12 py-6">
         <button 
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="text-foreground hover:text-primary transition-colors z-50"
+          className="text-primary hover:text-primary/80 transition-colors z-50"
           aria-label="Toggle menu"
         >
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
