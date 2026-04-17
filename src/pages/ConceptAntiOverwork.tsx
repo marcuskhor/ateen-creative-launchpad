@@ -8,6 +8,7 @@ import antiError404 from '@/assets/anti-error404.png';
 import antiPackaging from '@/assets/anti-packaging.png';
 import antiShelf from '@/assets/anti-shelf.jpg';
 import antiStickers from '@/assets/anti-stickers.png';
+import antiMenuSign from '@/assets/anti-menu-sign.png';
 
 const ORANGE = '#ff5a1f';
 
