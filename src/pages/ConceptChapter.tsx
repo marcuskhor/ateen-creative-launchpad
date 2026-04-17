@@ -174,19 +174,18 @@ const ConceptChapter = () => {
                     INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
                   </p>
 
-                  {/* Website screenshots — laptop left, two screenshots below across middle/right */}
-                  <div className="relative h-[430px] md:h-[500px]">
-                    {/* Laptop - left side */}
-                    <div className="absolute top-0 left-0 w-[64%] z-30">
+                  {/* Laptop centered/left, two screenshots below on the right */}
+                  <div className="flex flex-col gap-8">
+                    <div className="w-[78%] mx-auto">
                       <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-2xl" />
                     </div>
-                    {/* Screenshot 1 - below laptop, centered */}
-                    <div className="absolute bottom-0 left-[34%] w-[32%] z-10">
-                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-xl" />
-                    </div>
-                    {/* Screenshot 2 - below laptop, right side */}
-                    <div className="absolute bottom-0 right-0 w-[32%] z-20">
-                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-xl" />
+                    <div className="flex justify-end gap-3 md:gap-4">
+                      <div className="w-[38%]">
+                        <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-lg" />
+                      </div>
+                      <div className="w-[38%]">
+                        <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-lg" />
+                      </div>
                     </div>
                   </div>
                 </div>
