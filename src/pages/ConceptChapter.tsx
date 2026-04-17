@@ -174,18 +174,18 @@ const ConceptChapter = () => {
                     INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
                   </p>
 
-                  {/* Website screenshots — laptop on top-left, two screenshots below */}
-                  <div className="relative h-[460px] md:h-[560px]">
-                    {/* Laptop - top left, anchoring composition */}
-                    <div className="absolute top-0 left-0 w-[62%] z-30">
+                  {/* Website screenshots — laptop left, two screenshots below across middle/right */}
+                  <div className="relative h-[430px] md:h-[500px]">
+                    {/* Laptop - left side */}
+                    <div className="absolute top-0 left-0 w-[64%] z-30">
                       <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-2xl" />
                     </div>
-                    {/* Screenshot 1 - bottom center, tucked under laptop */}
-                    <div className="absolute bottom-0 left-[28%] w-[34%] z-10">
+                    {/* Screenshot 1 - below laptop, centered */}
+                    <div className="absolute bottom-0 left-[34%] w-[32%] z-10">
                       <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-xl" />
                     </div>
-                    {/* Screenshot 2 - bottom right, tucked under laptop */}
-                    <div className="absolute bottom-0 right-0 w-[34%] z-20">
+                    {/* Screenshot 2 - below laptop, right side */}
+                    <div className="absolute bottom-0 right-0 w-[32%] z-20">
                       <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-xl" />
                     </div>
                   </div>
