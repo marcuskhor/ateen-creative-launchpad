@@ -8,7 +8,7 @@ import { ChevronLeft, ChevronRight } from 'lucide-react';
 import lunoraWordmark from '@/assets/lunora-wordmark.png';
 import lunoraProductsLight from '@/assets/lunora-products-light.jpg';
 import lunoraInfiniteCycle from '@/assets/lunora-infinite-cycle.png';
-import lunoraInstagram from '@/assets/lunora-instagram.jpg';
+import lunoraInstagram from '@/assets/lunora-instagram-cropped.jpg';
 import lunoraPackagingBathsalt from '@/assets/lunora-packaging-bathsalt.png';
 import lunoraPackagingBodyoil from '@/assets/lunora-packaging-bodyoil.png';
 import lunoraPackagingPillowmist from '@/assets/lunora-packaging-pillowmist.png';
@@ -220,8 +220,8 @@ const ConceptLunora = () => {
           <AnimatedSection delay={0.1}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-start">
               {/* Left - phone mockup */}
-              <div className="max-w-[200px]">
-                <img src={lunoraInstagram} alt="Lunora Instagram" className="w-full object-contain rounded-2xl" />
+              <div className="max-w-[420px]">
+                <img src={lunoraInstagram} alt="Lunora Instagram" className="w-full object-contain" />
               </div>
 
               {/* Right - text */}
