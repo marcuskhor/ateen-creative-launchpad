@@ -226,16 +226,16 @@ const ConceptLunora = () => {
 
               {/* Right - text */}
               <div>
-                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-8">
+                <span className="inline-block px-8 py-3 border-2 border-primary rounded-full text-base md:text-lg font-bold tracking-[0.15em] text-black mb-8">
                   CONTENT STRUCTURE
                 </span>
-                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
+                <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-4">
                   INSTEAD OF RELYING ON A FIXED SEQUENCE, WE STRUCTURED THE GRID THROUGH THREE DISTINCT CONTENT LAYERS. PROBLEM, SYSTEM, AND EXPERIENCE.
                 </p>
-                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
+                <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-4">
                   EACH VISUAL IS DESIGNED TO COMMUNICATE A SPECIFIC LAYER, ALLOWING THE GRID TO FUNCTION AS A FLEXIBLE SYSTEM RATHER THAN A LINEAR NARRATIVE.
                 </p>
-                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed">
+                <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed">
                   THIS ENSURES THAT REGARDLESS OF ENTRY POINT, THE VIEWER CAN IMMEDIATELY GRASP THE BRAND'S PERSPECTIVE WHILE GRADUALLY DISCOVERING ITS LOGIC AND APPLICATION.
                 </p>
               </div>
