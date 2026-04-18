@@ -31,7 +31,7 @@ const ConceptAntiOverwork = () => {
         {/* Top Pills */}
         <div className="container px-6 md:px-12 pt-2">
           <AnimatedSection>
-            <div className="flex justify-center gap-12 mb-2">
+            <div className="flex justify-center gap-12 mb-8">
               <Pill>BRAND POSITION</Pill>
               <Pill>BRAND CONTRAST</Pill>
             </div>
