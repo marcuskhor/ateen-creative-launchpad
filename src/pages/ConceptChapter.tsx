@@ -174,15 +174,15 @@ const ConceptChapter = () => {
                     INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
                   </p>
 
-                  {/* Match PDF: laptop anchored bottom-left, two screenshots grouped on the right */}
-                  <div className="relative h-[360px] md:h-[430px]">
-                    <div className="absolute top-[2%] right-[4%] w-[34%] z-20">
+                  {/* Match PDF: tighter right-side stack with larger laptop anchor */}
+                  <div className="relative h-[360px] md:h-[430px] overflow-hidden">
+                    <div className="absolute top-[1%] right-[8%] w-[30%] z-20">
                       <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-md" />
                     </div>
-                    <div className="absolute top-[30%] right-0 w-[34%] z-30">
+                    <div className="absolute top-[27%] right-[2%] w-[30%] z-30">
                       <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-md" />
                     </div>
-                    <div className="absolute bottom-0 left-0 w-[74%] z-10">
+                    <div className="absolute bottom-0 left-[-2%] w-[80%] z-10">
                       <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-xl" />
                     </div>
                   </div>
