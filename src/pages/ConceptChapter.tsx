@@ -174,18 +174,20 @@ const ConceptChapter = () => {
                     INSTEAD OF PRESENTING FRAGRANCES AS PRODUCTS, THE SITE INTRODUCES THEM AS CHAPTERS, EACH REPRESENTING A MOMENT IN LIFE.
                   </p>
 
-                  {/* Laptop centered/left, two screenshots below on the right */}
-                  <div className="flex flex-col gap-8">
-                    <div className="w-[78%] mx-auto">
+                  {/* Cascading overlap per PDF: screenshot1 top-left behind, laptop center overlapping,
+                      screenshot2 right overlapping laptop */}
+                  <div className="relative h-[360px] md:h-[440px]">
+                    {/* Screenshot 1 - top left, behind laptop */}
+                    <div className="absolute top-0 left-[4%] w-[42%] z-10">
+                      <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-lg" />
+                    </div>
+                    {/* Laptop - center, overlapping screenshot 1 */}
+                    <div className="absolute top-[18%] left-[18%] w-[60%] z-20">
                       <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-2xl" />
                     </div>
-                    <div className="flex justify-end gap-3 md:gap-4">
-                      <div className="w-[38%]">
-                        <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-lg" />
-                      </div>
-                      <div className="w-[38%]">
-                        <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-lg" />
-                      </div>
+                    {/* Screenshot 2 - right, overlapping laptop */}
+                    <div className="absolute top-[44%] right-0 w-[40%] z-30">
+                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-lg" />
                     </div>
                   </div>
                 </div>
