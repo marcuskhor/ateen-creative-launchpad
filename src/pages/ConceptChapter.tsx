@@ -143,11 +143,11 @@ const ConceptChapter = () => {
                   <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-[10px] md:text-xs tracking-[0.15em] text-black mb-8">
                     CONTENT SYSTEM
                   </span>
-                  <div className="grid grid-cols-2 gap-6 items-end">
-                    <div className="max-w-[280px]">
+                  <div className="grid grid-cols-1 md:grid-cols-[220px_minmax(360px,1fr)] gap-6 md:gap-8 items-end">
+                    <div className="max-w-[220px] md:max-w-[220px]">
                       <img src={chapterInstagram} alt="Chapter Instagram content system" className="w-full object-contain" />
                     </div>
-                    <div>
+                    <div className="md:pb-3">
                       <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed mb-3">
                         SOCIAL MEDIA HAS BECOME ONE OF THE MOST IMPORTANT SPACES FOR A BRAND TO EXIST.
                       </p>
