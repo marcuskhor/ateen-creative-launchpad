@@ -41,13 +41,15 @@ const ConceptAntiOverwork = () => {
         {/* Hero Logo */}
         <div className="container px-6 md:px-12">
           <AnimatedSection delay={0.1}>
-            <div className="flex justify-center overflow-hidden mb-1" style={{ height: 'min(180px, 20vw)' }}>
-              <img
-                src={antiLogo}
-                alt="Anti-Overwork"
-                className="w-full max-w-[900px] h-auto"
-                style={{ marginTop: 'calc(min(900px, 100%) * -0.45)' }}
-              />
+            <div className="flex justify-center mb-1">
+              <div className="w-full max-w-[900px] overflow-hidden" style={{ aspectRatio: '900 / 95' }}>
+                <img
+                  src={antiLogo}
+                  alt="Anti-Overwork"
+                  className="w-full h-auto block"
+                  style={{ marginTop: '-47.4%' }}
+                />
+              </div>
             </div>
             <p className="text-center text-sm md:text-base tracking-[0.15em] text-white/80 mb-2">
               A COFFEE BRAND DESIGNED WITHOUT URGENCY.
