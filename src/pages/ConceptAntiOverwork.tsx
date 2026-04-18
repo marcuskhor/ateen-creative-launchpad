@@ -42,12 +42,12 @@ const ConceptAntiOverwork = () => {
         <div className="container px-6 md:px-12">
           <AnimatedSection delay={0.1}>
             <div className="flex justify-center mb-1">
-              <div className="w-full max-w-[900px] overflow-hidden" style={{ aspectRatio: '900 / 95' }}>
+              <div className="w-full max-w-[900px] overflow-hidden" style={{ aspectRatio: '900 / 105' }}>
                 <img
                   src={antiLogo}
                   alt="Anti-Overwork"
                   className="w-full h-auto block"
-                  style={{ marginTop: '-47.4%' }}
+                  style={{ marginTop: '-44.5%' }}
                 />
               </div>
             </div>
@@ -66,7 +66,7 @@ const ConceptAntiOverwork = () => {
                 <h2 className="text-3xl md:text-4xl font-bold tracking-[0.05em] mb-3" style={{ color: ORANGE }}>
                   BRAND POSITION
                 </h2>
-                <p className="text-xs md:text-sm tracking-[0.1em] text-white/80 mb-12">
+                <p className="text-xs md:text-sm tracking-[0.1em] text-white/80 mb-24">
                   COFFEE WITHOUT PERFORMANCE EXPECTATION.
                 </p>
 
@@ -92,8 +92,8 @@ const ConceptAntiOverwork = () => {
             <AnimatedSection delay={0.2}>
               <div className="space-y-6">
                 <img src={antiShelf} alt="Anti-Overwork retail shelf" className="w-full h-auto" />
-                <div className="flex justify-end">
-                  <img src={antiStickers} alt="Anti-Overwork sticker sheet" className="w-[60%] h-auto" />
+                <div className="flex justify-center">
+                  <img src={antiStickers} alt="Anti-Overwork sticker sheet" className="w-[55%] h-auto" />
                 </div>
               </div>
             </AnimatedSection>
