@@ -135,7 +135,7 @@ const ConceptAntiOverwork = () => {
                   <Pill>LANGUAGE SYSTEM</Pill>
                 </div>
                 <div className="relative">
-                  <img src={antiError404} alt="Error 404 visual motif" className="w-full h-auto" />
+                  <img src={antiError404} alt="Error 404 visual motif" className="w-auto h-auto max-w-full block" />
                   <div className="absolute inset-0 flex flex-col justify-start pt-4 px-4">
                     <p className="text-xs md:text-sm tracking-[0.08em] text-white/90 leading-relaxed mb-3">
                       A REPEATED SIGNAL USED ACROSS ALL TOUCHPOINTS.<br/>
