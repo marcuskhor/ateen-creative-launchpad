@@ -31,7 +31,7 @@ const ConceptAntiOverwork = () => {
         {/* Top Pills */}
         <div className="container px-6 md:px-12 pt-2">
           <AnimatedSection>
-            <div className="flex justify-center gap-12 mb-6">
+            <div className="flex justify-center gap-12 mb-2">
               <Pill>BRAND POSITION</Pill>
               <Pill>BRAND CONTRAST</Pill>
             </div>
@@ -41,10 +41,10 @@ const ConceptAntiOverwork = () => {
         {/* Hero Logo */}
         <div className="container px-6 md:px-12">
           <AnimatedSection delay={0.1}>
-            <div className="flex justify-center mb-2">
-              <img src={antiLogo} alt="Anti-Overwork" className="w-full max-w-[900px] h-auto" />
+            <div className="flex justify-center overflow-hidden mb-1">
+              <img src={antiLogo} alt="Anti-Overwork" className="w-full max-w-[900px] h-auto -mt-[41%] -mb-[39%]" />
             </div>
-            <p className="text-center text-sm md:text-base tracking-[0.15em] text-white/80 mb-6">
+            <p className="text-center text-sm md:text-base tracking-[0.15em] text-white/80 mb-2">
               A COFFEE BRAND DESIGNED WITHOUT URGENCY.
             </p>
           </AnimatedSection>
