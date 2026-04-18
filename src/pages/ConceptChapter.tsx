@@ -176,14 +176,14 @@ const ConceptChapter = () => {
 
                   {/* Match PDF: tighter right-side stack with larger laptop anchor */}
                   <div className="relative h-[360px] md:h-[430px] overflow-hidden">
-                    <div className="absolute top-[1%] right-[8%] w-[30%] z-20">
+                    <div className="absolute top-[1%] left-[40%] w-[27%] z-10">
                       <img src={chapterWebsite1} alt="Chapter website homepage" className="w-full shadow-md" />
                     </div>
-                    <div className="absolute top-[27%] right-[2%] w-[30%] z-30">
-                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-md" />
-                    </div>
-                    <div className="absolute bottom-0 left-[-2%] w-[80%] z-10">
+                    <div className="absolute bottom-0 left-[-1%] w-[76%] z-20">
                       <img src={chapterLaptop} alt="Chapter website laptop" className="w-full drop-shadow-xl" />
+                    </div>
+                    <div className="absolute bottom-[7%] right-[1%] w-[29%] z-30">
+                      <img src={chapterWebsite2} alt="Chapter website inner page" className="w-full shadow-md" />
                     </div>
                   </div>
                 </div>
