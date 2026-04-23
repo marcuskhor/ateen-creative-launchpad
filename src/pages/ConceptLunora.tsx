@@ -97,7 +97,7 @@ const ConceptLunora = () => {
         </div>
 
         {/* Two images under Brand Core + Ritual System side by side */}
-        <div className="container px-6 md:px-12 mt-12 md:mt-16">
+        <div className="container px-6 md:px-12 mt-4 md:mt-6">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {/* Left - Ritual System */}
             <AnimatedSection delay={0.1}>
@@ -135,7 +135,7 @@ const ConceptLunora = () => {
 
             {/* Right - Two images stacked, top-aligned with Ritual System */}
             <AnimatedSection delay={0.2}>
-              <div className="flex flex-col justify-start h-full space-y-4 items-center">
+              <div className="flex flex-col justify-start h-full space-y-4 items-start">
                 <div className="overflow-hidden w-3/4">
                   <img src={lunoraInfiniteCycle} alt="Infinite recovery cycle" className="w-full object-contain" />
                 </div>
