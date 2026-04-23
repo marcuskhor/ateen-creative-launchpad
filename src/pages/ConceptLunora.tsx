@@ -85,9 +85,12 @@ const ConceptLunora = () => {
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-[#39481f] mb-6">
                   BRAND CORE
                 </h2>
-                <p className="text-base md:text-lg tracking-[0.08em] text-[#39481f]/80 leading-relaxed">
+                <p className="text-base md:text-lg tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-8">
                   RECOVERY BEGINS WHEN THE MIND RETURNS TO BALANCE.
                 </p>
+                <div className="overflow-hidden w-3/4">
+                  <img src={lunoraProductsLight} alt="Lunora products" className="w-full object-cover" />
+                </div>
               </div>
             </div>
           </AnimatedSection>
@@ -133,9 +136,6 @@ const ConceptLunora = () => {
             {/* Right - Two images stacked, top-aligned with Ritual System */}
             <AnimatedSection delay={0.2}>
               <div className="flex flex-col justify-start h-full space-y-4 items-center">
-                <div className="overflow-hidden w-3/4">
-                  <img src={lunoraProductsLight} alt="Lunora products" className="w-full object-cover" />
-                </div>
                 <div className="overflow-hidden w-3/4">
                   <img src={lunoraInfiniteCycle} alt="Infinite recovery cycle" className="w-full object-contain" />
                 </div>
