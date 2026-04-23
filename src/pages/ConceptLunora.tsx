@@ -188,7 +188,7 @@ const ConceptLunora = () => {
               </div>
 
               {/* Right - packaging carousel with side arrows */}
-              <div className="flex items-center justify-center gap-4 h-full">
+              <div className="flex items-center justify-center gap-2 h-full">
                 <button
                   onClick={prevPackaging}
                   aria-label="Previous packaging"
@@ -200,7 +200,7 @@ const ConceptLunora = () => {
                   <img
                     src={packagingImages[packagingIndex]}
                     alt="Lunora packaging"
-                    className="w-full h-auto max-h-[420px] object-contain"
+                    className="w-full h-auto max-h-[560px] object-contain scale-110"
                   />
                 </div>
                 <button
