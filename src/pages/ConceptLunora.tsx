@@ -187,29 +187,29 @@ const ConceptLunora = () => {
                 </p>
               </div>
 
-              {/* Right - packaging carousel */}
-              <div className="flex flex-col items-center">
-                <div className="relative w-full max-w-[600px]">
+              {/* Right - packaging carousel with side arrows */}
+              <div className="flex items-center justify-center gap-4 h-full">
+                <button
+                  onClick={prevPackaging}
+                  aria-label="Previous packaging"
+                  className="w-10 h-10 flex items-center justify-center text-[#39481f]/60 hover:text-[#39481f] transition-colors flex-shrink-0"
+                >
+                  <ChevronLeft className="w-6 h-6" strokeWidth={1.25} />
+                </button>
+                <div className="flex-1 flex items-center justify-center max-h-full">
                   <img
                     src={packagingImages[packagingIndex]}
                     alt="Lunora packaging"
-                    className="w-full object-contain"
+                    className="w-full h-auto max-h-[420px] object-contain"
                   />
                 </div>
-                <div className="flex items-center gap-6 mt-6">
-                  <button
-                    onClick={prevPackaging}
-                    className="w-10 h-10 border border-[#39481f]/20 rounded-full flex items-center justify-center hover:bg-[#39481f]/5 transition-colors"
-                  >
-                    <ChevronLeft className="w-4 h-4 text-[#39481f]" />
-                  </button>
-                  <button
-                    onClick={nextPackaging}
-                    className="w-10 h-10 border border-[#39481f]/20 rounded-full flex items-center justify-center hover:bg-[#39481f]/5 transition-colors"
-                  >
-                    <ChevronRight className="w-4 h-4 text-[#39481f]" />
-                  </button>
-                </div>
+                <button
+                  onClick={nextPackaging}
+                  aria-label="Next packaging"
+                  className="w-10 h-10 flex items-center justify-center text-[#39481f]/60 hover:text-[#39481f] transition-colors flex-shrink-0"
+                >
+                  <ChevronRight className="w-6 h-6" strokeWidth={1.25} />
+                </button>
               </div>
             </div>
           </AnimatedSection>
