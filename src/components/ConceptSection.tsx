@@ -64,7 +64,15 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
 
         {/* Logo circle - top right */}
         <div className="relative z-10 flex justify-end p-6 md:p-8">
-          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-foreground flex items-center justify-center p-3">
+          <div
+            className={`w-28 h-28 md:w-32 md:h-32 rounded-full flex items-center justify-center p-5 ${
+              concept.name === 'LUNORA'
+                ? 'bg-[#5a6b2a]'
+                : concept.name.startsWith('ANTI')
+                  ? 'bg-[#0a0f1f]'
+                  : 'bg-foreground'
+            }`}
+          >
             <img src={concept.logo} alt={`${concept.name} logo`} className="w-full h-full object-contain" />
           </div>
         </div>
