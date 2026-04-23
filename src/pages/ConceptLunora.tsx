@@ -132,11 +132,11 @@ const ConceptLunora = () => {
 
             {/* Right - Two images stacked, aligned to end with Ritual System */}
             <AnimatedSection delay={0.2}>
-              <div className="flex flex-col justify-end h-full space-y-4">
-                <div className="overflow-hidden">
+              <div className="flex flex-col justify-end h-full space-y-4 items-center">
+                <div className="overflow-hidden w-3/4">
                   <img src={lunoraProductsLight} alt="Lunora products" className="w-full object-cover" />
                 </div>
-                <div className="overflow-hidden">
+                <div className="overflow-hidden w-3/4">
                   <img src={lunoraInfiniteCycle} alt="Infinite recovery cycle" className="w-full object-contain" />
                 </div>
               </div>
@@ -189,7 +189,7 @@ const ConceptLunora = () => {
 
               {/* Right - packaging carousel */}
               <div className="flex flex-col items-center">
-                <div className="relative w-full max-w-[400px]">
+                <div className="relative w-full max-w-[600px]">
                   <img
                     src={packagingImages[packagingIndex]}
                     alt="Lunora packaging"
@@ -220,12 +220,12 @@ const ConceptLunora = () => {
           <AnimatedSection delay={0.1}>
             <div className="grid grid-cols-12 gap-6 md:gap-10 items-end">
               {/* Left - smaller phone mockup */}
-              <div className="col-span-12 md:col-span-3">
-                <img src={lunoraInstagram} alt="Lunora Instagram" className="w-full max-w-[260px] object-contain" />
+              <div className="col-span-12 md:col-span-3 flex">
+                <img src={lunoraInstagram} alt="Lunora Instagram" className="w-full max-w-[260px] object-contain self-end" />
               </div>
 
               {/* Right - pill aligned to bottom of image */}
-              <div className="col-span-12 md:col-span-9 pb-4 md:pb-8">
+              <div className="col-span-12 md:col-span-9 flex items-end">
                 <span className="inline-block px-8 py-3 border-2 border-primary rounded-full text-base md:text-lg font-bold tracking-[0.15em] text-black">
                   CONTENT STRUCTURE
                 </span>
@@ -289,9 +289,9 @@ const ConceptLunora = () => {
         </div>
 
         {/* Series of Inner Reset - Footer */}
-        <div className="container px-6 md:px-12 mt-16 md:mt-24">
+        <div className="container px-6 md:px-12 mt-6 md:mt-8">
           <AnimatedSection delay={0.1}>
-            <div className="text-center py-12">
+            <div className="text-center py-4">
               <p className="text-base italic tracking-[0.08em] text-[#39481f]/60 mb-2">Series of Inner Reset</p>
               <p className="text-xl italic tracking-[0.06em] text-[#39481f]/80">Recovery is infinite.</p>
             </div>

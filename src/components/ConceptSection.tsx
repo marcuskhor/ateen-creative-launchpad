@@ -61,9 +61,9 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
 
         {/* Logo circle - top right */}
         <div className="relative z-10 flex justify-end p-6 md:p-8">
-          <div className="w-12 h-12 md:w-14 md:h-14 rounded-full bg-foreground/15 border border-foreground/20 flex items-center justify-center backdrop-blur-sm">
-            <span className="text-[7px] md:text-[8px] text-foreground/60 tracking-wider uppercase font-medium">
-              {concept.logo}
+          <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-foreground/10 border border-foreground/30 flex items-center justify-center backdrop-blur-sm px-2">
+            <span className="text-[8px] md:text-[9px] text-foreground/80 tracking-[0.15em] uppercase font-bold text-center leading-tight whitespace-pre-line">
+              {concept.logo === 'anti-overwork' ? 'ANTI-\nOVERWORK' : concept.logo.toUpperCase()}
             </span>
           </div>
         </div>
