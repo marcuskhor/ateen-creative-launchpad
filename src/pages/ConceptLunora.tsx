@@ -97,7 +97,7 @@ const ConceptLunora = () => {
         </div>
 
         {/* Two images under Brand Core + Ritual System side by side */}
-        <div className="container px-6 md:px-12 mt-4 md:mt-6">
+        <div className="container px-6 md:px-12 mt-2 md:mt-2">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {/* Left - Ritual System */}
             <AnimatedSection delay={0.1}>
@@ -113,7 +113,7 @@ const ConceptLunora = () => {
                 </p>
 
                 {/* Steps */}
-                <div className="space-y-3">
+                <div className="space-y-3 mb-8">
                   {[
                     { step: 'Step 1', label: 'Reset the Mind' },
                     { step: 'Step 2', label: 'Restore the Body' },
@@ -126,18 +126,19 @@ const ConceptLunora = () => {
                     </div>
                   ))}
                 </div>
+
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mt-auto">
+                  THIS SYSTEM ALLOWS LUNORA TO MOVE BEYOND INDIVIDUAL PRODUCTS AND FUNCTION AS A COHESIVE RITUAL EXPERIENCE.
+                </p>
               </div>
             </AnimatedSection>
 
             {/* Right - Two images stacked, top-aligned with Ritual System */}
             <AnimatedSection delay={0.2}>
-              <div className="flex flex-col justify-start h-full space-y-6 items-start">
+              <div className="flex flex-col justify-start h-full space-y-4 items-start">
                 <div className="overflow-hidden w-3/4">
                   <img src={lunoraInfiniteCycle} alt="Infinite recovery cycle" className="w-full object-contain" />
                 </div>
-                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed w-3/4">
-                  THIS SYSTEM ALLOWS LUNORA TO MOVE BEYOND INDIVIDUAL PRODUCTS AND FUNCTION AS A COHESIVE RITUAL EXPERIENCE.
-                </p>
               </div>
             </AnimatedSection>
           </div>
