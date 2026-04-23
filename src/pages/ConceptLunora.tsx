@@ -96,8 +96,8 @@ const ConceptLunora = () => {
           </AnimatedSection>
         </div>
 
-        {/* Two images under Brand Core + Ritual System side by side */}
-        <div className="container px-6 md:px-12 mt-2 md:mt-2">
+        {/* Ritual System (left) sits beside the products image (right) */}
+        <div className="container px-6 md:px-12 mt-2 md:-mt-72 lg:-mt-80">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {/* Left - Ritual System */}
             <AnimatedSection delay={0.1}>
