@@ -102,7 +102,7 @@ const ConceptLunora = () => {
             {/* Left - Ritual System */}
             <AnimatedSection delay={0.1}>
               <div className="flex flex-col h-full">
-                <span className="inline-block self-start px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-8">
+                <span className="inline-block self-start px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-3">
                   RITUAL SYSTEM
                 </span>
                 <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
@@ -113,7 +113,7 @@ const ConceptLunora = () => {
                 </p>
 
                 {/* Steps */}
-                <div className="space-y-3 mb-8">
+                <div className="space-y-3">
                   {[
                     { step: 'Step 1', label: 'Reset the Mind' },
                     { step: 'Step 2', label: 'Restore the Body' },
@@ -126,19 +126,18 @@ const ConceptLunora = () => {
                     </div>
                   ))}
                 </div>
-
-                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mt-auto">
-                  THIS SYSTEM ALLOWS LUNORA TO MOVE BEYOND INDIVIDUAL PRODUCTS AND FUNCTION AS A COHESIVE RITUAL EXPERIENCE.
-                </p>
               </div>
             </AnimatedSection>
 
             {/* Right - Two images stacked, top-aligned with Ritual System */}
             <AnimatedSection delay={0.2}>
-              <div className="flex flex-col justify-start h-full space-y-4 items-start">
+              <div className="flex flex-col justify-start h-full space-y-6 items-start">
                 <div className="overflow-hidden w-3/4">
                   <img src={lunoraInfiniteCycle} alt="Infinite recovery cycle" className="w-full object-contain" />
                 </div>
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed w-3/4">
+                  THIS SYSTEM ALLOWS LUNORA TO MOVE BEYOND INDIVIDUAL PRODUCTS AND FUNCTION AS A COHESIVE RITUAL EXPERIENCE.
+                </p>
               </div>
             </AnimatedSection>
           </div>
