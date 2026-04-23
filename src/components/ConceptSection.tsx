@@ -1,11 +1,14 @@
 import AnimatedSection from './AnimatedSection';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import logoChapter from '@/assets/concept-logo-chapter.png';
+import logoLunora from '@/assets/concept-logo-lunora.png';
+import logoAntiOverwork from '@/assets/concept-logo-anti-overwork.png';
 
 const conceptWorks = [
   {
     name: 'CHAPTER',
-    logo: 'chapter',
+    logo: logoChapter,
     tagline: 'SCENT AS NARRATIVE',
     turningLabel: 'TURNING',
     turningHighlight: 'ABSTRACT EMOTION',
@@ -16,7 +19,7 @@ const conceptWorks = [
   },
   {
     name: 'LUNORA',
-    logo: 'lunora',
+    logo: logoLunora,
     tagline: 'DESIGNED FOR RECOVERY.',
     turningLabel: 'TURNING',
     turningHighlight: 'RECOVERY',
@@ -27,7 +30,7 @@ const conceptWorks = [
   },
   {
     name: 'ANTI-\nOVERWORK',
-    logo: 'anti-overwork',
+    logo: logoAntiOverwork,
     tagline: 'NO CAFFEINE. NO HUSTLE.',
     turningLabel: 'TURNING',
     turningHighlight: 'ATTITUDE',
@@ -61,10 +64,8 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
 
         {/* Logo circle - top right */}
         <div className="relative z-10 flex justify-end p-6 md:p-8">
-          <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-foreground/10 border border-foreground/30 flex items-center justify-center backdrop-blur-sm px-2">
-            <span className="text-[8px] md:text-[9px] text-foreground/80 tracking-[0.15em] uppercase font-bold text-center leading-tight whitespace-pre-line">
-              {concept.logo === 'anti-overwork' ? 'ANTI-\nOVERWORK' : concept.logo.toUpperCase()}
-            </span>
+          <div className="w-16 h-16 md:w-20 md:h-20 rounded-full bg-foreground flex items-center justify-center p-3">
+            <img src={concept.logo} alt={`${concept.name} logo`} className="w-full h-full object-contain" />
           </div>
         </div>
 
@@ -72,7 +73,7 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
         <div className="relative z-10 px-6 md:px-8 pb-6 md:pb-8 flex flex-col min-h-[480px] md:min-h-[540px]">
           {/* Title & tagline */}
           <div className="mt-auto mb-0">
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-[0.01em] text-foreground whitespace-pre-line leading-[1.0] mb-3">
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.01em] text-foreground whitespace-pre-line leading-[1.05] mb-3">
               {concept.name}
             </h3>
             <p className="text-xs md:text-sm text-foreground/60 tracking-[0.12em] mb-10">
