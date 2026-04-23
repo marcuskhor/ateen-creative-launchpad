@@ -1,7 +1,6 @@
 import AnimatedSection from './AnimatedSection';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { Plus, Minus } from 'lucide-react';
 
 const services = [
   {
@@ -24,25 +23,22 @@ const services = [
   },
 ];
 
-const ServiceAccordion = ({ service, isOpen, onToggle }: { service: typeof services[0]; isOpen: boolean; onToggle: () => void }) => {
+const ServiceAccordion = ({ service, isOpen, onHoverOpen }: { service: typeof services[0]; isOpen: boolean; onHoverOpen: () => void }) => {
   return (
-    <div className="border-t border-primary/40">
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between py-6 md:py-8 group cursor-pointer"
-      >
+    <div
+      className="border-t border-primary/40"
+      onMouseEnter={onHoverOpen}
+    >
+      <div className="w-full flex items-center justify-between py-6 md:py-8 group cursor-pointer">
         <div className="flex items-baseline gap-4 md:gap-8">
           <span className="text-5xl md:text-7xl lg:text-8xl font-medium text-foreground/20 leading-none">
             {service.number}
           </span>
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold tracking-[0.1em] text-foreground group-hover:text-primary transition-colors duration-300 text-left">
+          <h3 className={`text-xl md:text-2xl lg:text-3xl font-bold tracking-[0.1em] transition-colors duration-300 text-left ${isOpen ? 'text-primary' : 'text-foreground group-hover:text-primary'}`}>
             {service.title}
           </h3>
         </div>
-        <div className="text-primary">
-          {isOpen ? <Minus size={20} /> : <Plus size={20} />}
-        </div>
-      </button>
+      </div>
 
       <AnimatePresence>
         {isOpen && (
@@ -87,13 +83,13 @@ const ServicesSection = () => {
           </div>
         </AnimatedSection>
 
-        <div>
+        <div onMouseLeave={() => setOpenIndex(null)}>
           {services.map((service, index) => (
             <ServiceAccordion
               key={service.number}
               service={service}
               isOpen={openIndex === index}
-              onToggle={() => setOpenIndex(openIndex === index ? null : index)}
+              onHoverOpen={() => setOpenIndex(index)}
             />
           ))}
           <div className="border-t border-primary/40" />

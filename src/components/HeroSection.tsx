@@ -33,7 +33,7 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
         >
-          <h1 className="text-5xl md:text-7xl lg:text-8xl font-medium text-foreground leading-[1.15] tracking-wide">
+          <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold text-foreground leading-[1.15] tracking-wide">
             <TextReveal text={'\u201CBUILD BRANDS'} staggerDelay={0.04} />
             <br />
             <TextReveal text={'WITH DIRECTION, NOT TRENDS.\u201D'} staggerDelay={0.04} />
@@ -50,7 +50,7 @@ const HeroSection = () => {
           <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em]">
             WE TRANSFORM BUSINESSES INTO BRANDS PEOPLE RECOGNIZE, REMEMBER, AND RETURN TO.
           </p>
-          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em]">
+          <p className="text-xs md:text-sm lg:text-base text-foreground tracking-[0.15em] font-bold">
             IDENTITY → CONTENT → EXPERIENCE
           </p>
           <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em]">
