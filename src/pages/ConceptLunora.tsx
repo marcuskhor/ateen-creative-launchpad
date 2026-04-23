@@ -101,8 +101,8 @@ const ConceptLunora = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
             {/* Left - Ritual System */}
             <AnimatedSection delay={0.1}>
-              <div>
-                <span className="inline-block px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-8">
+              <div className="flex flex-col h-full">
+                <span className="inline-block self-start px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-8">
                   RITUAL SYSTEM
                 </span>
                 <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
@@ -127,7 +127,7 @@ const ConceptLunora = () => {
                   ))}
                 </div>
 
-                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mt-auto">
                   THIS SYSTEM ALLOWS LUNORA TO MOVE BEYOND INDIVIDUAL PRODUCTS AND FUNCTION AS A COHESIVE RITUAL EXPERIENCE.
                 </p>
               </div>
