@@ -130,9 +130,9 @@ const ConceptLunora = () => {
               </div>
             </AnimatedSection>
 
-            {/* Right - Two images stacked, aligned to end with Ritual System */}
+            {/* Right - Two images stacked, top-aligned with Ritual System */}
             <AnimatedSection delay={0.2}>
-              <div className="flex flex-col justify-end h-full space-y-4 items-center">
+              <div className="flex flex-col justify-start h-full space-y-4 items-center">
                 <div className="overflow-hidden w-3/4">
                   <img src={lunoraProductsLight} alt="Lunora products" className="w-full object-cover" />
                 </div>
