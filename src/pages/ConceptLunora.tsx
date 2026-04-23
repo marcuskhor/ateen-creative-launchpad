@@ -219,30 +219,30 @@ const ConceptLunora = () => {
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
           <AnimatedSection delay={0.1}>
             <div className="grid grid-cols-12 gap-6 md:gap-10 items-end">
-              {/* Left - smaller phone mockup */}
-              <div className="col-span-12 md:col-span-3 flex">
-                <img src={lunoraInstagram} alt="Lunora Instagram" className="w-full max-w-[260px] object-contain self-end" />
+              {/* Left - phone mockup, bottom-aligned with last paragraph line */}
+              <div className="col-span-12 md:col-span-3 flex md:h-full">
+                <img
+                  src={lunoraInstagram}
+                  alt="Lunora Instagram"
+                  className="w-full max-w-[260px] object-contain self-end"
+                />
               </div>
 
-              {/* Right - pill aligned to bottom of image */}
-              <div className="col-span-12 md:col-span-9 flex items-end">
-                <span className="inline-block px-8 py-3 border-2 border-primary rounded-full text-base md:text-lg font-bold tracking-[0.15em] text-black">
+              {/* Right - pill on top, paragraphs below */}
+              <div className="col-span-12 md:col-span-9">
+                <span className="inline-block px-8 py-3 border-2 border-primary rounded-full text-base md:text-lg font-bold tracking-[0.15em] text-black mb-8 md:mb-10">
                   CONTENT STRUCTURE
                 </span>
+                <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-4">
+                  INSTEAD OF RELYING ON A FIXED SEQUENCE, WE STRUCTURED THE GRID THROUGH THREE DISTINCT CONTENT LAYERS. PROBLEM, SYSTEM, AND EXPERIENCE.
+                </p>
+                <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-4">
+                  EACH VISUAL IS DESIGNED TO COMMUNICATE A SPECIFIC LAYER, ALLOWING THE GRID TO FUNCTION AS A FLEXIBLE SYSTEM RATHER THAN A LINEAR NARRATIVE.
+                </p>
+                <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed">
+                  THIS ENSURES THAT REGARDLESS OF ENTRY POINT, THE VIEWER CAN IMMEDIATELY GRASP THE BRAND'S PERSPECTIVE WHILE GRADUALLY DISCOVERING ITS LOGIC AND APPLICATION.
+                </p>
               </div>
-            </div>
-
-            {/* Paragraphs spanning full width below */}
-            <div className="mt-8 md:mt-10 md:pl-[26%]">
-              <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-4">
-                INSTEAD OF RELYING ON A FIXED SEQUENCE, WE STRUCTURED THE GRID THROUGH THREE DISTINCT CONTENT LAYERS. PROBLEM, SYSTEM, AND EXPERIENCE.
-              </p>
-              <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-4">
-                EACH VISUAL IS DESIGNED TO COMMUNICATE A SPECIFIC LAYER, ALLOWING THE GRID TO FUNCTION AS A FLEXIBLE SYSTEM RATHER THAN A LINEAR NARRATIVE.
-              </p>
-              <p className="text-sm md:text-base tracking-[0.08em] text-[#39481f]/80 leading-relaxed">
-                THIS ENSURES THAT REGARDLESS OF ENTRY POINT, THE VIEWER CAN IMMEDIATELY GRASP THE BRAND'S PERSPECTIVE WHILE GRADUALLY DISCOVERING ITS LOGIC AND APPLICATION.
-              </p>
             </div>
           </AnimatedSection>
         </div>
