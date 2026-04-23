@@ -130,7 +130,7 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
 
         {/* Hover glow */}
         <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
-          style={{ background: 'radial-gradient(ellipse at 50% 100%, hsl(75 100% 50% / 0.1), transparent 60%)' }}
+          style={{ background: concept.hoverGlow }}
         />
       </Link>
     </motion.div>
