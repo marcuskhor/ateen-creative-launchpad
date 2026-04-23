@@ -64,45 +64,25 @@ const ConceptLunora = () => {
           </AnimatedSection>
         </div>
 
-        {/* Brand Direction + Brand Core */}
+        {/* Brand Direction + Ritual System (left)  |  Brand Core + Images (right) */}
         <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <AnimatedSection delay={0.2}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-              {/* Brand Direction */}
-              <div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
+            {/* LEFT COLUMN */}
+            <AnimatedSection delay={0.1}>
+              <div className="flex flex-col">
+                {/* Brand Direction */}
                 <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-[#39481f] mb-6">
                   BRAND DIRECTION
                 </h2>
                 <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
                   WE POSITIONED LUNORA AS A RITUAL-BASED WELLNESS BRAND FOCUSED ON RESTORING BALANCE FOR THE OVERSTIMULATED MODERN MIND.
                 </p>
-                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-12 md:mb-16">
                   WHILE MANY WELLNESS BRANDS FOCUS PRIMARILY ON EXTERNAL RESULTS — APPEARANCE, FITNESS, OR PERFORMANCE. LUNORA CENTERS ON INNER RECOVERY. THE BRAND ENCOURAGES A SLOWER RHYTHM OF LIVING THROUGH SMALL DAILY RITUALS DESIGNED TO CALM THE MIND, RELEASE THE TENSION, AND GUIDE THE BODY BACK TO ITS NATURAL STATE OF BALANCE.
                 </p>
-              </div>
-              {/* Brand Core */}
-              <div>
-                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-[#39481f] mb-6">
-                  BRAND CORE
-                </h2>
-                <p className="text-base md:text-lg tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-8">
-                  RECOVERY BEGINS WHEN THE MIND RETURNS TO BALANCE.
-                </p>
-                <div className="overflow-hidden w-3/4">
-                  <img src={lunoraProductsLight} alt="Lunora products" className="w-full object-cover" />
-                </div>
-              </div>
-            </div>
-          </AnimatedSection>
-        </div>
 
-        {/* Ritual System (left) sits beside the products image (right) */}
-        <div className="container px-6 md:px-12 mt-2 md:-mt-72 lg:-mt-80">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16">
-            {/* Left - Ritual System */}
-            <AnimatedSection delay={0.1}>
-              <div className="flex flex-col h-full">
-                <span className="inline-block self-start px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-3">
+                {/* Ritual System */}
+                <span className="inline-block self-start px-4 py-1.5 border border-primary rounded-full text-xs md:text-sm tracking-[0.15em] text-black mb-6">
                   RITUAL SYSTEM
                 </span>
                 <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mb-4">
@@ -127,15 +107,25 @@ const ConceptLunora = () => {
                   ))}
                 </div>
 
-                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed mt-auto">
+                <p className="text-xs md:text-sm tracking-[0.08em] text-[#39481f]/60 leading-relaxed">
                   THIS SYSTEM ALLOWS LUNORA TO MOVE BEYOND INDIVIDUAL PRODUCTS AND FUNCTION AS A COHESIVE RITUAL EXPERIENCE.
                 </p>
               </div>
             </AnimatedSection>
 
-            {/* Right - Two images stacked, top-aligned with Ritual System */}
+            {/* RIGHT COLUMN */}
             <AnimatedSection delay={0.2}>
-              <div className="flex flex-col justify-start h-full space-y-4 items-start">
+              <div className="flex flex-col">
+                {/* Brand Core */}
+                <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-[#39481f] mb-6">
+                  BRAND CORE
+                </h2>
+                <p className="text-base md:text-lg tracking-[0.08em] text-[#39481f]/80 leading-relaxed mb-8">
+                  RECOVERY BEGINS WHEN THE MIND RETURNS TO BALANCE.
+                </p>
+                <div className="overflow-hidden w-3/4 mb-6">
+                  <img src={lunoraProductsLight} alt="Lunora products" className="w-full object-cover" />
+                </div>
                 <div className="overflow-hidden w-3/4">
                   <img src={lunoraInfiniteCycle} alt="Infinite recovery cycle" className="w-full object-contain" />
                 </div>
