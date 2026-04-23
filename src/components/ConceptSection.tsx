@@ -16,6 +16,10 @@ const conceptWorks = [
     turningResult: 'STRUCTURE.',
     services: ['BRAND FOUNDATION', 'CONTENT SYSTEM', 'WEBSITE EXPERIENCE', 'CONTENT PRODUCTION'],
     link: '/concept/chapter',
+    background:
+      'linear-gradient(170deg, hsl(0 0% 4%) 0%, hsl(0 0% 6%) 35%, hsl(35 25% 14%) 70%, hsl(38 40% 32%) 92%, hsl(42 55% 55%) 100%)',
+    glow: 'radial-gradient(ellipse 130% 55% at 50% 100%, hsl(38 60% 45% / 0.55), transparent 70%)',
+    hoverGlow: 'radial-gradient(ellipse at 50% 100%, hsl(42 80% 60% / 0.18), transparent 60%)',
   },
   {
     name: 'LUNORA',
@@ -27,6 +31,10 @@ const conceptWorks = [
     turningResult: 'IDENTITY AND LAUNCH.',
     services: ['BRAND FOUNDATION', 'CONTENT SYSTEM', 'PACKAGING LANGUAGE', 'PRODUCT EXPERIENCE'],
     link: '/concept/lunora',
+    background:
+      'linear-gradient(180deg, hsl(0 0% 5%) 0%, hsl(0 0% 4%) 30%, hsl(95 35% 12%) 65%, hsl(90 45% 22%) 88%, hsl(85 55% 35%) 100%)',
+    glow: 'radial-gradient(ellipse 140% 60% at 50% 100%, hsl(90 60% 35% / 0.6), transparent 70%)',
+    hoverGlow: 'radial-gradient(ellipse at 50% 100%, hsl(85 80% 50% / 0.15), transparent 60%)',
   },
   {
     name: 'ANTI-\nOVERWORK',
@@ -38,6 +46,10 @@ const conceptWorks = [
     turningResult: 'IDENTITY AND EXPERIENCE.',
     services: ['BRAND FOUNDATION', 'VIDEO CONTENT LOGIC', 'LAUNCH CAMPAIGN', 'SPACE VISUAL LOGIC'],
     link: '/concept/anti-overwork',
+    background:
+      'linear-gradient(190deg, hsl(0 0% 4%) 0%, hsl(0 0% 5%) 30%, hsl(18 45% 14%) 65%, hsl(20 70% 28%) 88%, hsl(24 90% 50%) 100%)',
+    glow: 'radial-gradient(ellipse 130% 55% at 50% 100%, hsl(22 85% 45% / 0.55), transparent 70%)',
+    hoverGlow: 'radial-gradient(ellipse at 50% 100%, hsl(24 95% 55% / 0.18), transparent 60%)',
   },
 ];
 
@@ -53,14 +65,10 @@ const ConceptCard = ({ concept, index }: { concept: typeof conceptWorks[0]; inde
         to={concept.link}
         onClick={() => window.scrollTo(0, 0)}
         className="block relative overflow-hidden border border-foreground/20 hover:border-foreground/40 transition-all duration-300 group h-full"
-        style={{
-          background: 'linear-gradient(180deg, hsl(0 0% 5%) 0%, hsl(0 0% 4%) 30%, hsl(75 40% 10%) 65%, hsl(75 50% 18%) 85%, hsl(75 60% 25%) 100%)',
-        }}
+        style={{ background: concept.background }}
       >
-        {/* Green glow at bottom */}
-        <div className="absolute inset-0 pointer-events-none" style={{
-          background: 'radial-gradient(ellipse 140% 60% at 50% 100%, hsl(75 70% 30% / 0.6), transparent 70%)',
-        }} />
+        {/* Brand glow at bottom */}
+        <div className="absolute inset-0 pointer-events-none" style={{ background: concept.glow }} />
 
         {/* Logo circle - top right */}
         <div className="relative z-10 flex justify-end p-6 md:p-8">
