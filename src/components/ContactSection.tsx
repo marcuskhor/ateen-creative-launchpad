@@ -8,6 +8,8 @@ const ContactSection = () => {
     phone: '',
     email: '',
     company: '',
+    brandStage: '',
+    budget: '',
     message: '',
   });
 
@@ -16,7 +18,7 @@ const ContactSection = () => {
     console.log('Form submitted:', formData);
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value,
@@ -83,6 +85,40 @@ const ContactSection = () => {
               onChange={handleChange}
               className="form-input"
             />
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.65}>
+            <select
+              name="brandStage"
+              value={formData.brandStage}
+              onChange={handleChange}
+              className="form-input bg-transparent appearance-none cursor-pointer"
+              required
+            >
+              <option value="" disabled className="bg-background text-foreground">CURRENT BRAND STAGE</option>
+              <option value="new-brand" className="bg-background text-foreground">NEW BRAND — BUILDING FROM SCRATCH</option>
+              <option value="existing-positioning" className="bg-background text-foreground">EXISTING BRAND — NEEDS CLEARER POSITIONING</option>
+              <option value="existing-visual" className="bg-background text-foreground">EXISTING BRAND — NEEDS A VISUAL UPGRADE</option>
+              <option value="existing-expanding" className="bg-background text-foreground">EXISTING BRAND — EXPANDING OR LAUNCHING NEW PRODUCTS</option>
+              <option value="existing-consistency" className="bg-background text-foreground">EXISTING BRAND — NEEDS BETTER BRAND CONSISTENCY</option>
+              <option value="other" className="bg-background text-foreground">NOT SURE / OTHER</option>
+            </select>
+          </AnimatedSection>
+
+          <AnimatedSection delay={0.7}>
+            <select
+              name="budget"
+              value={formData.budget}
+              onChange={handleChange}
+              className="form-input bg-transparent appearance-none cursor-pointer"
+              required
+            >
+              <option value="" disabled className="bg-background text-foreground">BUDGET RANGE</option>
+              <option value="under-10k" className="bg-background text-foreground">UNDER RM10,000</option>
+              <option value="10k-30k" className="bg-background text-foreground">RM10,000 — RM30,000</option>
+              <option value="30k-80k" className="bg-background text-foreground">RM30,000 — RM80,000</option>
+              <option value="80k-above" className="bg-background text-foreground">RM80,000 AND ABOVE</option>
+            </select>
           </AnimatedSection>
 
           <AnimatedSection delay={0.7}>
