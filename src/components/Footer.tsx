@@ -21,7 +21,7 @@ const Footer = () => {
               ATEEN WORKS SDN. BHD. (1675263-T)
             </h3>
             <div className="space-y-1 text-xs text-muted-foreground tracking-wide">
-              <p><span className="font-medium text-foreground">T</span> : + 60 9392956827</p>
+              <p><span className="font-medium text-foreground">T</span> : 9392956827</p>
               <p><span className="font-medium text-foreground">E</span> : CONNECT@ATEENCREATIVE.COM</p>
               <p><span className="font-medium text-foreground">A</span> : SKYPOD SQUARE, PERSIARAN PUCHONG JAYA SELATAN,<br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BANDAR PUCHONG JAYA, 47100 PUCHONG, SELANGOR.</p>
