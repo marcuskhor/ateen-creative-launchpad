@@ -81,25 +81,21 @@ const ConceptChapter = () => {
                 <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/60 leading-relaxed">
                   INSTEAD OF DEFINING FRAGRANCE BY GENDER OR FIXED IDENTITY LABELS, THE CONCEPT EXPLORES WHERE SOMEONE IS IN LIFE, AND TRANSLATES THAT MOMENT INTO SCENT.
                 </p>
+
+                {/* Principles — nested under Positioning for tighter narrative flow */}
+                <h3 className="text-xl md:text-2xl font-bold tracking-[0.08em] text-black mt-8 mb-4">
+                  PRINCIPLES
+                </h3>
+                <div className="space-y-1 mb-3">
+                  <p className="text-[10px] md:text-xs tracking-[0.1em] text-black/80 font-semibold">CHAPTER OVER IDENTITY</p>
+                  <p className="text-[10px] md:text-xs tracking-[0.1em] text-black/80 font-semibold">EMOTION OVER CATEGORY</p>
+                  <p className="text-[10px] md:text-xs tracking-[0.1em] text-black/80 font-semibold">MOMENT OVER PERSONALITY</p>
+                </div>
+                <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/50 leading-relaxed">
+                  THESE PRINCIPLES GUIDED THE DEVELOPMENT OF CHAPTER'S BRAND SYSTEM, VISUAL LANGUAGE, AND NARRATIVE STRUCTURE.
+                </p>
               </div>
             </div>
-          </AnimatedSection>
-        </div>
-
-        {/* Principles */}
-        <div className="container px-6 md:px-12 mt-16 md:mt-24">
-          <AnimatedSection delay={0.1}>
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-[0.06em] text-black mb-6">
-              PRINCIPLES
-            </h2>
-            <div className="space-y-1 mb-4">
-              <p className="text-xs md:text-sm tracking-[0.1em] text-black/80 font-semibold">CHAPTER OVER IDENTITY</p>
-              <p className="text-xs md:text-sm tracking-[0.1em] text-black/80 font-semibold">EMOTION OVER CATEGORY</p>
-              <p className="text-xs md:text-sm tracking-[0.1em] text-black/80 font-semibold">MOMENT OVER PERSONALITY</p>
-            </div>
-            <p className="text-[10px] md:text-xs tracking-[0.08em] text-black/50 leading-relaxed max-w-xl">
-              THESE PRINCIPLES GUIDED THE DEVELOPMENT OF CHAPTER'S BRAND SYSTEM, VISUAL LANGUAGE, AND NARRATIVE STRUCTURE.
-            </p>
           </AnimatedSection>
         </div>
 
