@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X } from 'lucide-react';
 import { Link, useLocation } from 'react-router-dom';
+import ateenLogo from '@/assets/ateen-logo.png';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -37,8 +38,8 @@ const Header = () => {
           {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
 
-        <Link to="/" className="text-sm tracking-[0.3em] font-medium text-foreground z-50">
-          ATEEN CREATIVE
+        <Link to="/" className="z-50 flex items-center" aria-label="ATEEN Creative">
+          <img src={ateenLogo} alt="ATEEN Creative" className="h-5 md:h-6 w-auto" />
         </Link>
       </nav>
 
