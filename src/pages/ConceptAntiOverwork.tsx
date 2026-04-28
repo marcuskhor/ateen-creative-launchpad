@@ -9,6 +9,7 @@ import antiPackaging from '@/assets/anti-packaging.png';
 import antiShelf from '@/assets/anti-shelf.jpg';
 import antiStickers from '@/assets/anti-stickers.png';
 import antiMenuSign from '@/assets/anti-menu-sign.png';
+import antiVideo from '@/assets/anti-video.mp4';
 
 const ORANGE = '#ff5a1f';
 const NEON = 'hsl(var(--primary))';
@@ -198,10 +199,15 @@ const ConceptAntiOverwork = () => {
                 <div className="mb-8">
                   <Pill>VIDEO CONTENT</Pill>
                 </div>
-                <div className="aspect-[9/16] bg-white flex items-center justify-center mb-6">
-                  <p className="text-xl font-bold tracking-[0.1em]" style={{ color: ORANGE }}>
-                    YOUTUBE<br/>SHORTS
-                  </p>
+                <div className="aspect-[9/16] bg-black overflow-hidden mb-6">
+                  <video
+                    src={antiVideo}
+                    className="w-full h-full object-cover"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
                 </div>
                 <p className="text-xs md:text-sm tracking-[0.08em] text-white/80 leading-relaxed mb-3">
                   THE VIDEO IS STRUCTURED AS A CONTRAST<br/>TO MAKE THE SHIFT IN STATE VISIBLE.
