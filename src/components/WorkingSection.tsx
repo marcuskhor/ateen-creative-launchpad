@@ -86,7 +86,7 @@ const WorkingSection = () => {
                 WHO WE WORK BEST WITH
               </h3>
               <p className="text-muted-foreground leading-relaxed max-w-2xl">
-                WE WORK BEST WITH TEAMS WHO VALUE STRUCTURE, LONG-TERM THINKING, AND CONSISTENCY. AND WHO ARE READY TO BUILD PROPERLY, NOT RUSH DISCONNECTED SOLUTIONS.
+                WE WORK BEST WITH CLIENT WHO VALUE STRUCTURE, LONG-TERM THINKING, AND CONSISTENCY. AND WHO ARE READY TO BUILD PROPERLY, NOT RUSH DISCONNECTED SOLUTIONS.
               </p>
             </div>
           </AnimatedSection>
