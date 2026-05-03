@@ -72,7 +72,7 @@ Deno.serve(async (req) => {
 
     await client.send({
       from: `ATEENWORKS Inquiries <${username}>`,
-      to: username,
+      to: "hello@ateenworks.com",
       replyTo: data.email,
       subject: `New Inquiry — ${data.fullName}`,
       content: text,
