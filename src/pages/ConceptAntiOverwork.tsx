@@ -10,6 +10,9 @@ import antiShelf from '@/assets/anti-shelf.jpg';
 import antiStickers from '@/assets/anti-stickers.png';
 import antiMenuSign from '@/assets/anti-menu-sign.png';
 import antiVideo from '@/assets/anti-video.mp4';
+import antiSpace1 from '@/assets/anti-overwork-space-1.png';
+import antiSpace2 from '@/assets/anti-overwork-space-2.png';
+import antiSpace3 from '@/assets/anti-overwork-space-3.png';
 
 const ORANGE = '#ff5a1f';
 const NEON = 'hsl(var(--primary))';
@@ -231,9 +234,9 @@ const ConceptAntiOverwork = () => {
                   <Pill>SPACE VISUAL</Pill>
                 </div>
                 <div className="space-y-6">
-                  <div className="aspect-[16/9] border-2" style={{ borderColor: NEON }} />
-                  <div className="aspect-[16/9] border-2" style={{ borderColor: NEON }} />
-                  <div className="aspect-[16/9] border-2" style={{ borderColor: NEON }} />
+                  <img src={antiSpace1} alt="Anti-Overwork storefront exterior" className="w-full aspect-[16/9] object-cover border-2" style={{ borderColor: NEON }} />
+                  <img src={antiSpace2} alt="Anti-Overwork stay awake poster wall" className="w-full aspect-[16/9] object-cover border-2" style={{ borderColor: NEON }} />
+                  <img src={antiSpace3} alt="Anti-Overwork interior space" className="w-full aspect-[16/9] object-cover border-2" style={{ borderColor: NEON }} />
                 </div>
                 <div className="mt-8 space-y-3">
                   <p className="text-xs md:text-sm tracking-[0.08em] text-white/80 leading-relaxed">
