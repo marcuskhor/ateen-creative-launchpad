@@ -22,7 +22,7 @@ const Footer = () => {
             </h3>
             <div className="space-y-1 text-xs text-muted-foreground tracking-wide">
               <p><span className="font-medium text-foreground">T</span> : +60 16-625 0750</p>
-              <p><span className="font-medium text-foreground">E</span> : HELLO@ATEENWORK.COM</p>
+              <p><span className="font-medium text-foreground">E</span> : HELLO@ATEENWORKS.COM</p>
               <p><span className="font-medium text-foreground">A</span> : SKYPOD SQUARE, PERSIARAN PUCHONG JAYA SELATAN,<br />
                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BANDAR PUCHONG JAYA, 47100 PUCHONG, SELANGOR.</p>
             </div>
@@ -47,7 +47,7 @@ const Footer = () => {
                 </svg>
               </a>
               {/* Mail */}
-              <a href="mailto:hello@ateenwork.com" className="text-muted-foreground hover:text-primary transition-colors">
+              <a href="mailto:hello@ateenworks.com" className="text-muted-foreground hover:text-primary transition-colors">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
                   <rect width="20" height="16" x="2" y="4" rx="2" />
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
