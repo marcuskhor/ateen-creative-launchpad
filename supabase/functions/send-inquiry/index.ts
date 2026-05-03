@@ -32,18 +32,18 @@ Deno.serve(async (req) => {
     }
 
     const host = Deno.env.get("SMTP_HOST")!;
-    const port = parseInt(Deno.env.get("SMTP_PORT") || "465", 10);
     const username = Deno.env.get("SMTP_USERNAME")!;
     const password = Deno.env.get("SMTP_PASSWORD")!;
 
-    const client = new SMTPClient({
-      connection: {
-        hostname: host,
-        port,
-        tls: true,
-        auth: { username, password },
-      },
-    });
+    console.log(`SMTP host=${host} user=${username} passLen=${password.length}`);
+
+    const baseHost = host.replace(/^mail\./, "");
+    const attempts = [
+      { hostname: host, port: 465, tls: true },
+      { hostname: `mail.${baseHost}`, port: 465, tls: true },
+      { hostname: host, port: 587, tls: false },
+      { hostname: `mail.${baseHost}`, port: 587, tls: false },
+    ];
 
     const rows: [string, string][] = [
       ["Full Name", data.fullName],
@@ -70,16 +70,37 @@ Deno.serve(async (req) => {
 
     const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
 
-    await client.send({
-      from: `ATEENWORKS Inquiries <${username}>`,
-      to: "hello@ateenworks.com",
-      replyTo: data.email,
-      subject: `New Inquiry — ${data.fullName}`,
-      content: text,
-      html,
-    });
-
-    await client.close();
+    let lastErr: unknown = null;
+    let sent = false;
+    for (const cfg of attempts) {
+      try {
+        console.log(`Trying ${cfg.hostname}:${cfg.port} tls=${cfg.tls}`);
+        const client = new SMTPClient({
+          connection: {
+            hostname: cfg.hostname,
+            port: cfg.port,
+            tls: cfg.tls,
+            auth: { username, password },
+          },
+        });
+        await client.send({
+          from: `ATEENWORKS Inquiries <${username}>`,
+          to: "hello@ateenworks.com",
+          replyTo: data.email,
+          subject: `New Inquiry — ${data.fullName}`,
+          content: text,
+          html,
+        });
+        await client.close();
+        console.log(`Success via ${cfg.hostname}:${cfg.port}`);
+        sent = true;
+        break;
+      } catch (e) {
+        lastErr = e;
+        console.log(`Failed ${cfg.hostname}:${cfg.port}: ${e instanceof Error ? e.message : e}`);
+      }
+    }
+    if (!sent) throw lastErr ?? new Error("All SMTP attempts failed");
 
     return new Response(JSON.stringify({ success: true }), {
       status: 200,
