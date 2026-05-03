@@ -71,8 +71,8 @@ Deno.serve(async (req) => {
     const text = rows.map(([k, v]) => `${k}: ${v}`).join("\n");
 
     await client.send({
-      from: username,
-      to: "hello@ateenwork.com",
+      from: `ATEENWORKS Inquiries <${username}>`,
+      to: username,
       replyTo: data.email,
       subject: `New Inquiry — ${data.fullName}`,
       content: text,
