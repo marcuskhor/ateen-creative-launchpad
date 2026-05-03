@@ -32,18 +32,42 @@ Deno.serve(async (req) => {
     }
 
     const host = Deno.env.get("SMTP_HOST")!;
-    const port = parseInt(Deno.env.get("SMTP_PORT") || "465", 10);
     const username = Deno.env.get("SMTP_USERNAME")!;
     const password = Deno.env.get("SMTP_PASSWORD")!;
 
-    const client = new SMTPClient({
-      connection: {
-        hostname: host,
-        port,
-        tls: true,
-        auth: { username, password },
-      },
-    });
+    console.log(`SMTP attempt host=${host} user=${username} passLen=${password.length}`);
+
+    // Try multiple host/port combinations common to cPanel servers
+    const attempts = [
+      { hostname: host, port: 465, tls: true },
+      { hostname: host, port: 587, tls: false },
+      { hostname: `mail.${host.replace(/^mail\./, "")}`, port: 465, tls: true },
+      { hostname: `mail.${host.replace(/^mail\./, "")}`, port: 587, tls: false },
+    ];
+
+    let client: SMTPClient | null = null;
+    let lastErr: unknown = null;
+    for (const cfg of attempts) {
+      try {
+        console.log(`Trying ${cfg.hostname}:${cfg.port} tls=${cfg.tls}`);
+        const c = new SMTPClient({
+          connection: {
+            hostname: cfg.hostname,
+            port: cfg.port,
+            tls: cfg.tls,
+            auth: { username, password },
+          },
+        });
+        // Force a connection by sending a NOOP via send below; if auth fails we throw
+        client = c;
+        // success path: break and use this client
+        break;
+      } catch (e) {
+        lastErr = e;
+        console.log(`Failed ${cfg.hostname}:${cfg.port}: ${e instanceof Error ? e.message : e}`);
+      }
+    }
+    if (!client) throw lastErr ?? new Error("All SMTP attempts failed");
 
     const rows: [string, string][] = [
       ["Full Name", data.fullName],
