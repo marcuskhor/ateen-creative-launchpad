@@ -9,6 +9,7 @@ import antiPackaging from '@/assets/anti-packaging.png';
 import antiShelf from '@/assets/anti-shelf.jpg';
 import antiStickers from '@/assets/anti-stickers.png';
 import antiMenuSign from '@/assets/anti-menu-sign.png';
+import antiStayAwakePoster from '@/assets/anti-stay-awake-poster.jpg';
 import antiVideo from '@/assets/anti-video.mp4';
 import antiSpace1 from '@/assets/anti-overwork-space-1.png';
 import antiSpace2 from '@/assets/anti-overwork-space-2.png';
@@ -171,7 +172,7 @@ const ConceptAntiOverwork = () => {
 
           <AnimatedSection delay={0.2}>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-start">
-              <img src={antiMenuSign} alt="Anti-Overwork café menu signage" className="w-full h-auto" />
+              <img src={antiStayAwakePoster} alt="Anti-Overwork Stay Awake poster" className="w-full h-auto" />
               <div className="md:pt-12">
                 <p className="text-xs md:text-sm tracking-[0.08em] text-white/80 leading-relaxed mb-3">
                   THE SPACE IS DESIGNED AS A CONTROLLED SYSTEM<br/>TO REDUCE OVERSTIMULATION WITHIN THE ENVIRONMENT.
