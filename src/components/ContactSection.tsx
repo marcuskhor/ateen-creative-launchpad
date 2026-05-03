@@ -32,7 +32,7 @@ const ContactSection = () => {
       });
     } catch (err) {
       console.error(err);
-      toast.error('Could not send your inquiry. Please try again or email hello@ateenwork.com.');
+      toast.error('Could not send your inquiry. Please try again or email hello@ateenworks.com.');
     } finally {
       setIsSubmitting(false);
     }
