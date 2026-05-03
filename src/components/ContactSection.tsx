@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import AnimatedSection, { TextReveal } from './AnimatedSection';
+import { supabase } from '@/integrations/supabase/client';
+import { toast } from 'sonner';
 
 const ContactSection = () => {
   const [formData, setFormData] = useState({
@@ -12,10 +14,28 @@ const ContactSection = () => {
     budget: '',
     message: '',
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
+    if (isSubmitting) return;
+    setIsSubmitting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke('send-inquiry', {
+        body: formData,
+      });
+      if (error || !data?.success) throw new Error(error?.message || data?.error || 'Failed to send');
+      toast.success('Inquiry sent. We will get back to you soon.');
+      setFormData({
+        fullName: '', phone: '', email: '', company: '',
+        brandStage: '', budget: '', message: '',
+      });
+    } catch (err) {
+      console.error(err);
+      toast.error('Could not send your inquiry. Please try again or email hello@ateenwork.com.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
@@ -137,11 +157,12 @@ const ContactSection = () => {
             <div className="flex justify-end pt-8">
               <motion.button
                 type="submit"
+                disabled={isSubmitting}
                 className="text-primary tracking-[0.2em] text-sm font-medium relative group"
                 whileHover={{ x: 8 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <span>SUBMIT →</span>
+                <span>{isSubmitting ? 'SENDING...' : 'SUBMIT →'}</span>
                 <motion.span 
                   className="absolute bottom-0 left-0 w-full h-px bg-primary"
                   initial={{ scaleX: 0 }}
