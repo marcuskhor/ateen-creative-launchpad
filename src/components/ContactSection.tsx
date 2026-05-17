@@ -155,7 +155,14 @@ const ContactSection = () => {
           </AnimatedSection>
 
           <AnimatedSection delay={0.8}>
-            <div className="flex justify-end pt-8">
+            <div className="flex items-center justify-between gap-6 pt-8">
+              <Link
+                to="/about#concepts"
+                onClick={() => window.scrollTo(0, 0)}
+                className="text-foreground/70 hover:text-primary tracking-[0.2em] text-sm transition-colors"
+              >
+                NOT READY YET? SEE HOW ATEEN THINKS →
+              </Link>
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
@@ -175,18 +182,6 @@ const ContactSection = () => {
             </div>
           </AnimatedSection>
         </form>
-
-        <AnimatedSection delay={0.9}>
-          <div className="max-w-2xl mt-16 pt-8 border-t border-foreground/10">
-            <Link
-              to="/about#concepts"
-              onClick={() => window.scrollTo(0, 0)}
-              className="inline-block text-foreground/70 hover:text-primary tracking-[0.2em] text-sm transition-colors"
-            >
-              NOT READY YET? SEE HOW ATEEN THINKS →
-            </Link>
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   );
