@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import AnimatedSection, { TextReveal } from './AnimatedSection';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from 'sonner';
@@ -174,6 +175,18 @@ const ContactSection = () => {
             </div>
           </AnimatedSection>
         </form>
+
+        <AnimatedSection delay={0.9}>
+          <div className="max-w-2xl mt-16 pt-8 border-t border-foreground/10">
+            <Link
+              to="/about#concepts"
+              onClick={() => window.scrollTo(0, 0)}
+              className="inline-block text-foreground/70 hover:text-primary tracking-[0.2em] text-sm transition-colors"
+            >
+              NOT READY YET? SEE HOW ATEEN THINKS →
+            </Link>
+          </div>
+        </AnimatedSection>
       </div>
     </section>
   );

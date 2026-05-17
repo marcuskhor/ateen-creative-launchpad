@@ -235,9 +235,9 @@ const ConceptAntiOverwork = () => {
                   <Pill>SPACE VISUAL</Pill>
                 </div>
                 <div className="space-y-6">
-                  <img src={antiSpace1} alt="Anti-Overwork storefront exterior" className="w-full aspect-[16/9] object-cover border-2" style={{ borderColor: NEON }} />
-                  <img src={antiSpace2} alt="Anti-Overwork stay awake poster wall" className="w-full aspect-[16/9] object-cover border-2" style={{ borderColor: NEON }} />
-                  <img src={antiSpace3} alt="Anti-Overwork interior space" className="w-full aspect-[16/9] object-cover border-2" style={{ borderColor: NEON }} />
+                  <img src={antiSpace1} alt="Anti-Overwork storefront exterior" className="w-full aspect-[16/9] object-cover" />
+                  <img src={antiSpace2} alt="Anti-Overwork stay awake poster wall" className="w-full aspect-[16/9] object-cover" />
+                  <img src={antiSpace3} alt="Anti-Overwork interior space" className="w-full aspect-[16/9] object-cover" />
                 </div>
                 <div className="mt-8 space-y-3">
                   <p className="text-xs md:text-sm tracking-[0.08em] text-white/80 leading-relaxed">
