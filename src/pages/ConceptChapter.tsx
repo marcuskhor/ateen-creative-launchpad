@@ -47,7 +47,7 @@ const ConceptChapter = () => {
             <p className="text-sm md:text-base tracking-[0.12em] text-black/70 mb-2">
               A RATIONAL, MODERN PERFUME BRAND.
             </p>
-            <img src={chapterMainLogo} alt="Chapter logo" className="h-16 md:h-24 lg:h-28 w-auto mb-2" />
+            <img src={chapterMainLogo} alt="Chapter logo" className="h-24 md:h-36 lg:h-44 w-auto -ml-2 mb-2" />
             <p className="text-[10px] md:text-xs tracking-[0.15em] text-black/50">
               CONCEPT BY ATEEN
             </p>
