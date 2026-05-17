@@ -46,7 +46,7 @@ const AboutSection = () => {
 
           <AnimatedSection delay={0.2}>
             <p className="text-sm md:text-base font-light text-foreground/80 tracking-[0.3em] leading-relaxed max-w-xl mx-auto mb-4">
-              ATEEN CREATIVE BUILDS BRAND SYSTEMS
+              ATEEN BUILDS BRAND SYSTEMS
               <br />
               WITH CLARITY AND DIRECTION.
             </p>
