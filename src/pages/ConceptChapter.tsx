@@ -17,6 +17,7 @@ import chapterWebsite1 from '@/assets/chapter-website-1.jpg';
 import chapterWebsite2 from '@/assets/chapter-website-2.jpg';
 import chapterLaptop from '@/assets/chapter-laptop.png';
 import chapterWebsiteComposite from '@/assets/chapter-website-composite.png';
+import chapterMainLogo from '@/assets/chapter-logo-main.png';
 
 const ConceptChapter = () => {
   return (
@@ -46,9 +47,7 @@ const ConceptChapter = () => {
             <p className="text-sm md:text-base tracking-[0.12em] text-black/70 mb-2">
               A RATIONAL, MODERN PERFUME BRAND.
             </p>
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold tracking-[0.02em] text-black mb-2" style={{ fontFamily: 'serif' }}>
-              ĆHAPTER
-            </h1>
+            <img src={chapterMainLogo} alt="Chapter logo" className="h-16 md:h-24 lg:h-28 w-auto mb-2" />
             <p className="text-[10px] md:text-xs tracking-[0.15em] text-black/50">
               CONCEPT BY ATEEN
             </p>
