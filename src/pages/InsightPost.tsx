@@ -109,7 +109,7 @@ const InsightPostPage = () => {
           </div>
 
           {/* FAQs */}
-          {post.faqs && post.faqs.length > 2 && (
+          {post.faqs && post.faqs.length > 0 && (
             <AnimatedSection>
               <div className="mt-24 border-t border-primary/40 pt-12">
                 <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-10">FREQUENTLY ASKED QUESTIONS</h2>
