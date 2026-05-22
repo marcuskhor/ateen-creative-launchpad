@@ -9,6 +9,8 @@ import Page3 from "./pages/Page3";
 import ConceptChapter from "./pages/ConceptChapter";
 import ConceptLunora from "./pages/ConceptLunora";
 import ConceptAntiOverwork from "./pages/ConceptAntiOverwork";
+import Insight from "./pages/Insight";
+import InsightPost from "./pages/InsightPost";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +28,8 @@ const App = () => (
           <Route path="/concept/chapter" element={<ConceptChapter />} />
           <Route path="/concept/lunora" element={<ConceptLunora />} />
           <Route path="/concept/anti-overwork" element={<ConceptAntiOverwork />} />
+          <Route path="/insight" element={<Insight />} />
+          <Route path="/insight/:slug" element={<InsightPost />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
