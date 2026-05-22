@@ -112,7 +112,7 @@ const InsightPostPage = () => {
           {post.faqs && post.faqs.length > 0 && (
             <AnimatedSection>
               <div className="mt-24 border-t border-primary/40 pt-12">
-                <h2 className="text-4xl md:text-5xl font-medium mb-10">FAQs</h2>
+                <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-10">FREQUENTLY ASKED QUESTIONS</h2>
                 <Accordion type="single" collapsible defaultValue={post.faqs[0]._key}>
                   {post.faqs.map((f) => (
                     <AccordionItem key={f._key} value={f._key} className="border-border/60">
@@ -133,7 +133,7 @@ const InsightPostPage = () => {
           {post.related && post.related.length > 0 && (
             <AnimatedSection>
               <div className="mt-24 border-t border-primary/40 pt-12">
-                <h2 className="text-3xl md:text-4xl font-medium mb-8">RELATED INSIGHT</h2>
+                <h2 className="text-xs tracking-[0.3em] text-muted-foreground mb-8">RELATED INSIGHT</h2>
                 <div className="grid md:grid-cols-3 gap-8">
                   {post.related.map((r) => (
                     <Link
