@@ -49,7 +49,7 @@ jobs:
           test -n "$CPANEL_FTP_SERVER" || (echo "Missing GitHub secret: CPANEL_FTP_SERVER" && exit 1)
           test -n "$CPANEL_FTP_USERNAME" || (echo "Missing GitHub secret: CPANEL_FTP_USERNAME" && exit 1)
           test -n "$CPANEL_FTP_PASSWORD" || (echo "Missing GitHub secret: CPANEL_FTP_PASSWORD" && exit 1)
-          echo "CPANEL_FTP_DIR is optional. If it is not set, this deploy uses public_html."
+          echo "CPANEL_FTP_DIR is optional. If it is not set, this deploy uses the FTP login root."
 
       - name: Deploy files to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -58,14 +58,17 @@ jobs:
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.CPANEL_FTP_DIR || 'public_html' }}/
+          server-dir: ${{ secrets.CPANEL_FTP_DIR || './' }}
           dangerous-clean-slate: false
           exclude: |
             **/.git*
             **/.git*/**
             **/node_modules/**
 
+      - name: Verify live domain updated
+        run: |
+          curl -fsSL "https://ateenworks.com/deploy-marker.txt?nocache=$(date +%s)" | grep "Expected heading: WING WITH ATEEN" || (echo "Files uploaded, but ateenworks.com is not serving them. Set CPANEL_FTP_DIR to the exact Document Root for ateenworks.com, for example public_html/ or public_html/ateenworks.com/" && exit 1)
+
       - name: Deployment instructions if site still shows old files
         run: |
-          echo "If this workflow succeeds but ateenworks.com still shows old files, the FTP account is valid but CPANEL_FTP_DIR is the wrong folder."
-          echo "Set CPANEL_FTP_DIR to the Document Root shown in cPanel -> Domains -> ateenworks.com, usually public_html or public_html/ateenworks.com."
+          echo "ateenworks.com is serving the deploy marker, so the live folder is correct."
