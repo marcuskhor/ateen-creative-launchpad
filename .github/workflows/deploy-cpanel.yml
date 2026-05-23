@@ -40,6 +40,9 @@ jobs:
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
           local-dir: ./dist/
           server-dir: /public_html/
+          # Ignore the server-side sync-state file and upload every file every run.
+          # Guarantees the live site always matches the latest build.
+          dangerous-clean-slate: true
           # Don't touch SSL/cPanel-managed folders
           exclude: |
             **/.well-known/**
