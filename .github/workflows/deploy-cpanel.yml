@@ -14,6 +14,8 @@ concurrency:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
+    env:
+      CPANEL_FTP_DIR: ${{ secrets.CPANEL_FTP_DIR }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -49,16 +51,65 @@ jobs:
           test -n "$CPANEL_FTP_SERVER" || (echo "Missing GitHub secret: CPANEL_FTP_SERVER" && exit 1)
           test -n "$CPANEL_FTP_USERNAME" || (echo "Missing GitHub secret: CPANEL_FTP_USERNAME" && exit 1)
           test -n "$CPANEL_FTP_PASSWORD" || (echo "Missing GitHub secret: CPANEL_FTP_PASSWORD" && exit 1)
-          echo "CPANEL_FTP_DIR is optional. If it is not set, this deploy uses the FTP login root."
+          echo "If CPANEL_FTP_DIR is set, the deploy uses it. Otherwise it tries common cPanel web roots."
 
-      - name: Deploy files to cPanel
+      - name: Deploy files to configured cPanel directory
+        if: ${{ env.CPANEL_FTP_DIR != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.CPANEL_FTP_SERVER }}
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.CPANEL_FTP_DIR || './' }}
+          server-dir: ${{ env.CPANEL_FTP_DIR }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+
+      - name: Deploy files to addon-domain web root fallback
+        if: ${{ env.CPANEL_FTP_DIR == '' }}
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: public_html/ateenworks.com/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+
+      - name: Deploy files to primary-domain web root fallback
+        if: ${{ env.CPANEL_FTP_DIR == '' }}
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: public_html/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+
+      - name: Deploy files to FTP login root fallback
+        if: ${{ env.CPANEL_FTP_DIR == '' }}
+        continue-on-error: true
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ./
           dangerous-clean-slate: false
           exclude: |
             **/.git*
@@ -67,7 +118,12 @@ jobs:
 
       - name: Verify live domain updated
         run: |
-          curl -fsSL "https://ateenworks.com/deploy-marker.txt?nocache=$(date +%s)" | grep "Expected heading: WING WITH ATEEN" || (echo "Files uploaded, but ateenworks.com is not serving them. Set CPANEL_FTP_DIR to the exact Document Root for ateenworks.com, for example public_html/ or public_html/ateenworks.com/" && exit 1)
+          INDEX_HTML="$(curl -fsSL "https://ateenworks.com/?nocache=$(date +%s)")"
+          JS_PATH="$(printf '%s' "$INDEX_HTML" | grep -oE '/assets/index-[^"'"']+\.js' | head -n 1)"
+          test -n "$JS_PATH" || (echo "Could not find the live JavaScript bundle in ateenworks.com index.html" && exit 1)
+          LIVE_JS="$(curl -fsSL "https://ateenworks.com${JS_PATH}?nocache=$(date +%s)")"
+          printf '%s' "$LIVE_JS" | grep -F "WING WITH ATEEN" || (echo "Files uploaded, but ateenworks.com is still serving the old app bundle. Set CPANEL_FTP_DIR to the exact cPanel Document Root for ateenworks.com." && exit 1)
+          ! printf '%s' "$LIVE_JS" | grep -F "WORKING WITH ATEEN" || (echo "Old heading is still live, so the upload did not reach the served document root." && exit 1)
 
       - name: Deployment instructions if site still shows old files
         run: |
