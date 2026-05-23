@@ -10,6 +10,7 @@ import {
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
+import Seo from '@/components/Seo';
 import { sanityClient, urlFor, POST_BY_SLUG_QUERY, type InsightPost } from '@/lib/sanity';
 
 const InsightPostPage = () => {
@@ -45,6 +46,20 @@ const InsightPostPage = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Seo
+        title={`${post.title} — ATEEN Insight`}
+        description={post.heroIntro || post.subtitle || `${post.title} — an insight from ATEEN Works.`}
+        path={`/insight/${post.slug.current}`}
+        type="article"
+        jsonLd={{
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: post.title,
+          datePublished: post.publishedAt,
+          articleSection: post.category,
+          author: { "@type": "Organization", name: "ATEEN Works" },
+        }}
+      />
       <Header />
       <main className="pt-32 md:pt-40 pb-24">
         <article className="container px-6 md:px-12 max-w-4xl">

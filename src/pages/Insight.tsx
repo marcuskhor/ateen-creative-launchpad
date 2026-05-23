@@ -5,6 +5,7 @@ import { motion } from 'framer-motion';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import AnimatedSection from '@/components/AnimatedSection';
+import Seo from '@/components/Seo';
 import { sanityClient, POSTS_LIST_QUERY, CATEGORIES, type InsightCard } from '@/lib/sanity';
 
 const formatDate = (iso: string) => {
@@ -27,6 +28,11 @@ const Insight = () => {
 
   return (
     <div className="min-h-screen bg-background text-foreground">
+      <Seo
+        title="Insight — ATEEN Works"
+        description="Thoughts, frameworks, and brand observations from ATEEN Works on system, branding, strategy, and implementation."
+        path="/insight"
+      />
       <Header />
       <main className="pt-32 md:pt-40 pb-24">
         <div className="container px-6 md:px-12 max-w-6xl">
