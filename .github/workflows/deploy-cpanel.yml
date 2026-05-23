@@ -27,13 +27,20 @@ jobs:
           bun-version: latest
 
       - name: Install dependencies
-        run: bun install
+        run: bun install --frozen-lockfile
 
       - name: Build (also auto-generates sitemap from Sanity)
-        run: bun run build
+        run: rm -rf dist node_modules/.vite && bun run build
+
+      - name: Verify latest text is in build
+        run: |
+          grep -R "WKING WITH ATEEN" dist || (echo "Build is stale: WKING WITH ATEEN missing from dist" && exit 1)
+          ! grep -R "WRKING WITH ATEEN\|WORKING WITH ATEEN" dist || (echo "Old text still exists in dist" && exit 1)
 
       - name: Add deploy marker
-        run: date -u +"Deployed at %Y-%m-%dT%H:%M:%SZ from $GITHUB_SHA" > dist/deploy-marker.txt
+        run: |
+          date -u +"Deployed at %Y-%m-%dT%H:%M:%SZ from $GITHUB_SHA" > dist/deploy-marker.txt
+          echo "Expected heading: WKING WITH ATEEN" >> dist/deploy-marker.txt
 
       - name: Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -46,6 +53,7 @@ jobs:
           # Ignore the server-side sync-state file and upload every file every run.
           # Guarantees the live site always matches the latest build.
           dangerous-clean-slate: true
+          log-level: verbose
           # Don't touch SSL/cPanel-managed folders
           exclude: |
             **/.well-known/**
