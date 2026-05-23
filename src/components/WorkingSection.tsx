@@ -35,7 +35,7 @@ const WorkingSection = () => {
       <div className="container px-6 md:px-12 relative z-10">
         <AnimatedSection>
           <h2 className="text-heading font-medium tracking-wide text-foreground mb-20">
-            WRKING WITH ATEEN
+            WKING WITH ATEEN
           </h2>
         </AnimatedSection>
 
