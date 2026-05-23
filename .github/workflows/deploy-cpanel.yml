@@ -43,19 +43,62 @@ jobs:
           echo "Expected heading: WKING WITH ATEEN" >> dist/deploy-marker.txt
           cp dist/deploy-marker.txt dist/__ateen-deploy-proof.txt
 
-      - name: Deploy to cPanel via FTP
+      - name: Detect live cPanel web root
+        env:
+          FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
+          FTP_USER: ${{ secrets.CPANEL_FTP_USERNAME }}
+          FTP_PASS: ${{ secrets.CPANEL_FTP_PASSWORD }}
+        run: |
+          PROOF="ateen-proof-${GITHUB_RUN_ID}-${GITHUB_SHA}"
+          printf "%s\n" "$PROOF" > ftp-proof.txt
+          curl --fail --show-error --silent --ftp-create-dirs --user "$FTP_USER:$FTP_PASS" -T ftp-proof.txt "ftp://$FTP_SERVER/__ateen-root-proof.txt"
+          curl --fail --show-error --silent --ftp-create-dirs --user "$FTP_USER:$FTP_PASS" -T ftp-proof.txt "ftp://$FTP_SERVER/public_html/__ateen-public-html-proof.txt"
+
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent "https://ateenworks.com/__ateen-root-proof.txt?run=${GITHUB_RUN_ID}" | grep -F "$PROOF"; then
+              echo "CPANEL_SERVER_DIR=./" >> "$GITHUB_ENV"
+              echo "Detected live web root: FTP login root"
+              exit 0
+            fi
+
+            if curl --fail --silent "https://ateenworks.com/__ateen-public-html-proof.txt?run=${GITHUB_RUN_ID}" | grep -F "$PROOF"; then
+              echo "CPANEL_SERVER_DIR=public_html/" >> "$GITHUB_ENV"
+              echo "Detected live web root: public_html/"
+              exit 0
+            fi
+
+            sleep 5
+          done
+
+          echo "Could not verify the live web root. Check CPANEL_FTP_SERVER / CPANEL_FTP_USERNAME point to the hosting account for ateenworks.com."
+          exit 1
+
+      - name: Deploy to cPanel via FTP root
+        if: env.CPANEL_SERVER_DIR == './'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.CPANEL_FTP_SERVER }}
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: /public_html/
-          # Ignore the server-side sync-state file and upload every file every run.
-          # Guarantees the live site always matches the latest build.
+          server-dir: ./
           dangerous-clean-slate: true
           log-level: verbose
-          # Don't touch SSL/cPanel-managed folders
+          exclude: |
+            **/.well-known/**
+            **/cgi-bin/**
+
+      - name: Deploy to cPanel public_html
+        if: env.CPANEL_SERVER_DIR == 'public_html/'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: public_html/
+          dangerous-clean-slate: true
+          log-level: verbose
           exclude: |
             **/.well-known/**
             **/cgi-bin/**
