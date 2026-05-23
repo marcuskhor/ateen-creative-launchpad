@@ -31,13 +31,13 @@ jobs:
 
       - name: Verify latest text is in build
         run: |
-          grep -R "WKING WITH ATEEN" dist || (echo "Build is stale: WKING WITH ATEEN missing from dist" && exit 1)
-          ! grep -R "WRKING WITH ATEEN\|WORKING WITH ATEEN" dist || (echo "Old text still exists in dist" && exit 1)
+          grep -R "WING WITH ATEEN" dist || (echo "Build is stale: WING WITH ATEEN missing from dist" && exit 1)
+          ! grep -R "WKING WITH ATEEN\|WRKING WITH ATEEN\|WORKING WITH ATEEN" dist || (echo "Old text still exists in dist" && exit 1)
 
       - name: Add deploy marker
         run: |
           date -u +"Deployed at %Y-%m-%dT%H:%M:%SZ from $GITHUB_SHA" > dist/deploy-marker.txt
-          echo "Expected heading: WKING WITH ATEEN" >> dist/deploy-marker.txt
+          echo "Expected heading: WING WITH ATEEN" >> dist/deploy-marker.txt
           cp dist/deploy-marker.txt dist/__ateen-deploy-proof.txt
 
       - name: Check cPanel secrets
