@@ -53,6 +53,100 @@ jobs:
           test -n "$CPANEL_FTP_PASSWORD" || (echo "Missing GitHub secret: CPANEL_FTP_PASSWORD" && exit 1)
           echo "The deploy uses CPANEL_FTP_DIR first, then also tries common cPanel web roots so an incorrect path does not block the live domain update."
 
+      - name: Discover ateenworks.com cPanel document root
+        continue-on-error: true
+        env:
+          CPANEL_FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
+          CPANEL_FTP_USERNAME: ${{ secrets.CPANEL_FTP_USERNAME }}
+          CPANEL_FTP_PASSWORD: ${{ secrets.CPANEL_FTP_PASSWORD }}
+        run: |
+          python3 <<'PY'
+          import base64
+          import json
+          import os
+          import re
+          import ssl
+          import sys
+          import urllib.error
+          import urllib.request
+
+          target = 'ateenworks.com'
+          server = os.environ['CPANEL_FTP_SERVER'].strip()
+          username = os.environ['CPANEL_FTP_USERNAME'].strip()
+          password = os.environ['CPANEL_FTP_PASSWORD']
+          github_env = os.environ['GITHUB_ENV']
+
+          host = re.sub(r'^\w+://', '', server).split('/')[0].split(':')[0]
+          hosts = []
+          for candidate in (host, host.removeprefix('ftp.'), target):
+            if candidate and candidate not in hosts:
+              hosts.append(candidate)
+
+          def walk(value):
+            if isinstance(value, dict):
+              yield value
+              for item in value.values():
+                yield from walk(item)
+            elif isinstance(value, list):
+              for item in value:
+                yield from walk(item)
+
+          auth = base64.b64encode(f'{username}:{password}'.encode()).decode()
+          context = ssl.create_default_context()
+          found = None
+
+          for api_host in hosts:
+            url = f'https://{api_host}:2083/execute/DomainInfo/domains_data?format=hash'
+            req = urllib.request.Request(url, headers={'Authorization': f'Basic {auth}'})
+            try:
+              with urllib.request.urlopen(req, timeout=20, context=context) as response:
+                payload = json.loads(response.read().decode())
+            except Exception as exc:
+              print(f'Could not query cPanel API on {api_host}: {exc}')
+              continue
+
+            for node in walk(payload.get('result', {}).get('data', payload)):
+              domains = [node.get('domain'), node.get('serveralias'), node.get('domainkey')]
+              if target in domains and node.get('documentroot'):
+                found = str(node['documentroot']).rstrip('/')
+                break
+            if found:
+              break
+
+          if not found:
+            print('Could not auto-discover cPanel document root; continuing with configured and fallback FTP paths.')
+            sys.exit(0)
+
+          candidates = []
+          exact_home = f'/home/{username}/'
+          if found.startswith(exact_home):
+            candidates.append(found[len(exact_home):].strip('/') + '/')
+          home_match = re.match(r'^/home/[^/]+/(.+)$', found)
+          if home_match:
+            candidates.append(home_match.group(1).strip('/') + '/')
+          candidates.append(found.strip('/') + '/')
+
+          ftp_dir = next((item for item in candidates if item and not item.startswith('/')), candidates[0])
+          with open(github_env, 'a', encoding='utf-8') as env_file:
+            env_file.write(f'DISCOVERED_CPANEL_FTP_DIR={ftp_dir}\n')
+          print(f'Discovered document root for {target}: {ftp_dir}')
+          PY
+
+      - name: Deploy files to discovered cPanel document root
+        if: ${{ env.DISCOVERED_CPANEL_FTP_DIR != '' }}
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ env.DISCOVERED_CPANEL_FTP_DIR }}
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+
       - name: Deploy files to configured cPanel directory
         if: ${{ env.CPANEL_FTP_DIR != '' }}
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -119,7 +213,7 @@ jobs:
           JS_PATH="$(printf '%s' "$INDEX_HTML" | grep -oE "/assets/index-[^\"']+\.js" | head -n 1)"
           test -n "$JS_PATH" || (echo "Could not find the live JavaScript bundle in ateenworks.com index.html" && exit 1)
           LIVE_JS="$(curl -fsSL "https://ateenworks.com${JS_PATH}?nocache=$(date +%s)")"
-          printf '%s' "$LIVE_JS" | grep -F "WNG WITH ATEEN" || (echo "Files uploaded to CPANEL_FTP_DIR plus common fallbacks, but ateenworks.com is still serving the old app bundle. The cPanel Document Root is a different directory than the tried paths." && exit 1)
+          printf '%s' "$LIVE_JS" | grep -F "WNG WITH ATEEN" || (echo "Files uploaded to discovered/configured/fallback FTP paths, but ateenworks.com is still serving the old app bundle. Check the cPanel document root shown in Domains and set CPANEL_FTP_DIR to that exact FTP-relative path." && exit 1)
           ! printf '%s' "$LIVE_JS" | grep -F "WORKING WITH ATEEN" || (echo "Old heading is still live, so the upload did not reach the served document root." && exit 1)
 
       - name: Deployment instructions if site still shows old files
