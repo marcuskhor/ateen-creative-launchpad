@@ -1,12 +1,9 @@
 name: Deploy to cPanel (ateenworks.com)
 
 on:
-  # Auto-run when you push code changes
   push:
     branches: ['main']
-  # Manual "Run workflow" button on GitHub
   workflow_dispatch:
-  # Triggered by Sanity webhook when you publish a post
   repository_dispatch:
     types: [sanity-update]
 
@@ -29,7 +26,7 @@ jobs:
       - name: Install dependencies
         run: bun install --frozen-lockfile
 
-      - name: Build (also auto-generates sitemap from Sanity)
+      - name: Build
         run: rm -rf dist node_modules/.vite && bun run build
 
       - name: Verify latest text is in build
@@ -43,10 +40,7 @@ jobs:
           echo "Expected heading: WKING WITH ATEEN" >> dist/deploy-marker.txt
           cp dist/deploy-marker.txt dist/__ateen-deploy-proof.txt
 
-      - name: Install FTP mirror tool
-        run: sudo apt-get update && sudo apt-get install -y lftp
-
-      - name: Check required cPanel deploy secrets
+      - name: Check cPanel secrets
         env:
           CPANEL_FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
           CPANEL_FTP_USERNAME: ${{ secrets.CPANEL_FTP_USERNAME }}
@@ -56,34 +50,23 @@ jobs:
           test -n "$CPANEL_FTP_SERVER" || (echo "Missing GitHub secret: CPANEL_FTP_SERVER" && exit 1)
           test -n "$CPANEL_FTP_USERNAME" || (echo "Missing GitHub secret: CPANEL_FTP_USERNAME" && exit 1)
           test -n "$CPANEL_FTP_PASSWORD" || (echo "Missing GitHub secret: CPANEL_FTP_PASSWORD" && exit 1)
-          test -n "$CPANEL_FTP_DIR" || (echo "Missing GitHub secret: CPANEL_FTP_DIR. Set it to the exact cPanel Document Root for ateenworks.com, for example public_html or public_html/ateenworks.com" && exit 1)
-          echo "Using configured cPanel document root: $CPANEL_FTP_DIR"
+          test -n "$CPANEL_FTP_DIR" || (echo "Missing GitHub secret: CPANEL_FTP_DIR. Use cPanel Domains -> ateenworks.com -> Document Root. Example: public_html" && exit 1)
 
-      - name: Resolve cPanel document root
-        env:
-          FTP_DIR: ${{ secrets.CPANEL_FTP_DIR }}
-        run: |
-          set -euo pipefail
-          resolved="${FTP_DIR%/}"
-          resolved="${resolved#/}"
-          resolved="${resolved#home/*/}"
-          test -n "$resolved" || resolved="."
-          echo "CPANEL_RESOLVED_FTP_DIR=$resolved" >> "$GITHUB_ENV"
-          echo "Resolved FTP deploy directory: $resolved"
+      - name: Deploy files to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.CPANEL_FTP_DIR }}/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
 
-      - name: Deploy to configured cPanel web root
-        env:
-          FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
-          FTP_USER: ${{ secrets.CPANEL_FTP_USERNAME }}
-          FTP_PASS: ${{ secrets.CPANEL_FTP_PASSWORD }}
+      - name: Deployment instructions if site still shows old files
         run: |
-          set -euo pipefail
-          test -n "${CPANEL_RESOLVED_FTP_DIR:-}" || (echo "Missing resolved FTP directory" && exit 1)
-          echo "Deploying dist/ to cPanel document root: $CPANEL_RESOLVED_FTP_DIR"
-          lftp -u "$FTP_USER","$FTP_PASS" "$FTP_SERVER" <<EOF
-          set cmd:fail-exit yes
-          set net:max-retries 3
-          set ftp:ssl-allow no
-          mirror -R --delete --verbose --exclude-glob .well-known/** --exclude-glob cgi-bin/** ./dist "$CPANEL_RESOLVED_FTP_DIR"
-          bye
-          EOF
+          echo "If this workflow succeeds but ateenworks.com still shows old files, the FTP account is valid but CPANEL_FTP_DIR is the wrong folder."
+          echo "Set CPANEL_FTP_DIR to the Document Root shown in cPanel -> Domains -> ateenworks.com, usually public_html or public_html/ateenworks.com."
