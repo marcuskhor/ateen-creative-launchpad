@@ -41,6 +41,7 @@ jobs:
         run: |
           date -u +"Deployed at %Y-%m-%dT%H:%M:%SZ from $GITHUB_SHA" > dist/deploy-marker.txt
           echo "Expected heading: WKING WITH ATEEN" >> dist/deploy-marker.txt
+          cp dist/deploy-marker.txt dist/__ateen-deploy-proof.txt
 
       - name: Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
