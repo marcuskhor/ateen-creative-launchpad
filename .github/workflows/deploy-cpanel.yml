@@ -330,12 +330,36 @@ jobs:
 
       - name: Verify live domain updated
         run: |
-          INDEX_HTML="$(curl -fsSL "https://ateenworks.com/?nocache=$(date +%s)")"
-          JS_PATH="$(printf '%s' "$INDEX_HTML" | grep -oE "/assets/index-[^\"']+\.js" | head -n 1)"
-          test -n "$JS_PATH" || (echo "Could not find the live JavaScript bundle in ateenworks.com index.html" && exit 1)
-          LIVE_JS="$(curl -fsSL "https://ateenworks.com${JS_PATH}?nocache=$(date +%s)")"
-          printf '%s' "$LIVE_JS" | grep -F "WNG WITH ATEEN" || (echo "Files uploaded to discovered/configured/fallback FTP paths, but ateenworks.com is still serving the old app bundle. Check the cPanel document root shown in Domains and set CPANEL_FTP_DIR to that exact FTP-relative path." && exit 1)
-          ! printf '%s' "$LIVE_JS" | grep -F "WORKING WITH ATEEN" || (echo "Old heading is still live, so the upload did not reach the served document root." && exit 1)
+          python3 <<'PY'
+          import re
+          import time
+          import urllib.request
+
+          base = 'https://ateenworks.com'
+
+          def fetch(path):
+            separator = '&' if '?' in path else '?'
+            request = urllib.request.Request(
+              f'{base}{path}{separator}nocache={int(time.time())}',
+              headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache'},
+            )
+            with urllib.request.urlopen(request, timeout=30) as response:
+              return response.read().decode('utf-8', 'replace')
+
+          index_html = fetch('/')
+          match = re.search(r'/assets/index-[^"\']+\.js', index_html)
+          if not match:
+            raise SystemExit('Could not find the live JavaScript bundle in ateenworks.com index.html')
+
+          js_path = match.group(0)
+          live_js = fetch(js_path)
+          if 'WNG WITH ATEEN' not in live_js:
+            raise SystemExit('Files uploaded to the verified FTP path, but ateenworks.com is still serving an old app bundle. Check server-side cache/LiteSpeed cache or set CPANEL_FTP_DIR from cPanel Domains and rerun.')
+          if 'WORKING WITH ATEEN' in live_js:
+            raise SystemExit('Old heading is still live, so the upload did not replace the served app bundle.')
+
+          print(f'Live domain verified with bundle: {js_path}')
+          PY
 
       - name: Deployment instructions if site still shows old files
         run: |
