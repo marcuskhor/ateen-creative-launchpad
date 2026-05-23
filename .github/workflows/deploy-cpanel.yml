@@ -105,7 +105,7 @@ jobs:
                 exit 0
               fi
               sleep 5
-            fi
+            done
           done
 
           echo "Could not verify the live web root for ateenworks.com. Your FTP login is still not reaching the document root that serves the domain."
