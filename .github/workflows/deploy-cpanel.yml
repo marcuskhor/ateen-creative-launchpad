@@ -132,75 +132,145 @@ jobs:
           print(f'Discovered document root for {target}: {ftp_dir}')
           PY
 
-      - name: Deploy files to discovered cPanel document root
-        if: ${{ env.DISCOVERED_CPANEL_FTP_DIR != '' }}
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.CPANEL_FTP_SERVER }}
-          username: ${{ secrets.CPANEL_FTP_USERNAME }}
-          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ${{ env.DISCOVERED_CPANEL_FTP_DIR }}
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+      - name: Find verified FTP path for live domain
+        env:
+          CPANEL_FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
+          CPANEL_FTP_USERNAME: ${{ secrets.CPANEL_FTP_USERNAME }}
+          CPANEL_FTP_PASSWORD: ${{ secrets.CPANEL_FTP_PASSWORD }}
+        run: |
+          python3 <<'PY'
+          from ftplib import FTP, FTP_TLS, error_perm
+          from pathlib import PurePosixPath
+          from urllib.parse import urlparse
+          import os
+          import socket
+          import time
+          import urllib.request
 
-      - name: Deploy files to configured cPanel directory
-        if: ${{ env.CPANEL_FTP_DIR != '' }}
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.CPANEL_FTP_SERVER }}
-          username: ${{ secrets.CPANEL_FTP_USERNAME }}
-          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ${{ env.CPANEL_FTP_DIR }}
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+          domain = 'ateenworks.com'
+          token = f'ateen-live-root-{int(time.time())}-{os.environ["GITHUB_SHA"][:12]}'
+          probe_name = '__ateen-live-root-probe.txt'
+          server = os.environ['CPANEL_FTP_SERVER'].strip()
+          username = os.environ['CPANEL_FTP_USERNAME'].strip()
+          password = os.environ['CPANEL_FTP_PASSWORD']
+          github_env = os.environ['GITHUB_ENV']
 
-      - name: Deploy files to addon-domain web root fallback
-        continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.CPANEL_FTP_SERVER }}
-          username: ${{ secrets.CPANEL_FTP_USERNAME }}
-          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: public_html/ateenworks.com/
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+          parsed = urlparse(server if '://' in server else f'ftp://{server}')
+          host = parsed.hostname or server
+          port = parsed.port or (990 if parsed.scheme == 'ftps' else 21)
 
-      - name: Deploy files to primary-domain web root fallback
-        continue-on-error: true
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.CPANEL_FTP_SERVER }}
-          username: ${{ secrets.CPANEL_FTP_USERNAME }}
-          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: public_html/
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+          def clean_dir(value):
+            value = (value or '').strip().strip('"').strip("'")
+            if not value:
+              return None
+            value = value.replace('\\', '/').strip('/')
+            return './' if value in ('', '.') else f'{value}/'
 
-      - name: Deploy files to FTP login root fallback
-        continue-on-error: true
+          candidates = []
+          for item in [
+            os.environ.get('DISCOVERED_CPANEL_FTP_DIR'),
+            os.environ.get('CPANEL_FTP_DIR'),
+            'public_html/ateenworks.com/',
+            'public_html/ateenworks/',
+            'domains/ateenworks.com/public_html/',
+            'ateenworks.com/public_html/',
+            'ateenworks.com/',
+            'public_html/',
+            'www/',
+            'httpdocs/',
+            'htdocs/',
+            './',
+          ]:
+            cleaned = clean_dir(item)
+            if cleaned and cleaned not in candidates:
+              candidates.append(cleaned)
+
+          def connect():
+            cls = FTP_TLS if parsed.scheme == 'ftps' or port == 990 else FTP
+            ftp = cls()
+            ftp.connect(host, port, timeout=30)
+            ftp.login(username, password)
+            if isinstance(ftp, FTP_TLS):
+              ftp.prot_p()
+            return ftp
+
+          def ensure_dir(ftp, directory):
+            if directory == './':
+              return
+            ftp.cwd('/')
+            for part in PurePosixPath(directory).parts:
+              if part in ('/', '.', ''):
+                continue
+              try:
+                ftp.mkd(part)
+              except error_perm:
+                pass
+              ftp.cwd(part)
+
+          def upload_probe(ftp, directory):
+            ensure_dir(ftp, directory)
+            ftp.storbinary(f'STOR {probe_name}', __import__('io').BytesIO(token.encode()))
+            ftp.cwd('/')
+
+          def live_probe_matches():
+            url = f'https://{domain}/{probe_name}?nocache={int(time.time())}'
+            request = urllib.request.Request(url, headers={'Cache-Control': 'no-cache', 'Pragma': 'no-cache'})
+            try:
+              with urllib.request.urlopen(request, timeout=20) as response:
+                return response.read().decode('utf-8', 'replace').strip() == token
+            except Exception:
+              return False
+
+          ftp = connect()
+          tried = []
+          uploaded = []
+          verified = None
+          try:
+            for candidate in candidates:
+              tried.append(candidate)
+              try:
+                upload_probe(ftp, candidate)
+                uploaded.append(candidate)
+              except Exception as exc:
+                print(f'Skipped {candidate}: FTP upload failed ({exc})')
+                continue
+              if live_probe_matches():
+                verified = candidate
+                break
+
+            for directory in uploaded:
+              try:
+                ensure_dir(ftp, directory)
+                ftp.delete(probe_name)
+              except Exception:
+                pass
+          finally:
+            try:
+              ftp.quit()
+            except Exception:
+              ftp.close()
+
+          if not verified:
+            print('Could not verify any FTP path as the live ateenworks.com document root.')
+            print('Tried FTP paths:')
+            for item in tried:
+              print(f'- {item}')
+            print('Set CPANEL_FTP_DIR to the exact FTP-relative document root from cPanel Domains, then rerun the workflow.')
+            raise SystemExit(1)
+
+          with open(github_env, 'a', encoding='utf-8') as env_file:
+            env_file.write(f'LIVE_CPANEL_FTP_DIR={verified}\n')
+          print(f'Verified live FTP path for {domain}: {verified}')
+          PY
+
+      - name: Deploy files to verified live cPanel path
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.CPANEL_FTP_SERVER }}
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ./
+          server-dir: ${{ env.LIVE_CPANEL_FTP_DIR }}
           dangerous-clean-slate: false
           exclude: |
             **/.git*
