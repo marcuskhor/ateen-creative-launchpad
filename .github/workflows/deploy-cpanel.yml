@@ -163,6 +163,11 @@ jobs:
             if not value:
               return None
             value = value.replace('\\', '/').strip('/')
+            home_prefix = f'home/{username}/'
+            if value.startswith(home_prefix):
+              value = value[len(home_prefix):]
+            elif value.startswith('home/') and len(value.split('/')) > 2:
+              value = '/'.join(value.split('/')[2:])
             return './' if value in ('', '.') else f'{value}/'
 
           candidates = []
