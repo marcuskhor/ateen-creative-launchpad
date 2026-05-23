@@ -59,7 +59,7 @@ jobs:
           test -n "$CPANEL_FTP_DIR" || (echo "Missing GitHub secret: CPANEL_FTP_DIR. Set it to the exact cPanel Document Root for ateenworks.com, for example public_html or public_html/ateenworks.com" && exit 1)
           echo "Using configured cPanel document root: $CPANEL_FTP_DIR"
 
-      - name: Verify configured cPanel document root serves ateenworks.com
+      - name: Resolve and verify cPanel document root for ateenworks.com
         env:
           FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
           FTP_USER: ${{ secrets.CPANEL_FTP_USERNAME }}
@@ -69,17 +69,47 @@ jobs:
           set -euo pipefail
           proof="ateen-proof-${GITHUB_RUN_ID}-${GITHUB_SHA}"
           printf "%s\n" "$proof" > ftp-proof.txt
-          curl --fail --show-error --silent --ftp-create-dirs --user "$FTP_USER:$FTP_PASS" -T ftp-proof.txt "ftp://$FTP_SERVER/$FTP_DIR/__ateen-live-root-proof.txt"
 
-          for attempt in 1 2 3 4 5 6; do
-            if curl --fail --silent "https://ateenworks.com/__ateen-live-root-proof.txt?run=${GITHUB_RUN_ID}&attempt=${attempt}" | grep -F "$proof"; then
-              echo "Verified $FTP_DIR is the live web root for ateenworks.com"
-              exit 0
+          configured="${FTP_DIR%/}"
+          configured="${configured#/}"
+          home_stripped="${configured#home/*/}"
+
+          candidates=(
+            "$FTP_DIR"
+            "$configured"
+            "$home_stripped"
+            "public_html"
+            "public_html/ateenworks.com"
+            "ateenworks.com"
+            "www"
+            "."
+          )
+
+          tested=""
+          for candidate in "${candidates[@]}"; do
+            candidate="${candidate%/}"
+            test -n "$candidate" || candidate="."
+            case "\n$tested\n" in *"\n$candidate\n"*) continue ;; esac
+            tested="$tested\n$candidate"
+
+            echo "Testing FTP directory: $candidate"
+            if ! curl --fail --show-error --silent --ftp-create-dirs --user "$FTP_USER:$FTP_PASS" -T ftp-proof.txt "ftp://$FTP_SERVER/$candidate/__ateen-live-root-proof.txt"; then
+              echo "Upload failed for $candidate; trying next option."
+              continue
             fi
-            sleep 5
+
+            for attempt in 1 2 3 4 5 6; do
+              if curl --fail --silent "https://ateenworks.com/__ateen-live-root-proof.txt?run=${GITHUB_RUN_ID}&candidate=${candidate}&attempt=${attempt}" | grep -F "$proof"; then
+                echo "Verified live cPanel web root: $candidate"
+                echo "CPANEL_RESOLVED_FTP_DIR=$candidate" >> "$GITHUB_ENV"
+                exit 0
+              fi
+              sleep 5
+            done
           done
 
-          echo "CPANEL_FTP_DIR is not the live Document Root for ateenworks.com. In cPanel, open Domains and copy the Document Root for ateenworks.com into GitHub secret CPANEL_FTP_DIR."
+          echo "Could not verify the live web root for ateenworks.com. Your FTP login is still not reaching the document root that serves the domain."
+          echo "In cPanel, open Domains -> ateenworks.com -> Document Root. If it shows /home/USERNAME/public_html, set GitHub secret CPANEL_FTP_DIR to public_html. If it shows /home/USERNAME/public_html/ateenworks.com, set it to public_html/ateenworks.com."
           exit 1
 
       - name: Deploy to configured cPanel web root
@@ -87,14 +117,14 @@ jobs:
           FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
           FTP_USER: ${{ secrets.CPANEL_FTP_USERNAME }}
           FTP_PASS: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          FTP_DIR: ${{ secrets.CPANEL_FTP_DIR }}
         run: |
           set -euo pipefail
-          echo "Deploying dist/ to cPanel document root: $FTP_DIR"
+          test -n "${CPANEL_RESOLVED_FTP_DIR:-}" || (echo "Missing resolved FTP directory" && exit 1)
+          echo "Deploying dist/ to cPanel document root: $CPANEL_RESOLVED_FTP_DIR"
           lftp -u "$FTP_USER","$FTP_PASS" "$FTP_SERVER" <<EOF
           set cmd:fail-exit yes
           set net:max-retries 3
           set ftp:ssl-allow no
-          mirror -R --delete --verbose --exclude-glob .well-known/** --exclude-glob cgi-bin/** ./dist "$FTP_DIR"
+          mirror -R --delete --verbose --exclude-glob .well-known/** --exclude-glob cgi-bin/** ./dist "$CPANEL_RESOLVED_FTP_DIR"
           bye
           EOF
