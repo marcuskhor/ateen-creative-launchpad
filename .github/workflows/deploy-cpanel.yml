@@ -1,0 +1,46 @@
+name: Deploy to cPanel (ateenworks.com)
+
+on:
+  # Auto-run when you push code changes
+  push:
+    branches: ['main']
+  # Manual "Run workflow" button on GitHub
+  workflow_dispatch:
+  # Triggered by Sanity webhook when you publish a post
+  repository_dispatch:
+    types: [sanity-update]
+
+concurrency:
+  group: 'cpanel-deploy'
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install
+
+      - name: Build (also auto-generates sitemap from Sanity)
+        run: bun run build
+
+      - name: Deploy to cPanel via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: /public_html/
+          # Don't touch SSL/cPanel-managed folders
+          exclude: |
+            **/.well-known/**
+            **/cgi-bin/**
