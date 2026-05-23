@@ -260,18 +260,68 @@ jobs:
           PY
 
       - name: Deploy files to verified live cPanel path
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.CPANEL_FTP_SERVER }}
-          username: ${{ secrets.CPANEL_FTP_USERNAME }}
-          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          local-dir: ./dist/
-          server-dir: ${{ env.LIVE_CPANEL_FTP_DIR }}
-          dangerous-clean-slate: false
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/node_modules/**
+        env:
+          CPANEL_FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
+          CPANEL_FTP_USERNAME: ${{ secrets.CPANEL_FTP_USERNAME }}
+          CPANEL_FTP_PASSWORD: ${{ secrets.CPANEL_FTP_PASSWORD }}
+        run: |
+          python3 <<'PY'
+          from ftplib import FTP, FTP_TLS
+          from pathlib import Path, PurePosixPath
+          from urllib.parse import urlparse
+          import os
+
+          server = os.environ['CPANEL_FTP_SERVER'].strip()
+          username = os.environ['CPANEL_FTP_USERNAME'].strip()
+          password = os.environ['CPANEL_FTP_PASSWORD']
+          target_dir = os.environ['LIVE_CPANEL_FTP_DIR'].strip()
+          parsed = urlparse(server if '://' in server else f'ftp://{server}')
+          host = parsed.hostname or server
+          port = parsed.port or (990 if parsed.scheme == 'ftps' else 21)
+
+          cls = FTP_TLS if parsed.scheme == 'ftps' or port == 990 else FTP
+          ftp = cls()
+          ftp.connect(host, port, timeout=30)
+          ftp.login(username, password)
+          if isinstance(ftp, FTP_TLS):
+            ftp.prot_p()
+          root_dir = ftp.pwd()
+
+          def enter_dir(directory):
+            ftp.cwd(root_dir)
+            if directory == './':
+              return
+            for part in PurePosixPath(directory).parts:
+              if part in ('/', '.', ''):
+                continue
+              ftp.cwd(part)
+
+          def ensure_remote_subdir(parts):
+            for part in parts:
+              try:
+                ftp.mkd(part)
+              except Exception:
+                pass
+              ftp.cwd(part)
+
+          try:
+            enter_dir(target_dir)
+            base_dir = ftp.pwd()
+            for path in sorted(Path('dist').rglob('*')):
+              if not path.is_file():
+                continue
+              rel = path.relative_to('dist')
+              ftp.cwd(base_dir)
+              ensure_remote_subdir(rel.parts[:-1])
+              with path.open('rb') as file_handle:
+                ftp.storbinary(f'STOR {rel.name}', file_handle)
+              print(f'Uploaded {rel}')
+          finally:
+            try:
+              ftp.quit()
+            except Exception:
+              ftp.close()
+          PY
 
       - name: Verify live domain updated
         run: |
