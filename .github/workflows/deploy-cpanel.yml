@@ -46,72 +46,55 @@ jobs:
       - name: Install FTP mirror tool
         run: sudo apt-get update && sudo apt-get install -y lftp
 
-      - name: Detect live cPanel web root
+      - name: Check required cPanel deploy secrets
+        env:
+          CPANEL_FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
+          CPANEL_FTP_USERNAME: ${{ secrets.CPANEL_FTP_USERNAME }}
+          CPANEL_FTP_PASSWORD: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          CPANEL_FTP_DIR: ${{ secrets.CPANEL_FTP_DIR }}
+        run: |
+          test -n "$CPANEL_FTP_SERVER" || (echo "Missing GitHub secret: CPANEL_FTP_SERVER" && exit 1)
+          test -n "$CPANEL_FTP_USERNAME" || (echo "Missing GitHub secret: CPANEL_FTP_USERNAME" && exit 1)
+          test -n "$CPANEL_FTP_PASSWORD" || (echo "Missing GitHub secret: CPANEL_FTP_PASSWORD" && exit 1)
+          test -n "$CPANEL_FTP_DIR" || (echo "Missing GitHub secret: CPANEL_FTP_DIR. Set it to the exact cPanel Document Root for ateenworks.com, for example public_html or public_html/ateenworks.com" && exit 1)
+          echo "Using configured cPanel document root: $CPANEL_FTP_DIR"
+
+      - name: Verify configured cPanel document root serves ateenworks.com
         env:
           FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
           FTP_USER: ${{ secrets.CPANEL_FTP_USERNAME }}
           FTP_PASS: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          FTP_DIR: ${{ secrets.CPANEL_FTP_DIR }}
         run: |
           set -euo pipefail
+          proof="ateen-proof-${GITHUB_RUN_ID}-${GITHUB_SHA}"
+          printf "%s\n" "$proof" > ftp-proof.txt
+          curl --fail --show-error --silent --ftp-create-dirs --user "$FTP_USER:$FTP_PASS" -T ftp-proof.txt "ftp://$FTP_SERVER/$FTP_DIR/__ateen-live-root-proof.txt"
 
-          candidates=(
-            "."
-            "public_html"
-            "www"
-            "htdocs"
-            "ateenworks.com"
-            "www/ateenworks.com"
-            "public_html/ateenworks.com"
-            "public_html/ateenworks"
-            "domains/ateenworks.com/public_html"
-          )
-
-          echo "FTP top-level folders available:"
-          curl --show-error --silent --list-only --user "$FTP_USER:$FTP_PASS" "ftp://$FTP_SERVER/" || true
-
-          for dir in "${candidates[@]}"; do
-            safe_dir="${dir//\//-}"
-            proof="ateen-proof-${GITHUB_RUN_ID}-${GITHUB_SHA}-${safe_dir}"
-            printf "%s\n" "$proof" > ftp-proof.txt
-
-            if [ "$dir" = "." ]; then
-              remote_file="__ateen-live-root-proof.txt"
-            else
-              remote_file="$dir/__ateen-live-root-proof.txt"
+          for attempt in 1 2 3 4 5 6; do
+            if curl --fail --silent "https://ateenworks.com/__ateen-live-root-proof.txt?run=${GITHUB_RUN_ID}&attempt=${attempt}" | grep -F "$proof"; then
+              echo "Verified $FTP_DIR is the live web root for ateenworks.com"
+              exit 0
             fi
-
-            echo "Testing FTP path: $dir"
-            if ! curl --fail --show-error --silent --ftp-create-dirs --user "$FTP_USER:$FTP_PASS" -T ftp-proof.txt "ftp://$FTP_SERVER/$remote_file"; then
-              echo "Could not upload proof to $dir, trying next candidate."
-              continue
-            fi
-
-            for attempt in 1 2 3 4; do
-              if curl --fail --silent "https://ateenworks.com/__ateen-live-root-proof.txt?run=${GITHUB_RUN_ID}&attempt=${attempt}" | grep -F "$proof"; then
-                echo "CPANEL_SERVER_DIR=$dir" >> "$GITHUB_ENV"
-                echo "Detected live web root: $dir"
-                exit 0
-              fi
-
-              sleep 5
-            done
+            sleep 5
           done
 
-          echo "Could not verify the live web root. Check CPANEL_FTP_SERVER / CPANEL_FTP_USERNAME point to the hosting account for ateenworks.com."
+          echo "CPANEL_FTP_DIR is not the live Document Root for ateenworks.com. In cPanel, open Domains and copy the Document Root for ateenworks.com into GitHub secret CPANEL_FTP_DIR."
           exit 1
 
-      - name: Deploy to detected cPanel web root
+      - name: Deploy to configured cPanel web root
         env:
           FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
           FTP_USER: ${{ secrets.CPANEL_FTP_USERNAME }}
           FTP_PASS: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          FTP_DIR: ${{ secrets.CPANEL_FTP_DIR }}
         run: |
           set -euo pipefail
-          echo "Deploying dist/ to detected live web root: $CPANEL_SERVER_DIR"
+          echo "Deploying dist/ to cPanel document root: $FTP_DIR"
           lftp -u "$FTP_USER","$FTP_PASS" "$FTP_SERVER" <<EOF
           set cmd:fail-exit yes
           set net:max-retries 3
           set ftp:ssl-allow no
-          mirror -R --delete --verbose --exclude-glob .well-known/** --exclude-glob cgi-bin/** ./dist "$CPANEL_SERVER_DIR"
+          mirror -R --delete --verbose --exclude-glob .well-known/** --exclude-glob cgi-bin/** ./dist "$FTP_DIR"
           bye
           EOF
