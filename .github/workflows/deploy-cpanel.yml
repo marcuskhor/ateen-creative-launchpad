@@ -45,12 +45,11 @@ jobs:
           CPANEL_FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
           CPANEL_FTP_USERNAME: ${{ secrets.CPANEL_FTP_USERNAME }}
           CPANEL_FTP_PASSWORD: ${{ secrets.CPANEL_FTP_PASSWORD }}
-          CPANEL_FTP_DIR: ${{ secrets.CPANEL_FTP_DIR }}
         run: |
           test -n "$CPANEL_FTP_SERVER" || (echo "Missing GitHub secret: CPANEL_FTP_SERVER" && exit 1)
           test -n "$CPANEL_FTP_USERNAME" || (echo "Missing GitHub secret: CPANEL_FTP_USERNAME" && exit 1)
           test -n "$CPANEL_FTP_PASSWORD" || (echo "Missing GitHub secret: CPANEL_FTP_PASSWORD" && exit 1)
-          test -n "$CPANEL_FTP_DIR" || (echo "Missing GitHub secret: CPANEL_FTP_DIR. Use cPanel Domains -> ateenworks.com -> Document Root. Example: public_html" && exit 1)
+          echo "CPANEL_FTP_DIR is optional. If it is not set, this deploy uses public_html."
 
       - name: Deploy files to cPanel
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -59,7 +58,7 @@ jobs:
           username: ${{ secrets.CPANEL_FTP_USERNAME }}
           password: ${{ secrets.CPANEL_FTP_PASSWORD }}
           local-dir: ./dist/
-          server-dir: ${{ secrets.CPANEL_FTP_DIR }}/
+          server-dir: ${{ secrets.CPANEL_FTP_DIR || 'public_html' }}/
           dangerous-clean-slate: false
           exclude: |
             **/.git*
