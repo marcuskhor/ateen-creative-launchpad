@@ -190,13 +190,24 @@ jobs:
               candidates.append(cleaned)
 
           def connect():
-            cls = FTP_TLS if parsed.scheme == 'ftps' or port == 990 else FTP
-            ftp = cls()
-            ftp.connect(host, port, timeout=30)
-            ftp.login(username, password)
-            if isinstance(ftp, FTP_TLS):
-              ftp.prot_p()
-            return ftp
+            modes = [FTP_TLS] if parsed.scheme == 'ftps' or port == 990 else [FTP, FTP_TLS]
+            last_error = None
+            for cls in modes:
+              ftp = cls()
+              try:
+                ftp.connect(host, port, timeout=30)
+                ftp.login(username, password)
+                if isinstance(ftp, FTP_TLS):
+                  ftp.prot_p()
+                print(f'Connected using {cls.__name__}')
+                return ftp
+              except Exception as exc:
+                last_error = exc
+                try:
+                  ftp.close()
+                except Exception:
+                  pass
+            raise last_error
 
           def enter_dir(ftp, root_dir, directory):
             ftp.cwd(root_dir)
@@ -284,12 +295,27 @@ jobs:
           host = parsed.hostname or server
           port = parsed.port or (990 if parsed.scheme == 'ftps' else 21)
 
-          cls = FTP_TLS if parsed.scheme == 'ftps' or port == 990 else FTP
-          ftp = cls()
-          ftp.connect(host, port, timeout=30)
-          ftp.login(username, password)
-          if isinstance(ftp, FTP_TLS):
-            ftp.prot_p()
+          def connect():
+            modes = [FTP_TLS] if parsed.scheme == 'ftps' or port == 990 else [FTP, FTP_TLS]
+            last_error = None
+            for cls in modes:
+              ftp = cls()
+              try:
+                ftp.connect(host, port, timeout=30)
+                ftp.login(username, password)
+                if isinstance(ftp, FTP_TLS):
+                  ftp.prot_p()
+                print(f'Connected using {cls.__name__}')
+                return ftp
+              except Exception as exc:
+                last_error = exc
+                try:
+                  ftp.close()
+                except Exception:
+                  pass
+            raise last_error
+
+          ftp = connect()
           root_dir = ftp.pwd()
 
           def enter_dir(directory):
