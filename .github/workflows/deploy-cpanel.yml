@@ -32,6 +32,9 @@ jobs:
       - name: Build (also auto-generates sitemap from Sanity)
         run: bun run build
 
+      - name: Add deploy marker
+        run: date -u +"Deployed at %Y-%m-%dT%H:%M:%SZ from $GITHUB_SHA" > dist/deploy-marker.txt
+
       - name: Deploy to cPanel via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
