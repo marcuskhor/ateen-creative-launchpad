@@ -51,14 +51,32 @@ const InsightPostPage = () => {
         description={post.heroIntro || post.subtitle || `${post.title} — an insight from ATEEN Works.`}
         path={`/insight/${post.slug.current}`}
         type="article"
-        jsonLd={{
-          "@context": "https://schema.org",
-          "@type": "Article",
-          headline: post.title,
-          datePublished: post.publishedAt,
-          articleSection: post.category,
-          author: { "@type": "Organization", name: "ATEEN Works" },
-        }}
+        jsonLd={[
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+            datePublished: post.publishedAt,
+            articleSection: post.category,
+            author: { "@type": "Organization", name: "ATEEN Works" },
+          },
+          ...(post.faqs && post.faqs.length > 0
+            ? [{
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: post.faqs.map((f) => ({
+                  "@type": "Question",
+                  name: f.question,
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: (f.answer as Array<{ children?: Array<{ text?: string }> }>)
+                      ?.map((b) => b.children?.map((c) => c.text).join(" "))
+                      .join(" ") ?? "",
+                  },
+                })),
+              }]
+            : []),
+        ]}
       />
       <Header />
       <main className="pt-32 md:pt-40 pb-24">
