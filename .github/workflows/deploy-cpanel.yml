@@ -119,7 +119,7 @@ jobs:
       - name: Verify live domain updated
         run: |
           INDEX_HTML="$(curl -fsSL "https://ateenworks.com/?nocache=$(date +%s)")"
-          JS_PATH="$(printf '%s' "$INDEX_HTML" | grep -oE '/assets/index-[^"'"']+\.js' | head -n 1)"
+          JS_PATH="$(printf '%s' "$INDEX_HTML" | grep -oE "/assets/index-[^\"']+\.js" | head -n 1)"
           test -n "$JS_PATH" || (echo "Could not find the live JavaScript bundle in ateenworks.com index.html" && exit 1)
           LIVE_JS="$(curl -fsSL "https://ateenworks.com${JS_PATH}?nocache=$(date +%s)")"
           printf '%s' "$LIVE_JS" | grep -F "WNG WITH ATEEN" || (echo "Files uploaded, but ateenworks.com is still serving the old app bundle. Set CPANEL_FTP_DIR to the exact cPanel Document Root for ateenworks.com." && exit 1)
