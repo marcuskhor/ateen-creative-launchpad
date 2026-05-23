@@ -1,0 +1,72 @@
+name: Deploy to cPanel (ateenworks.com)
+
+on:
+  push:
+    branches: ['main']
+  workflow_dispatch:
+  repository_dispatch:
+    types: [sanity-update]
+
+concurrency:
+  group: 'cpanel-deploy'
+  cancel-in-progress: true
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Bun
+        uses: oven-sh/setup-bun@v1
+        with:
+          bun-version: latest
+
+      - name: Install dependencies
+        run: bun install --frozen-lockfile
+
+      - name: Build
+        run: rm -rf dist node_modules/.vite && bun run build
+
+      - name: Verify latest text is in build
+        run: |
+          grep -R "WKING WITH ATEEN" dist || (echo "Build is stale: WKING WITH ATEEN missing from dist" && exit 1)
+          ! grep -R "WRKING WITH ATEEN\|WORKING WITH ATEEN" dist || (echo "Old text still exists in dist" && exit 1)
+
+      - name: Add deploy marker
+        run: |
+          date -u +"Deployed at %Y-%m-%dT%H:%M:%SZ from $GITHUB_SHA" > dist/deploy-marker.txt
+          echo "Expected heading: WKING WITH ATEEN" >> dist/deploy-marker.txt
+          cp dist/deploy-marker.txt dist/__ateen-deploy-proof.txt
+
+      - name: Check cPanel secrets
+        env:
+          CPANEL_FTP_SERVER: ${{ secrets.CPANEL_FTP_SERVER }}
+          CPANEL_FTP_USERNAME: ${{ secrets.CPANEL_FTP_USERNAME }}
+          CPANEL_FTP_PASSWORD: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          CPANEL_FTP_DIR: ${{ secrets.CPANEL_FTP_DIR }}
+        run: |
+          test -n "$CPANEL_FTP_SERVER" || (echo "Missing GitHub secret: CPANEL_FTP_SERVER" && exit 1)
+          test -n "$CPANEL_FTP_USERNAME" || (echo "Missing GitHub secret: CPANEL_FTP_USERNAME" && exit 1)
+          test -n "$CPANEL_FTP_PASSWORD" || (echo "Missing GitHub secret: CPANEL_FTP_PASSWORD" && exit 1)
+          test -n "$CPANEL_FTP_DIR" || (echo "Missing GitHub secret: CPANEL_FTP_DIR. Use cPanel Domains -> ateenworks.com -> Document Root. Example: public_html" && exit 1)
+
+      - name: Deploy files to cPanel
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.CPANEL_FTP_SERVER }}
+          username: ${{ secrets.CPANEL_FTP_USERNAME }}
+          password: ${{ secrets.CPANEL_FTP_PASSWORD }}
+          local-dir: ./dist/
+          server-dir: ${{ secrets.CPANEL_FTP_DIR }}/
+          dangerous-clean-slate: false
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+
+      - name: Deployment instructions if site still shows old files
+        run: |
+          echo "If this workflow succeeds but ateenworks.com still shows old files, the FTP account is valid but CPANEL_FTP_DIR is the wrong folder."
+          echo "Set CPANEL_FTP_DIR to the Document Root shown in cPanel -> Domains -> ateenworks.com, usually public_html or public_html/ateenworks.com."
