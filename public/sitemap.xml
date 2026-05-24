@@ -42,8 +42,14 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://ateenworks.com/insight/test2</loc>
+    <loc>https://ateenworks.com/insight/auto-test-again</loc>
     <lastmod>2026-05-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://ateenworks.com/insight/why-your-business-needs-a-brand-consistency-agency</loc>
+    <lastmod>2026-05-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
