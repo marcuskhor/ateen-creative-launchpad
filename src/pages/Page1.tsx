@@ -6,8 +6,8 @@ const Page1 = () => {
   return (
     <div className="h-screen bg-background overflow-hidden">
       <Seo
-        title="ATEEN Works — Brand Design & Execution Studio"
-        description="ATEEN Works builds structured, long-term brand identities through design, content, and execution — for clients who value consistency."
+        title="ATEEN — Build a Brand That's Consistent Online and Offline"
+        description="ATEEN helps businesses connect their brand across every touchpoint. From digital presence to packaging, space, and people. Direction. System. Consistency."
         path="/"
       />
       <Header />
