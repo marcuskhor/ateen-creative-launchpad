@@ -47,14 +47,17 @@ const HeroSection = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.2, ease: [0.22, 1, 0.36, 1] }}
         >
-          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em]">
-            WE TRANSFORM BUSINESSES INTO BRANDS PEOPLE RECOGNIZE, REMEMBER, AND RETURN TO.
+          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em] max-w-3xl">
+            MOST BRANDS LOOK GOOD ONLINE.
+          </p>
+          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em] max-w-3xl">
+            BUT THE MOMENT A CUSTOMER WALKS IN, TOUCHES YOUR PACKAGING, OR MEETS YOUR TEAM — THE BRAND DISAPPEARS.
+          </p>
+          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em] max-w-3xl">
+            ATEEN BUILDS THE SYSTEM THAT MAKES YOUR BRAND FEEL THE SAME EVERYWHERE.
           </p>
           <p className="text-xs md:text-sm lg:text-base text-foreground tracking-[0.15em] font-bold">
-            IDENTITY → CONTENT → EXPERIENCE
-          </p>
-          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em]">
-            WE BRING CLARITY AND DIRECTION ACROSS EVERY PART OF THE BRAND.
+            DIRECTION → SYSTEM → CONSISTENCY
           </p>
         </motion.div>
 
