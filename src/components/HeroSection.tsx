@@ -51,10 +51,19 @@ const HeroSection = () => {
             MOST BRANDS LOOK GOOD ONLINE.
           </p>
           <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em] max-w-3xl">
-            BUT THE MOMENT A CUSTOMER WALKS IN, TOUCHES YOUR PACKAGING, OR MEETS YOUR TEAM — THE BRAND DISAPPEARS.
+            BUT THE MOMENT A CUSTOMER WALKS IN,
           </p>
           <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em] max-w-3xl">
-            ATEEN BUILDS THE SYSTEM THAT MAKES YOUR BRAND FEEL THE SAME EVERYWHERE.
+            TOUCHES YOUR PACKAGING, OR MEETS YOUR TEAM.
+          </p>
+          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em] max-w-3xl">
+            THE BRAND DISAPPEARS.
+          </p>
+          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em] max-w-3xl">
+            ATEEN BUILDS THE SYSTEM THAT MAKES
+          </p>
+          <p className="text-xs md:text-sm lg:text-base text-foreground/85 tracking-[0.15em] max-w-3xl">
+            YOUR BRAND FEEL THE SAME EVERYWHERE.
           </p>
           <p className="text-xs md:text-sm lg:text-base text-foreground tracking-[0.15em] font-bold">
             DIRECTION → SYSTEM → CONSISTENCY
