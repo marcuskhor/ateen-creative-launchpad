@@ -18,9 +18,9 @@ export function urlFor(source: SanityImageSource) {
 
 export const CATEGORIES = [
   { value: "all", label: "ALL" },
+  { value: "direction", label: "DIRECTION" },
   { value: "system", label: "SYSTEM" },
-  { value: "branding", label: "BRANDING" },
-  { value: "strategy", label: "STRATEGY" },
+  { value: "experience", label: "EXPERIENCE" },
   { value: "implement", label: "IMPLEMENT" },
 ] as const;
 
