@@ -13,8 +13,8 @@ const Header = () => {
     { href: '/about', label: 'ABOUT US', hash: '' },
     { href: '/about', label: 'SERVICES', hash: '#services' },
     { href: '/about', label: 'CONCEPT WORKS', hash: '#concepts' },
-    { href: '/insight', label: 'INSIGHT', hash: '' },
     { href: '/work', label: 'START A PROJECT', hash: '' },
+    { href: '/insight', label: 'INSIGHT', hash: '' },
   ];
 
   const handleNavClick = (link: typeof navLinks[0]) => {
