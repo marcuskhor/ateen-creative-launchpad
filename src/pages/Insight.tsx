@@ -38,10 +38,20 @@ const Insight = () => {
         <div className="container px-6 md:px-12 max-w-6xl">
           {/* Hero */}
           <AnimatedSection>
-            <h1 className="text-5xl md:text-7xl font-medium tracking-tight">A COLLECTION OF</h1>
-            <p className="mt-3 text-sm md:text-base tracking-[0.2em] text-muted-foreground font-light">
-              THOUGHTS, FRAMEWORK, AND BRAND OBSERVATION.
-            </p>
+            <div className="w-full space-y-1">
+              <h1
+                className="text-5xl md:text-7xl font-medium text-justify"
+                style={{ textAlignLast: 'justify' }}
+              >
+                A COLLECTION OF
+              </h1>
+              <p
+                className="text-sm md:text-base tracking-[0.2em] text-muted-foreground font-light text-justify"
+                style={{ textAlignLast: 'justify' }}
+              >
+                THOUGHTS, FRAMEWORK, AND BRAND OBSERVATION.
+              </p>
+            </div>
           </AnimatedSection>
 
           {/* Category filter */}
